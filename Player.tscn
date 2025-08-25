@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3c7igl484i6p"]
+
+[ext_resource type="Texture2D" uid="uid://dhbk0yh2mspgr" path="res://anje_wip_idle.png" id="1_06tve"]
+[ext_resource type="Script" uid="uid://dgbwwc08xt681" path="res://player.gd" id="1_kne1u"]
+[ext_resource type="Texture2D" uid="uid://bh4ynpcabldc1" path="res://anje_wip_walking.png" id="2_i3osk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_02dvo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_06tve")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i3osk")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e80uo"]
+size = Vector2(64, 93)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_kne1u")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.136364, 0.136364)
+sprite_frames = SubResource("SpriteFrames_02dvo")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1.5)
+shape = SubResource("RectangleShape2D_e80uo")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true

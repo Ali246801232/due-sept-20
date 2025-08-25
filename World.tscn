@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://ks8qpnr6dpme"]
+
+[ext_resource type="Texture2D" uid="uid://gkb54bqla0pv" path="res://kitchen_background_wip.png" id="1_2dftf"]
+[ext_resource type="PackedScene" uid="uid://b3c7igl484i6p" path="res://Player.tscn" id="2_bcbcq"]
+
+[node name="Kitchen" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-7, -9)
+scale = Vector2(0.800822, 0.800822)
+texture = ExtResource("1_2dftf")
+
+[node name="Player" parent="." instance=ExtResource("2_bcbcq")]
+position = Vector2(1, -2)
+
+[node name="WorldBorder" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder"]
+polygon = PackedVector2Array(-275, -195, 261, -196, 261, 291, -273, 292, -275, -152, -320, -152, -319, 358, 291, 355, 294, -314, -316, -312, -320, -152, -275, -152)
