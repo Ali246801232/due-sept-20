@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gkb54bqla0pv"
-path="res://.godot/imported/kitchen_background_wip.png-27d31deadb8afb0b3fd1f93194a32e13.ctex"
+uid="uid://dhbk0yh2mspgr"
+path="res://.godot/imported/anje_wip_idle.png-e142227ecb793e83a8a05cb2f739603f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kitchen_background_wip.png"
-dest_files=["res://.godot/imported/kitchen_background_wip.png-27d31deadb8afb0b3fd1f93194a32e13.ctex"]
+source_file="res://sprites/anje_wip_idle.png"
+dest_files=["res://.godot/imported/anje_wip_idle.png-e142227ecb793e83a8a05cb2f739603f.ctex"]
 
 [params]
 

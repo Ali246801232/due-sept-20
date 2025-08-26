@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://b3c7igl484i6p"]
 
-[ext_resource type="Texture2D" uid="uid://dhbk0yh2mspgr" path="res://anje_wip_idle.png" id="1_06tve"]
+[ext_resource type="Texture2D" uid="uid://dhbk0yh2mspgr" path="res://sprites/anje_wip_idle.png" id="1_06tve"]
 [ext_resource type="Script" uid="uid://dgbwwc08xt681" path="res://player.gd" id="1_kne1u"]
-[ext_resource type="Texture2D" uid="uid://bh4ynpcabldc1" path="res://anje_wip_walking.png" id="2_i3osk"]
+[ext_resource type="Texture2D" uid="uid://bh4ynpcabldc1" path="res://sprites/anje_wip_walking.png" id="2_i3osk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_02dvo"]
 animations = [{
@@ -40,3 +40,5 @@ shape = SubResource("RectangleShape2D_e80uo")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+
+[node name="Area2D" type="Area2D" parent="."]

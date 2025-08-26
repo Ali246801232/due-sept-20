@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var speed: float = 200.0
 
 var last_facing_right: bool = true
-var nearby_interactibles: Array[Node] = []
+var nearby_interactables: Array[Node] = []
 
 # Set up camera to follow player
 func _ready():
@@ -32,10 +32,8 @@ func _physics_process(_delta: float) -> void:
 
 	_update_animation_and_facing(dir)
 
-	if Input.is_action_just_pressed("interact") and nearby_interactibles.size() > 0:
-		var closest = _get_closest_interactible()
-		if closest:
-			closest.interact()
+	if Input.is_action_just_pressed("interact") and nearby_interactables.size() > 0:
+		pass
 
 # Mirror sprite and switch animations upon movement
 func _update_animation_and_facing(dir: Vector2) -> void:
@@ -56,25 +54,3 @@ func _update_animation_and_facing(dir: Vector2) -> void:
 	else:
 		if $Sprite.animation != "idle":
 			$Sprite.play("idle")
-
-# Return the nearest interactible from the list of nearby ones
-func _get_closest_interactible() -> Node:
-	var closest: Node = null
-	var closest_dist := INF
-	for area in nearby_interactibles:
-		if area and area.is_inside_tree():
-			var dist = position.distance_to(area.global_position)
-			if dist < closest_dist:
-				closest_dist = dist
-				closest = area
-	return closest
-
-# Add interactible to nearby list when entering its detection area
-func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("interactable"):
-		nearby_interactibles.append(area)
-
-# Remove interactible from nearby list when leaving its detection area
-func _on_area_exited(area: Area2D) -> void:
-	if area in nearby_interactibles:
-		nearby_interactibles.erase(area)

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c04d4e28foull"]
+
+[ext_resource type="Texture2D" uid="uid://dyw8451puov5p" path="res://sprites/test_interactable.png" id="1_msfch"]
+[ext_resource type="Script" uid="uid://bgbq5ixkgxabq" path="res://interactable.gd" id="1_ojdgt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojdgt"]
+size = Vector2(106, 106)
+
+[node name="Interactable" type="Area2D"]
+script = ExtResource("1_ojdgt")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_ojdgt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_msfch")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-160, -53, -54, -53, -54, -160, 54, -160, 54, -54, 160, -54, 160, 54, 54, 54, 54, 160, -53, 160, -53, 54, -160, 54)
+
+[node name="CooldownTimer" type="Timer" parent="."]
