@@ -2,28 +2,17 @@ extends CharacterBody2D
 
 @export var speed: float = 200.0
 
-var last_facing_right: bool = true
-var nearby_interactables: Array[Node] = []
+var nearby_interactables: Array = []
+var move_actions := ["move_up", "move_down", "move_left", "move_right"]
 
-# Set up camera to follow player
 func _ready():
 	$Camera2D.make_current()
 	$Camera2D.position_smoothing_enabled = true
 	$Camera2D.position_smoothing_speed = 5.0
 	$Camera2D.zoom = Vector2(1.25, 1.25)
 
-# Handle movement with input
-func _physics_process(_delta: float) -> void:
-	var dir := Vector2.ZERO
-	if Input.is_action_pressed("move_up"):
-		dir.y -= 1
-	if Input.is_action_pressed("move_down"):
-		dir.y += 1
-	if Input.is_action_pressed("move_left"):
-		dir.x -= 1
-	if Input.is_action_pressed("move_right"):
-		dir.x += 1
-
+func _physics_process(_delta: float):
+	var dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if dir != Vector2.ZERO:
 		dir = dir.normalized()
 
@@ -32,22 +21,64 @@ func _physics_process(_delta: float) -> void:
 
 	_update_animation_and_facing(dir)
 
+	# Interact when the player presses the action (E by default - see project input map note below)
 	if Input.is_action_just_pressed("interact") and nearby_interactables.size() > 0:
-		pass
+		_try_interact()
+
+# Called by Interactable nodes when the player enters their area
+func add_interactable(interactable: Node):
+	# Avoid duplicates
+	if interactable == null:
+		return
+	if not nearby_interactables.has(interactable):
+		nearby_interactables.append(interactable)
+
+# Called by Interactable nodes when the player exits their area
+func remove_interactable(interactable: Node):
+	if interactable == null:
+		return
+	if nearby_interactables.has(interactable):
+		nearby_interactables.erase(interactable)
+
+# Clean up dead references and try to interact with the nearest interactable
+func _try_interact():
+	# remove invalid or freed nodes
+	nearby_interactables = nearby_interactables.filter(func(a):
+		return a != null and a.is_inside_tree()
+	)
+
+	if nearby_interactables.size() == 0:
+		return
+
+	var target := _get_closest_interactable()
+	if target and target.has_method("interact"):
+		# direct call is fine; interact() internally uses await and will not block the main loop
+		target.interact()
+
+# Return the interactable nearest to the player's center (uses squared distance for speed)
+func _get_closest_interactable() -> Node:
+	var closest: Node = null
+	var closest_dist2 := INF
+	for area in nearby_interactables:
+		if area == null:
+			continue
+		# ensure node is in scene tree
+		if not area.is_inside_tree():
+			continue
+		var d2 := global_position.distance_squared_to(area.global_position)
+		if d2 < closest_dist2:
+			closest_dist2 = d2
+			closest = area
+	return closest
 
 # Mirror sprite and switch animations upon movement
 func _update_animation_and_facing(dir: Vector2) -> void:
 	if dir.x < 0:
 		$Sprite.flip_h = true
-		last_facing_right = false
 	elif dir.x > 0:
 		$Sprite.flip_h = false
-		last_facing_right = true
 
-	var any_move_pressed := Input.is_action_pressed("move_up") \
-							or Input.is_action_pressed("move_down") \
-							or Input.is_action_pressed("move_left") \
-							or Input.is_action_pressed("move_right")
+	var any_move_pressed := move_actions.any(Input.is_action_pressed)
 	if any_move_pressed:
 		if $Sprite.animation != "walk" or not $Sprite.is_playing():
 			$Sprite.play("walk")

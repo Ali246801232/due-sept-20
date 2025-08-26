@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://c04d4e28foull"]
+[gd_scene load_steps=6 format=3 uid="uid://c04d4e28foull"]
 
-[ext_resource type="Texture2D" uid="uid://dyw8451puov5p" path="res://sprites/test_interactable.png" id="1_msfch"]
 [ext_resource type="Script" uid="uid://bgbq5ixkgxabq" path="res://interactable.gd" id="1_ojdgt"]
+[ext_resource type="Texture2D" uid="uid://cvgbefpijqg6f" path="res://sprites/progress_bar_base.png" id="2_q4x1i"]
+[ext_resource type="Texture2D" uid="uid://83eifyama153" path="res://sprites/progress_bar_progress.png" id="3_1eopo"]
+[ext_resource type="Script" uid="uid://cjijcsspaxk7i" path="res://timer_display.gd" id="3_v7umd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojdgt"]
-size = Vector2(106, 106)
+size = Vector2(80, 80)
 
 [node name="Interactable" type="Area2D"]
 script = ExtResource("1_ojdgt")
@@ -12,12 +14,27 @@ script = ExtResource("1_ojdgt")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2, -2)
 shape = SubResource("RectangleShape2D_ojdgt")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_msfch")
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-2, -2)
+scale = Vector2(0.747663, 0.747663)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-160, -53, -54, -53, -54, -160, 54, -160, 54, -54, 160, -54, 160, 54, 54, 54, 54, 160, -53, 160, -53, 54, -160, 54)
+position = Vector2(-3, -3)
+scale = Vector2(0.718931, 0.718931)
+polygon = PackedVector2Array(-95.9759, -54.2472, -54.2472, -54.2472, -54.2472, -95.9758, 57.0291, -95.9758, 57.0291, -54.2472, 98.7578, -54.2472, 98.7578, 57.0291, 57.0291, 57.0291, 57.0291, 98.7577, -54.2472, 98.7577, -54.2472, 57.0291, -95.9759, 57.0291)
 
-[node name="CooldownTimer" type="Timer" parent="."]
+[node name="WaitingTimer" type="Timer" parent="."]
+
+[node name="TimerDisplay" type="TextureProgressBar" parent="."]
+offset_left = 8.0
+offset_top = -42.0
+offset_right = 180.0
+offset_bottom = 130.0
+scale = Vector2(0.17438, 0.17438)
+fill_mode = 4
+texture_under = ExtResource("2_q4x1i")
+texture_progress = ExtResource("3_1eopo")
+script = ExtResource("3_v7umd")
