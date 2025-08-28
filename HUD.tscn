@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh0y17n8bjtak"]
+
+[ext_resource type="Script" uid="uid://cy0g8bwetmqwm" path="res://hud.gd" id="1_k5de2"]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 99
+script = ExtResource("1_k5de2")
+
+[node name="Label" type="Label" parent="."]
+offset_top = 930.0
+offset_right = 260.0
+offset_bottom = 1080.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 260.0
+offset_top = 930.0
+offset_right = 520.0
+offset_bottom = 1080.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 520.0
+offset_top = 930.0
+offset_right = 780.0
+offset_bottom = 1080.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+autowrap_mode = 3
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 780.0
+offset_top = 930.0
+offset_right = 1040.0
+offset_bottom = 1080.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+autowrap_mode = 3
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 1040.0
+offset_top = 930.0
+offset_right = 1300.0
+offset_bottom = 1080.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+autowrap_mode = 3

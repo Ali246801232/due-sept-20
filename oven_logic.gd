@@ -1,30 +1,34 @@
 extends Node
 
 @export var sprite_texture: Texture2D
+
+signal show_message(message: String, time: float)
+signal wait(time: float, post_callback: Callable)
+signal show_timer()
+signal hide_timer()
+
 func get_sprite_texture():
 	sprite_texture = load("res://sprites/test_interactable.png")
 	return sprite_texture
 
-func get_states() -> Array:
+func get_states():
 	return [
-		{
-			"pre_action": Callable(self, "take_item_from_player"),
-			"wait_time": 5.0,
-			"auto_end": false,
-			"post_action": Callable(self, "finish_cooking"),
-			"next_state": 1
-		},
-		{
-			"pre_action": Callable(self, "give_item_to_player"),
-			"next_state": 0
-		}
+		Callable(self, "put_item_in_oven"),
+		Callable(self, "take_item_from_oven")
 	]
 
-func take_item_from_player():
-	print("Player puts raw item in oven")
+var storage: Array
 
-func finish_cooking():
-	print("Oven finished cooking, ready to pick up")
+func put_item_in_oven():
+	emit_signal("show_message", "Player puts raw item in oven", 3.0)
+	emit_signal("wait", 5.0, Callable(self, "_on_wait_finished"))
+	emit_signal("show_timer")
+	return 1
 
-func give_item_to_player():
-	print("Player takes cooked item from oven")
+func _on_wait_finished():
+	emit_signal("show_message", "Oven is done.", 3.0)
+
+func take_item_from_oven():
+	emit_signal("hide_timer")
+	emit_signal("show_message", "Player takes cooked item from oven", 3.0)
+	return 0

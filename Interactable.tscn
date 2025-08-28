@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c04d4e28foull"]
+[gd_scene load_steps=9 format=3 uid="uid://c04d4e28foull"]
 
 [ext_resource type="Script" uid="uid://bgbq5ixkgxabq" path="res://interactable.gd" id="1_ojdgt"]
+[ext_resource type="Script" uid="uid://cy6wwse6u2l54" path="res://waiting_timer.gd" id="2_mcna6"]
 [ext_resource type="Texture2D" uid="uid://cvgbefpijqg6f" path="res://sprites/progress_bar_base.png" id="2_q4x1i"]
 [ext_resource type="Texture2D" uid="uid://83eifyama153" path="res://sprites/progress_bar_progress.png" id="3_1eopo"]
-[ext_resource type="Script" uid="uid://cjijcsspaxk7i" path="res://timer_display.gd" id="3_v7umd"]
+[ext_resource type="Texture2D" uid="uid://p78b0orax1nv" path="res://sprites/messagebox.png" id="5_1eopo"]
+[ext_resource type="Script" uid="uid://sdlmjsglx0vf" path="res://timer_display_position.gd" id="5_pv7lh"]
+[ext_resource type="Script" uid="uid://bow3336dyeqll" path="res://message_bubble.gd" id="6_mcna6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojdgt"]
 size = Vector2(80, 80)
@@ -27,8 +30,12 @@ scale = Vector2(0.718931, 0.718931)
 polygon = PackedVector2Array(-95.9759, -54.2472, -54.2472, -54.2472, -54.2472, -95.9758, 57.0291, -95.9758, 57.0291, -54.2472, 98.7578, -54.2472, 98.7578, 57.0291, 57.0291, 57.0291, 57.0291, 98.7577, -54.2472, 98.7577, -54.2472, 57.0291, -95.9759, 57.0291)
 
 [node name="WaitingTimer" type="Timer" parent="."]
+one_shot = true
+script = ExtResource("2_mcna6")
 
-[node name="TimerDisplay" type="TextureProgressBar" parent="."]
+[node name="TimerDisplay" type="TextureProgressBar" parent="WaitingTimer"]
+visible = false
+anchors_preset = -1
 offset_left = 8.0
 offset_top = -42.0
 offset_right = 180.0
@@ -37,4 +44,26 @@ scale = Vector2(0.17438, 0.17438)
 fill_mode = 4
 texture_under = ExtResource("2_q4x1i")
 texture_progress = ExtResource("3_1eopo")
-script = ExtResource("3_v7umd")
+script = ExtResource("5_pv7lh")
+
+[node name="MessageBubble" type="Sprite2D" parent="."]
+position = Vector2(-2, -53)
+scale = Vector2(0.146341, 0.146341)
+texture = ExtResource("5_1eopo")
+script = ExtResource("6_mcna6")
+
+[node name="Label" type="Label" parent="MessageBubble"]
+offset_left = -232.0
+offset_top = -96.0005
+offset_right = 4415.0
+offset_bottom = 1339.0
+scale = Vector2(0.1, 0.1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 500
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
+[node name="Timer" type="Timer" parent="MessageBubble"]
+one_shot = true

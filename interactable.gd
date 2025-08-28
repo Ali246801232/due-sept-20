@@ -1,84 +1,74 @@
 extends Area2D
 
-@export var sprite_texture: Texture2D
-@onready var timer: Timer = $WaitingTimer
-var _current_state: int = 0
+@onready var waiting_timer: Timer = $WaitingTimer
+@onready var message_bubble: Sprite2D = $MessageBubble
+
+var _logic_node: Node2D
 var _states: Array = []
+var _current_state: int = 0
+var _next_state: int = -1
 var _running: bool = false
-var _prev_timer: bool
-signal wait_started(wait_time: float)
-signal wait_ended()
 
 
 func _ready():
-	# Apply sprite
-	$Sprite.texture = sprite_texture
-
-	# Timer setup
-	timer.one_shot = true
-	timer.autostart = false
-
 	# Connect Area2D signals
 	if not is_connected("body_entered", Callable(self, "_on_body_entered")):
 		connect("body_entered", Callable(self, "_on_body_entered"))
 	if not is_connected("body_exited", Callable(self, "_on_body_exited")):
 		connect("body_exited", Callable(self, "_on_body_exited"))
 
-	# Look for child logic node to get states and optional sprite override
-	for child in get_children():
-		if child.has_method("get_states"):
-			_states = child.get_states()
-			if child.has_method("get_sprite_texture"):
-				sprite_texture = child.get_sprite_texture()
-				$Sprite.texture = sprite_texture
-			break
-
+	# Get states and sprite from logic node
+	assert(has_node("Logic"), "Interactable must have a logic node")
+	_logic_node = get_node("Logic")
+	if _logic_node.has_method("get_states"):
+		_states = _logic_node.get_states()
+	if _logic_node.has_method("get_sprite_texture"):
+		$Sprite.texture = _logic_node.get_sprite_texture()
 	assert(_states.size() > 0, "Interactable must have at least one state defined")
 
+	_logic_node.connect("wait", Callable(self, "wait"))
+	_logic_node.connect("show_message", Callable(self, "show_message"))
+	_logic_node.connect("show_timer", Callable(self, "show_timer"))
+	_logic_node.connect("hide_timer", Callable(self, "hide_timer"))
+
+
+# Add a nearby interactable upon entering its area
 func _on_body_entered(body: Node):
 	if body.has_method("add_interactable"):
 		body.add_interactable(self)
 
+# Remove a nearby interactable upon leaving its area
 func _on_body_exited(body: Node):
 	if body.has_method("remove_interactable"):
 		body.remove_interactable(self)
 
+# Display a message bubble
+func show_message(message: String, time: float):
+	message_bubble.show_message(message, time)
+
+# Wait for some time before allowing interaction again
+func wait(time: float, post_callback):
+	waiting_timer.wait(time, post_callback)
+
+# Show the timer visualization
+func show_timer():
+	waiting_timer.show_timer()
+
+# Hide the timer visualization
+func hide_timer():
+	waiting_timer.hide_timer()
+
+# Called when the user interacts with the interactable
 func interact():
-	# Check and remove progress bar from previous timer
-	if _prev_timer:
-		emit_signal("wait_ended")
-		_prev_timer = false
-
-	# Check if already running
 	if _running:
-		print("State running, cannot interact again")
 		return
-
-	# Start running and load state
+	
 	_running = true
 	var state = _states[_current_state]
+	_next_state = state.call()
 
-	# Pre-action
-	if state.has("pre_action") and state.pre_action.is_valid():
-		state.pre_action.call()
+	if not waiting_timer.is_stopped():
+		await waiting_timer.timeout
 	
-	# Waiting timer
-	if state.has("wait_time") and state.wait_time > 0:
-		emit_signal("wait_started", state.wait_time)
-		_prev_timer = true
-		timer.start(state.wait_time)
-		await timer.timeout
-
-	#
-	if state.has("auto_end") and state.auto_end:
-		_prev_timer = false
-		emit_signal("wait_ended")
-
-	# Post-action
-	if state.has("post_action") and state.post_action.is_valid():
-		state.post_action.call()
-
-	# Move to next state
-	assert(state.has("next_state"), "State must define next_state")
-	_current_state = state.next_state
+	_current_state = _next_state
 	_running = false
