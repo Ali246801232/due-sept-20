@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://b3c7igl484i6p"]
 
-[ext_resource type="Texture2D" uid="uid://dhbk0yh2mspgr" path="res://sprites/anje_wip_idle.png" id="1_06tve"]
+[ext_resource type="Texture2D" uid="uid://dhbk0yh2mspgr" path="res://assets/player/player_idle.png" id="1_06tve"]
 [ext_resource type="Script" uid="uid://c883xiq061ocf" path="res://player.gd" id="1_kne1u"]
-[ext_resource type="Texture2D" uid="uid://bh4ynpcabldc1" path="res://sprites/anje_wip_walking.png" id="2_i3osk"]
+[ext_resource type="Texture2D" uid="uid://bh4ynpcabldc1" path="res://assets/player/player_walking.png" id="2_i3osk"]
 [ext_resource type="Script" uid="uid://6t3jtnembc1l" path="res://inventory.gd" id="4_e80uo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_02dvo"]
@@ -37,7 +37,7 @@ sprite_frames = SubResource("SpriteFrames_02dvo")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 14.5)
+position = Vector2(0, 14.5)
 shape = SubResource("RectangleShape2D_e80uo")
 
 [node name="Camera2D" type="Camera2D" parent="."]

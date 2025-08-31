@@ -1,56 +1,80 @@
-[gd_scene load_steps=2 format=3 uid="uid://bh0y17n8bjtak"]
+[gd_scene load_steps=7 format=3 uid="uid://bh0y17n8bjtak"]
 
 [ext_resource type="Script" uid="uid://cy0g8bwetmqwm" path="res://hud.gd" id="1_k5de2"]
+[ext_resource type="Texture2D" uid="uid://bqnapwgi8jil5" path="res://assets/ui/inventory_no_bowl.png" id="2_efote"]
+[ext_resource type="Texture2D" uid="uid://brsi2jokio8ej" path="res://assets/ui/inventory_bowl.png" id="2_vow1y"]
+[ext_resource type="Texture2D" uid="uid://dyw8451puov5p" path="res://assets/test_interactable.png" id="4_ne771"]
+[ext_resource type="Texture2D" uid="uid://cwxehwmnkuwbu" path="res://assets/ui/ingredient_extender.png" id="5_xxqia"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ne771"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vow1y")
+}],
+"loop": true,
+"name": &"inventory_bowl",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_efote")
+}],
+"loop": true,
+"name": &"inventory_no_bowl",
+"speed": 5.0
+}]
 
 [node name="HUD" type="CanvasLayer"]
 layer = 99
 script = ExtResource("1_k5de2")
 
-[node name="Label" type="Label" parent="."]
-offset_top = 930.0
-offset_right = 260.0
-offset_bottom = 1080.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-autowrap_mode = 3
+[node name="InventoryGUI" type="AnimatedSprite2D" parent="."]
+position = Vector2(960, 540)
+sprite_frames = SubResource("SpriteFrames_ne771")
+animation = &"inventory_no_bowl"
 
-[node name="Label2" type="Label" parent="."]
-offset_left = 260.0
-offset_top = 930.0
-offset_right = 520.0
-offset_bottom = 1080.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-autowrap_mode = 3
+[node name="Item" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, 422)
+scale = Vector2(0.990654, 0.990654)
+texture = ExtResource("4_ne771")
 
-[node name="Label3" type="Label" parent="."]
-offset_left = 520.0
-offset_top = 930.0
-offset_right = 780.0
-offset_bottom = 1080.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-autowrap_mode = 3
+[node name="Extender1" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, 222)
+texture = ExtResource("5_xxqia")
 
-[node name="Label4" type="Label" parent="."]
-offset_left = 780.0
-offset_top = 930.0
-offset_right = 1040.0
-offset_bottom = 1080.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-autowrap_mode = 3
+[node name="Extender2" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, 118)
+texture = ExtResource("5_xxqia")
 
-[node name="Label5" type="Label" parent="."]
-offset_left = 1040.0
-offset_top = 930.0
-offset_right = 1300.0
-offset_bottom = 1080.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-autowrap_mode = 3
+[node name="Extender3" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, 15)
+texture = ExtResource("5_xxqia")
+
+[node name="Bowl0" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, 272)
+scale = Vector2(0.616824, 0.616824)
+texture = ExtResource("4_ne771")
+
+[node name="Bowl1" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, 171)
+scale = Vector2(0.616824, 0.616824)
+texture = ExtResource("4_ne771")
+
+[node name="Bowl2" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, 71)
+scale = Vector2(0.616824, 0.616824)
+texture = ExtResource("4_ne771")
+
+[node name="Bowl3" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, -29)
+scale = Vector2(0.616824, 0.616824)
+texture = ExtResource("4_ne771")

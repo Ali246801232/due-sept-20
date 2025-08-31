@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var speed: float = 200.0
 
+signal interacted(interactable)
 var nearby_interactables: Array = []
 var move_actions := ["move_up", "move_down", "move_left", "move_right"]
 
@@ -35,18 +36,21 @@ func remove_interactable(interactable: Node):
 	if nearby_interactables.has(interactable):
 		nearby_interactables.erase(interactable)
 
-# Clean up dead references and try to interact with the nearest interactable
+# Try to interact with the nearest interactable if it exists
 func _try_interact():
-	nearby_interactables = nearby_interactables.filter(func(a):
-		return a != null and a.is_inside_tree()
+	# Remove dead references
+	nearby_interactables = nearby_interactables.filter(func(interactable):
+		return interactable != null and interactable.is_inside_tree()
 	)
 
+	# No nearby interactables
 	if nearby_interactables.size() == 0:
 		return
 
+	# Interact with nearest interactable
 	var target := _get_closest_interactable()
-	if target and target.has_method("interact"):
-		target.interact()
+	if target:
+		emit_signal("interacted", target)
 
 # Return nearest interactable in case player in multiple interaction areas
 func _get_closest_interactable() -> Node:
