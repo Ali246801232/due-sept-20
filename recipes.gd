@@ -7,13 +7,13 @@ class Recipe:
 	var input_inventory: Dictionary
 	var output_inventory: Dictionary
 	
-	func _init(interactable_name, input_inventory, output_inventory):
-		self.interactable_name = interactable_name
-		self.input_inventory = input_inventory
-		self.output_inventory = output_inventory
+	func _init(int_name, inp_inv, outp_inv):
+		self.interactable_name = int_name
+		self.input_inventory = inp_inv
+		self.output_inventory = outp_inv
 
 	func get_output():
-		return output_inventory
+		return output_inventory.duplicate(true)
 	
 	# Convert a bowl array into an array of groups
 	func _group_bowl(bowl: Array):

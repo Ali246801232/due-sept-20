@@ -1,9 +1,7 @@
 extends Sprite2D
 
-var slots = [$Slot1, $Slot2, $Slot3, $Slot4]
-
 func _ready():
-	global_position = get_parent().get_parent().global_position + Vector2(0.0, -70.0)  # idfk man
+	global_position = get_parent().global_position + Vector2(0.0, -70.0)  # idfk man
 
 func set_slots(ingredients):
 	$Slot1.texture = Icons.ingredients[ingredients[0]]

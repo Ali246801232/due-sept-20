@@ -24,6 +24,7 @@ func _ready():
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Bread Dough", cont, cont, "Coconut"]}, {"item": "Bowl", "bowl": ["Risen Dough (Coconut)", cont, cont, cont]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Bread Dough", cont, cont, "Cheese"]}, {"item": "Bowl", "bowl": ["Risen Dough (Cheese)", cont, cont, cont]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Bread Dough", cont, cont, "Ube"]}, {"item": "Bowl", "bowl": ["Risen Dough (Ube)", cont, cont, cont]})
+	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["", "", "", ""]}, {"item": "Bowl", "bowl": ["", "", "", ""]})
 
 func get_sprite_texture():
 	return sprite_texture
@@ -59,4 +60,5 @@ func _return_processed():
 		output_inventory = Inventory.get_mush()
 	emit_signal("hide_timer")
 	Inventory.set_inventory(output_inventory)
+	storage = Inventory.get_empty()
 	return 0

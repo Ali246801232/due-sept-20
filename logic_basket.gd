@@ -21,7 +21,7 @@ func _ready():
 	popup.visible = false
 	popup.set_slots(ingredients)
 
-func _process(delta):
+func _process(_delta):
 	if not popup.visible:
 		return
 	if Input.is_action_just_pressed("container_1"):

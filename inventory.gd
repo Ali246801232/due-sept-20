@@ -90,7 +90,7 @@ func get_inventory() -> Dictionary:
 # Replace the current inventory
 func set_inventory(inventory: Dictionary):
 	current_item = inventory["item"]
-	current_bowl = inventory["bowl"]
+	current_bowl = inventory["bowl"].duplicate()
 	if current_item == "Bowl":
 		holding_bowl = true
 	else:
@@ -109,12 +109,10 @@ func get_empty() -> Dictionary:
 
 # Get a bowl with mush in it, resulting from incorrect interactable usage
 func get_mush() -> Dictionary:
-	var bowl = ["Mush"]
-	var conts = []
-	conts.resize(bowl_size - 1)
-	conts.fill("_CONT_")
-	bowl.append_array(conts)
+	var bowl = []
+	bowl.resize(bowl_size)
+	bowl.fill("")
 	return {
-		"item": "Bowl",
+		"item": "Mush",
 		"bowl": bowl
 	}

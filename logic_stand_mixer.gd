@@ -20,6 +20,7 @@ func _ready():
 	var cont = Inventory.continue_marker
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Flour", "Butter", "Milk", "Sugar"]}, {"item": "Bowl", "bowl": ["Cookie Dough", cont, "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Flour", "Butter", "Water", "Sugar"]}, {"item": "Bowl", "bowl": ["Bread Dough", cont, cont, ""]})
+	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["", "", "", ""]}, {"item": "Bowl", "bowl": ["", "", "", ""]})
 
 func get_sprite_texture():
 	return sprite_texture
@@ -55,4 +56,5 @@ func _return_processed():
 		return 1
 	emit_signal("hide_timer")
 	Inventory.set_inventory(output_inventory)
+	storage = Inventory.get_empty()
 	return 0

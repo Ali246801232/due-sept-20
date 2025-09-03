@@ -17,7 +17,6 @@ func get_states():
 	]
 
 func discard():
-	var inventory = Inventory.get_inventory()
 	var output_inventory = Inventory.get_empty()
 	if Inventory.holding_bowl and not Inventory.is_bowl_empty():
 		output_inventory["item"] = "Bowl"

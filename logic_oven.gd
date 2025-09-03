@@ -31,7 +31,8 @@ func _ready():
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Risen Dough (Egg)", cont, cont, cont]}, {"item": "Egg Bread", "bowl": ["", "", "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Risen Dough (Coconut)", cont, cont, cont]}, {"item": "Coco Bread", "bowl": ["", "", "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Risen Dough (Cheese)", cont, cont, cont]}, {"item": "Cheese Pandesal", "bowl": ["", "", "", ""]})
-	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Risen Dough (Ube)", cont, cont, cont]}, {"item": "Ube Bread", "bowl": ["", "", "", ""]})
+	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Risen Dough (Ube)", cont, cont, cont]}, {"item": "Ube Pandesal", "bowl": ["", "", "", ""]})
+	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["", "", "", ""]}, {"item": "Bowl", "bowl": ["", "", "", ""]})
 
 func get_sprite_texture():
 	return sprite_texture
@@ -67,4 +68,5 @@ func _return_processed():
 		return 1
 	emit_signal("hide_timer")
 	Inventory.set_inventory(output_inventory)
+	storage = Inventory.get_empty()
 	return 0

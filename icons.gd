@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 var interactables: Dictionary
 var customers: Dictionary
@@ -7,16 +7,16 @@ var ingredients: Dictionary
 
 func _ready() -> void:
 	interactables = {
-	"Basket": load("res://assets/interactables/interactable_basket.png"),
-	"Cabinet": load("res://assets/interactables/interactable_cabinet.png"),
-	"Fridge": load("res://assets/interactables/interactable_fridge.png"),
-	"Sink": load("res://assets/interactables/interactable_sink.png"),
-	"Bread Proofer": load("res://assets/interactables/interactable_bread_proofer.png"),
-	"Oven": load("res://assets/interactables/interactable_oven.png"),
-	"Stand Mixer": load("res://assets/interactables/interactable_stand_mixer.png"),
-	"Shelf": load("res://assets/interactables/interactable_shelf.png"),
-	"Table": load("res://assets/interactables/interactable_table.png"),
-	"Trash": load("res://assets/interactables/interactable_trash.png")
+		"Basket": load("res://assets/interactables/interactable_basket.png"),
+		"Cabinet": load("res://assets/interactables/interactable_cabinet.png"),
+		"Fridge": load("res://assets/interactables/interactable_fridge.png"),
+		"Sink": load("res://assets/interactables/interactable_sink.png"),
+		"Bread Proofer": load("res://assets/interactables/interactable_bread_proofer.png"),
+		"Oven": load("res://assets/interactables/interactable_oven.png"),
+		"Stand Mixer": load("res://assets/interactables/interactable_stand_mixer.png"),
+		"Shelf": load("res://assets/interactables/interactable_shelf.png"),
+		"Table": load("res://assets/interactables/interactable_table.png"),
+		"Trash": load("res://assets/interactables/interactable_trash.png")
 	}
 	
 	items = {
@@ -35,7 +35,8 @@ func _ready() -> void:
 		"Coco Bread": load("res://assets/items/item_coco_bread.png"),
 		"Egg Bread": load("res://assets/items/item_egg_bread.png"),
 		"Cheese Pandesal": load("res://assets/items/item_cheese_pandesal.png"),
-		"Ube Pandesal": load("res://assets/items/item_ube_pandesal.png")
+		"Ube Pandesal": load("res://assets/items/item_ube_pandesal.png"),
+		"Mush": load("res://assets/ingredients/ingredient_mush.png")
 	}
 	
 	ingredients = {
@@ -59,6 +60,5 @@ func _ready() -> void:
 		"Risen Dough (Cheese)": load("res://assets/ingredients/ingredient_risen_dough_cheese.png"),
 		"Risen Dough (Coconut)": load("res://assets/ingredients/ingredient_risen_dough_coconut.png"),
 		"Risen Dough (Egg)": load("res://assets/ingredients/ingredient_risen_dough_egg.png"),
-		"Risen Dough (Ube)": load("res://assets/ingredients/ingredient_risen_dough_ube.png"),
-		"Mush": load("res://assets/ingredients/ingredient_mush.png")
+		"Risen Dough (Ube)": load("res://assets/ingredients/ingredient_risen_dough_ube.png")
 	}
