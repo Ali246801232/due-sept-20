@@ -17,11 +17,12 @@ func get_states():
 	]
 
 func take_water():
-	if not Inventory.holding_bowl:
-		emit_signal("show_message", "You're not holding a bowl!", 3.0)
-		return 0
-	if Inventory.is_bowl_full():
+	if Inventory.has_item() and not Inventory.holding_bowl:
+		emit_signal("show_message", "You're already holding something!", 3.0)
+	elif Inventory.holding_bowl and not Inventory.is_bowl_full():
+		Inventory.add_ingredient("Water")
+	elif Inventory.holding_bowl and Inventory.is_bowl_full():
 		emit_signal("show_message", "Your bowl is full!", 3.0)
-		return 0
-	Inventory.add_ingredient("Water")
+	elif not Inventory.has_item():
+		Inventory.add_item("Water")
 	return 0

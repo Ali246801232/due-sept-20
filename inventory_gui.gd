@@ -36,6 +36,6 @@ func redraw_inventory():
 			bowl_slot.visible = false
 			if extender: extender.visible = true
 		else:
-			bowl_slot.texture = Icons.ingredients[inventory["bowl"][i]]
+			bowl_slot.texture = Icons.items[inventory["bowl"][i]]
 			bowl_slot.visible = true
 			if extender: extender.visible = false

@@ -9,10 +9,10 @@ signal show_timer()
 signal hide_timer()
 
 var popup = load("res://ContainerPopup.tscn").instantiate()
-var ingredients = ["Banana", "Ube", "Coconut", "Nuts"]
+var ingredients = ["Sugar", "Flour", "Chocolate", "Cocoa"]
 
 func _ready():
-	sprite_texture = Icons.interactables["Basket"]
+	sprite_texture = Icons.interactables["Cabinet"]
 	states = [
 		Callable(self, "_toggle_popup")
 	]
@@ -46,13 +46,14 @@ func on_other_interacted():
 	popup.visible = false
 
 func _give_ingredient(index):
-	if not Inventory.holding_bowl:
-		emit_signal("show_message", "You're not holding a bowl!", 3.0)
-		return
-	if Inventory.is_bowl_full():
+	if Inventory.has_item() and not Inventory.holding_bowl:
+		emit_signal("show_message", "You're already holding something!", 3.0)
+	elif Inventory.holding_bowl and not Inventory.is_bowl_full():
+		Inventory.add_ingredient(ingredients[index - 1])
+	elif Inventory.holding_bowl and Inventory.is_bowl_full():
 		emit_signal("show_message", "Your bowl is full!", 3.0)
-		return
-	Inventory.add_ingredient(ingredients[index - 1])
+	else:
+		Inventory.add_item(ingredients[index - 1])
 
 func _toggle_popup():
 	if popup.visible:

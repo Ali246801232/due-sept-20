@@ -64,7 +64,7 @@ func remove_ingredients():
 
 # Add an item
 func add_item(item: String):
-	if item != "":
+	if current_item != "":
 		return
 	if item == "Bowl":
 		holding_bowl = true

@@ -36,10 +36,7 @@ func _ready() -> void:
 		"Egg Bread": load("res://assets/items/item_egg_bread.png"),
 		"Cheese Pandesal": load("res://assets/items/item_cheese_pandesal.png"),
 		"Ube Pandesal": load("res://assets/items/item_ube_pandesal.png"),
-		"Mush": load("res://assets/ingredients/ingredient_mush.png")
-	}
-	
-	ingredients = {
+		"Mush": load("res://assets/ingredients/ingredient_mush.png"),
 		"Banana": load("res://assets/ingredients/ingredient_banana.png"),
 		"Coconut": load("res://assets/ingredients/ingredient_coconut.png"),
 		"Nuts": load("res://assets/ingredients/ingredient_nuts.png"),
