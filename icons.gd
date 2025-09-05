@@ -1,61 +1,57 @@
 extends Node
 
-var interactables: Dictionary
-var customers: Dictionary
-var items: Dictionary
-var ingredients: Dictionary
+var customers: Dictionary = {}
 
-func _ready() -> void:
-	interactables = {
-		"Basket": load("res://assets/interactables/interactable_basket.png"),
-		"Cabinet": load("res://assets/interactables/interactable_cabinet.png"),
-		"Fridge": load("res://assets/interactables/interactable_fridge.png"),
-		"Sink": load("res://assets/interactables/interactable_sink.png"),
-		"Bread Proofer": load("res://assets/interactables/interactable_bread_proofer.png"),
-		"Oven": load("res://assets/interactables/interactable_oven.png"),
-		"Stand Mixer": load("res://assets/interactables/interactable_stand_mixer.png"),
-		"Shelf": load("res://assets/interactables/interactable_shelf.png"),
-		"Table": load("res://assets/interactables/interactable_table.png"),
-		"Trash": load("res://assets/interactables/interactable_trash.png")
-	}
-	
-	items = {
-		"Bowl": load("res://assets/items/item_bowl.png"),
-		"Dirty Bowl": load("res://assets/items/item_dirty_bowl.png"),
-		"Plain Cookies": load("res://assets/items/item_plain_cookies.png"),
-		"Butter Cookies": load("res://assets/items/item_butter_cookies.png"),
-		"Cheese Cookies": load("res://assets/items/item_cheese_cookies.png"),
-		"Chocolate Chip Cookies": load("res://assets/items/item_chocolate_chip_cookies.png"),
-		"Sugar Cookies": load("res://assets/items/item_sugar_cookies.png"),
-		"Mixed Nut Cookies": load("res://assets/items/item_mixed_nut_cookies.png"),
-		"Chocolate Crinkles": load("res://assets/items/item_chocolate_crinkles.png"),
-		"Ube Crinkles": load("res://assets/items/item_ube_crinkles.png"),
-		"Plain Bread": load("res://assets/items/item_plain_bread.png"),
-		"Banana Bread": load("res://assets/items/item_banana_bread.png"),
-		"Coco Bread": load("res://assets/items/item_coco_bread.png"),
-		"Egg Bread": load("res://assets/items/item_egg_bread.png"),
-		"Cheese Pandesal": load("res://assets/items/item_cheese_pandesal.png"),
-		"Ube Pandesal": load("res://assets/items/item_ube_pandesal.png"),
-		"Mush": load("res://assets/ingredients/ingredient_mush.png"),
-		"Banana": load("res://assets/ingredients/ingredient_banana.png"),
-		"Coconut": load("res://assets/ingredients/ingredient_coconut.png"),
-		"Nuts": load("res://assets/ingredients/ingredient_nuts.png"),
-		"Ube": load("res://assets/ingredients/ingredient_ube.png"),
-		"Butter": load("res://assets/ingredients/ingredient_butter.png"),
-		"Cheese": load("res://assets/ingredients/ingredient_cheese.png"),
-		"Eggs": load("res://assets/ingredients/ingredient_eggs.png"),
-		"Milk": load("res://assets/ingredients/ingredient_milk.png"),
-		"Chocolate": load("res://assets/ingredients/ingredient_chocolate.png"),
-		"Cocoa": load("res://assets/ingredients/ingredient_cocoa.png"),
-		"Flour": load("res://assets/ingredients/ingredient_flour.png"),
-		"Sugar": load("res://assets/ingredients/ingredient_sugar.png"),
-		"Water": load("res://assets/ingredients/ingredient_water.png"),
-		"Cookie Dough": load("res://assets/ingredients/ingredient_cookie_dough.png"),
-		"Bread Dough": load("res://assets/ingredients/ingredient_bread_dough.png"),
-		"Risen Dough": load("res://assets/ingredients/ingredient_risen_dough.png"),
-		"Risen Dough (Banana)": load("res://assets/ingredients/ingredient_risen_dough_banana.png"),
-		"Risen Dough (Cheese)": load("res://assets/ingredients/ingredient_risen_dough_cheese.png"),
-		"Risen Dough (Coconut)": load("res://assets/ingredients/ingredient_risen_dough_coconut.png"),
-		"Risen Dough (Egg)": load("res://assets/ingredients/ingredient_risen_dough_egg.png"),
-		"Risen Dough (Ube)": load("res://assets/ingredients/ingredient_risen_dough_ube.png")
-	}
+var interactables: Dictionary = {
+	"Basket": load("res://assets/interactables/interactable_basket.png"),
+	"Cabinet": load("res://assets/interactables/interactable_cabinet.png"),
+	"Fridge": load("res://assets/interactables/interactable_fridge.png"),
+	"Sink": load("res://assets/interactables/interactable_sink.png"),
+	"Bread Proofer": load("res://assets/interactables/interactable_bread_proofer.png"),
+	"Oven": load("res://assets/interactables/interactable_oven.png"),
+	"Stand Mixer": load("res://assets/interactables/interactable_stand_mixer.png"),
+	"Shelf": load("res://assets/interactables/interactable_shelf.png"),
+	"Table": load("res://assets/interactables/interactable_table.png"),
+	"Trash": load("res://assets/interactables/interactable_trash.png")
+}
+
+var items: Dictionary = {
+	"Bowl": load("res://assets/items/item_bowl.png"),
+	"Dirty Bowl": load("res://assets/items/item_dirty_bowl.png"),
+	"Plain Cookies": load("res://assets/items/item_plain_cookies.png"),
+	"Butter Cookies": load("res://assets/items/item_butter_cookies.png"),
+	"Cheese Cookies": load("res://assets/items/item_cheese_cookies.png"),
+	"Chocolate Chip Cookies": load("res://assets/items/item_chocolate_chip_cookies.png"),
+	"Sugar Cookies": load("res://assets/items/item_sugar_cookies.png"),
+	"Mixed Nut Cookies": load("res://assets/items/item_mixed_nut_cookies.png"),
+	"Chocolate Crinkles": load("res://assets/items/item_chocolate_crinkles.png"),
+	"Ube Crinkles": load("res://assets/items/item_ube_crinkles.png"),
+	"Plain Bread": load("res://assets/items/item_plain_bread.png"),
+	"Banana Bread": load("res://assets/items/item_banana_bread.png"),
+	"Coco Bread": load("res://assets/items/item_coco_bread.png"),
+	"Egg Bread": load("res://assets/items/item_egg_bread.png"),
+	"Cheese Pandesal": load("res://assets/items/item_cheese_pandesal.png"),
+	"Ube Pandesal": load("res://assets/items/item_ube_pandesal.png"),
+	"Mush": load("res://assets/ingredients/ingredient_mush.png"),
+	"Banana": load("res://assets/ingredients/ingredient_banana.png"),
+	"Coconut": load("res://assets/ingredients/ingredient_coconut.png"),
+	"Nuts": load("res://assets/ingredients/ingredient_nuts.png"),
+	"Ube": load("res://assets/ingredients/ingredient_ube.png"),
+	"Butter": load("res://assets/ingredients/ingredient_butter.png"),
+	"Cheese": load("res://assets/ingredients/ingredient_cheese.png"),
+	"Eggs": load("res://assets/ingredients/ingredient_eggs.png"),
+	"Milk": load("res://assets/ingredients/ingredient_milk.png"),
+	"Chocolate": load("res://assets/ingredients/ingredient_chocolate.png"),
+	"Cocoa": load("res://assets/ingredients/ingredient_cocoa.png"),
+	"Flour": load("res://assets/ingredients/ingredient_flour.png"),
+	"Sugar": load("res://assets/ingredients/ingredient_sugar.png"),
+	"Water": load("res://assets/ingredients/ingredient_water.png"),
+	"Cookie Dough": load("res://assets/ingredients/ingredient_cookie_dough.png"),
+	"Bread Dough": load("res://assets/ingredients/ingredient_bread_dough.png"),
+	"Risen Dough": load("res://assets/ingredients/ingredient_risen_dough.png"),
+	"Risen Dough (Banana)": load("res://assets/ingredients/ingredient_risen_dough_banana.png"),
+	"Risen Dough (Cheese)": load("res://assets/ingredients/ingredient_risen_dough_cheese.png"),
+	"Risen Dough (Coconut)": load("res://assets/ingredients/ingredient_risen_dough_coconut.png"),
+	"Risen Dough (Egg)": load("res://assets/ingredients/ingredient_risen_dough_egg.png"),
+	"Risen Dough (Ube)": load("res://assets/ingredients/ingredient_risen_dough_ube.png")
+}

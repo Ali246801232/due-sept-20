@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://d21akx7wvyqjo" path="res://interactable_logic/logic_fridge.gd" id="7_fvag4"]
 [ext_resource type="Script" uid="uid://cj58qi6mve8x8" path="res://interactable_logic/logic_sink.gd" id="8_ee7l0"]
 [ext_resource type="Script" uid="uid://c1a1jwv1thqvm" path="res://interactable_logic/logic_basket.gd" id="8_kva58"]
-[ext_resource type="PackedScene" uid="uid://bka5w0ylw0f1a" path="res://CustomerManager.tscn" id="14_ee7l0"]
+[ext_resource type="PackedScene" uid="uid://bka5w0ylw0f1a" path="res://Customers.tscn" id="14_ee7l0"]
 [ext_resource type="PackedScene" uid="uid://df4jvkt2pnts8" path="res://CustomerSlot.tscn" id="15_gn8l5"]
 
 [node name="World" type="Node2D"]
@@ -94,20 +94,20 @@ position = Vector2(222, 252)
 [node name="Logic" type="Node2D" parent="Interactables/Trash"]
 script = ExtResource("6_wygdx")
 
-[node name="CustomerManager" parent="." instance=ExtResource("14_ee7l0")]
+[node name="Customers" parent="." instance=ExtResource("14_ee7l0")]
 
-[node name="Slot0" parent="CustomerManager" instance=ExtResource("15_gn8l5")]
+[node name="Slot0" parent="Customers" instance=ExtResource("15_gn8l5")]
 position = Vector2(-191, -207)
 scale = Vector2(0.4, 0.4)
 
-[node name="Slot1" parent="CustomerManager" instance=ExtResource("15_gn8l5")]
+[node name="Slot1" parent="Customers" instance=ExtResource("15_gn8l5")]
 position = Vector2(-93, -207)
 scale = Vector2(0.4, 0.4)
 
-[node name="Slot2" parent="CustomerManager" instance=ExtResource("15_gn8l5")]
+[node name="Slot2" parent="Customers" instance=ExtResource("15_gn8l5")]
 position = Vector2(7.99999, -207)
 scale = Vector2(0.4, 0.4)
 
-[node name="Slot3" parent="CustomerManager" instance=ExtResource("15_gn8l5")]
+[node name="Slot3" parent="Customers" instance=ExtResource("15_gn8l5")]
 position = Vector2(108, -207)
 scale = Vector2(0.4, 0.4)

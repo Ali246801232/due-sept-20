@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 Inventory="*res://inventory.gd"
 Recipes="*res://recipes.gd"
 Icons="*res://icons.gd"
+Customers="*res://customers.gd"
 
 [display]
 

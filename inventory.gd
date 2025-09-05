@@ -9,6 +9,7 @@ var bowl_size: int = 4
 var continue_marker = "_CONT_"  # for ingredients to take multiple slots
 
 func _ready():
+	# Initialize empty inventory
 	set_inventory(get_empty())
 	
 # Check if the bowl is empty
@@ -97,7 +98,7 @@ func set_inventory(inventory: Dictionary):
 		holding_bowl = false
 	emit_signal("update_inventory")
 
-# Get a copy of an empty inventory, used to initialize interactable storage
+# Get an empty inventory
 func get_empty() -> Dictionary:
 	var bowl = []
 	bowl.resize(bowl_size)
@@ -107,7 +108,7 @@ func get_empty() -> Dictionary:
 		"bowl": bowl
 	}
 
-# Get a bowl with mush in it, resulting from incorrect interactable usage
+# Get an inventory of mush, resulting from incorrect interactable usage
 func get_mush() -> Dictionary:
 	var bowl = []
 	bowl.resize(bowl_size)
