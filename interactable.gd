@@ -10,6 +10,7 @@ var _states: Array = []
 var _current_state: int = 0
 var _next_state: int
 var _running: bool = false
+var _process_function: Callable
 
 var distance_anchor
 
@@ -18,6 +19,9 @@ signal exited_interactable()
 signal other_interacted()
 
 func _ready():
+	Freeze.connect("frozen", Callable(self, "freeze"))
+	Freeze.connect("unfrozen", Callable(self, "unfreeze"))
+	
 	# Connect player interaction signal
 	var player = get_tree().current_scene.get_node("Player")
 	if player:
@@ -39,8 +43,9 @@ func _ready():
 		$Sprite.texture = _logic_node.get_sprite_texture()
 	if _logic_node.has_method("get_anchors"):
 		_anchors = _logic_node.get_anchors()
+	if _logic_node.has_method("get_process_function"):
+		_process_function = _logic_node.get_process_function()
 	assert(_states.size() > 0, "Interactable must have at least one state defined")
-	
 	if _anchors:
 		interact_popup.global_position = _anchors.get("interact_popup", interact_popup.global_position)
 		timer_display.global_position = _anchors.get("timer_display", timer_display.global_position)
@@ -59,6 +64,10 @@ func _ready():
 		connect("exited_interactable", Callable(_logic_node, "on_exited_interactable"))
 	if _logic_node.has_method("on_other_interacted"):
 		connect("other_interacted", Callable(_logic_node, "on_other_interacted"))
+
+func _process(_delta):
+	if _process_function:
+		_process_function.call()
 
 # Add a nearby interactable upon entering its area
 func _on_body_entered(body: Node):
@@ -91,6 +100,8 @@ func _hide_timer():
 
 # Some interaction happened
 func _on_interaction(target):
+	if Freeze.is_frozen:
+		return
 	if target == self:
 		interact()
 	else:
@@ -117,3 +128,9 @@ func interact():
 	
 	_current_state = _next_state
 	_running = false
+
+func freeze():
+	waiting_timer.paused = true
+
+func unfreeze():
+	waiting_timer.paused = false

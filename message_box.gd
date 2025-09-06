@@ -7,6 +7,9 @@ var fade_tween: Tween
 var fade_duration = 0.2
 
 func _ready():
+	Freeze.connect("frozen", Callable(self, "freeze"))
+	Freeze.connect("unfrozen", Callable(self, "unfreeze"))
+	
 	timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 	label.text = ""
 	visible = false
@@ -32,3 +35,9 @@ func _on_timer_timeout():
 	await fade_tween.finished
 	label.text = ""
 	visible = false
+
+func freeze():
+	timer.paused = true
+
+func unfreeze():
+	timer.paused = false

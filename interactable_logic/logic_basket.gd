@@ -21,7 +21,7 @@ func _ready():
 	popup.visible = false
 	popup.set_slots(ingredients)
 
-func _process(_delta):
+func _container_input():
 	if not popup.visible:
 		return
 	if Input.is_action_just_pressed("container_1"):
@@ -32,6 +32,9 @@ func _process(_delta):
 		_give_ingredient(3)
 	if Input.is_action_just_pressed("container_4"):
 		_give_ingredient(4)
+
+func get_process_function():
+	return Callable(self, "_container_input")
 
 func get_sprite_texture():
 	return sprite_texture

@@ -2,7 +2,7 @@ extends Node2D
 
 @export var sprite_texture: Texture2D = null
 var states: Array = []
-var interactable = " Oven"
+var interactable = "Oven"
 
 signal show_message(message: String, time: float)
 signal wait(time: float, post_callback: Callable)

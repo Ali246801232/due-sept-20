@@ -20,6 +20,7 @@ Inventory="*res://inventory.gd"
 Recipes="*res://recipes.gd"
 Icons="*res://icons.gd"
 Customers="*res://customers.gd"
+Freeze="*res://freeze.gd"
 
 [display]
 
