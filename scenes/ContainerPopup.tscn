@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dfxbs1yix1ber" path="res://assets/ui/container_popup.png" id="1_x2imw"]
 [ext_resource type="Texture2D" uid="uid://dnngpvpgktkli" path="res://assets/ingredients/ingredient_banana.png" id="2_58b1w"]
-[ext_resource type="Script" uid="uid://l1v7xw4enes" path="res://container_popup.gd" id="2_lvw1e"]
+[ext_resource type="Script" uid="uid://l1v7xw4enes" path="res://scripts/container_popup.gd" id="2_lvw1e"]
 
 [node name="ContainerPopup" type="Sprite2D"]
 scale = Vector2(0.9, 0.9)

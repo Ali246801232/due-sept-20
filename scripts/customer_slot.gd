@@ -71,7 +71,7 @@ func interact():
 
 func set_customer(customer_name):
 	customer = Customers.get_customer(customer_name)
-	customer_sprite.texture = customer.sprite
+	customer_sprite.texture = customer.get_sprite()
 
 func set_random_order():
 	order = customer.get_random_order()
@@ -89,7 +89,7 @@ func take_order():
 
 func check_order():
 	if not customer:
-		return
+		return 1
 	order_timer.stop()
 	var inventory = Inventory.get_inventory()
 	Inventory.set_inventory(Inventory.get_empty())
@@ -102,6 +102,7 @@ func check_order():
 		order_popup.set_success(false)
 		score = -10
 	emit_signal("update_score", score)
+	return 0
 
 func _on_timeout():
 	state = 0
@@ -117,7 +118,7 @@ func calculate_score(remaining_time: float, multiplier: float) -> int:
 	if elapsed_time <= 20.0:
 		return 100
 	var raw_score: float = 100.0 * remaining_time / max(time_limit - 20.0, 1.0)
-	return int(clamp(raw_score, 10.0, 100.0) *multiplier)
+	return int(clamp(raw_score, 10.0, 100.0) * multiplier)
 
 func freeze():
 	order_timer.paused = true

@@ -9,6 +9,9 @@ var _closest_interactable = null
 var _move_actions := ["move_left", "move_right", "move_up", "move_down"]
 
 func _ready():
+	Freeze.connect("frozen", Callable(self, "freeze"))
+	Freeze.connect("unfrozen", Callable(self, "unfreeze"))
+
 	$Camera2D.make_current()
 
 func _physics_process(_delta: float):

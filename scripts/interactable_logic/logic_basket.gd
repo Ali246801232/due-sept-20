@@ -8,11 +8,11 @@ signal show_message(message: String, image: String)
 signal show_timer()
 signal hide_timer()
 
-var popup = load("res://ContainerPopup.tscn").instantiate()
-var ingredients = ["Sugar", "Flour", "Chocolate", "Cocoa"]
+var popup = load("res://scenes/ContainerPopup.tscn").instantiate()
+var ingredients = ["Banana", "Ube", "Coconut", "Nuts"]
 
 func _ready():
-	sprite_texture = Icons.interactables["Cabinet"]
+	sprite_texture = Icons.interactables["Basket"]
 	states = [
 		Callable(self, "_toggle_popup")
 	]

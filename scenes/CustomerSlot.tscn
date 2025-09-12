@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://df4jvkt2pnts8"]
 
-[ext_resource type="Script" uid="uid://cp5uaiyihmun4" path="res://customer_slot.gd" id="1_7nj10"]
+[ext_resource type="Script" uid="uid://cp5uaiyihmun4" path="res://scripts/customer_slot.gd" id="1_7nj10"]
 [ext_resource type="Texture2D" uid="uid://bice433ltke8g" path="res://assets/customers/TEMPCUSTOMER.png" id="1_kr5dw"]
 [ext_resource type="Texture2D" uid="uid://603mcn88lrkf" path="res://assets/ui/order_popup.png" id="2_ksfde"]
-[ext_resource type="Script" uid="uid://bblfcyp8dl82e" path="res://order_popup.gd" id="4_dg8v8"]
+[ext_resource type="Script" uid="uid://bblfcyp8dl82e" path="res://scripts/order_popup.gd" id="4_dg8v8"]
 [ext_resource type="Texture2D" uid="uid://borma3vnfhnfn" path="res://assets/items/item_banana_bread.png" id="5_dg8v8"]
-[ext_resource type="Script" uid="uid://dnld01a6874kv" path="res://order_timer.gd" id="6_8ptdx"]
+[ext_resource type="Script" uid="uid://dnld01a6874kv" path="res://scripts/order_timer.gd" id="6_8ptdx"]
 [ext_resource type="Texture2D" uid="uid://cntiqt382e2mc" path="res://assets/ui/e_to_interact.png" id="6_150no"]
 
 [node name="CustomerSlot" type="Area2D"]

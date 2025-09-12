@@ -1,6 +1,8 @@
 extends Node
 
-var customers: Dictionary = {}
+var customers: Dictionary = {
+	"Ali": load("res://assets/customers/TEMPCUSTOMER.png")
+}
 
 var interactables: Dictionary = {
 	"Basket": load("res://assets/interactables/interactable_basket.png"),

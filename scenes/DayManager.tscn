@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bka5w0ylw0f1a"]
+
+[ext_resource type="Script" uid="uid://ifem7w8bsyrd" path="res://scripts/customers.gd" id="1_lv1yx"]
+[ext_resource type="Script" uid="uid://cdud2g2niqjd8" path="res://scripts/day_manager.gd" id="2_rcdqu"]
+
+[node name="DayManager" type="Node"]
+script = ExtResource("2_rcdqu")
+
+[node name="Customers" type="Node2D" parent="."]
+script = ExtResource("1_lv1yx")

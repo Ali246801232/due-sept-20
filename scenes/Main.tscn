@@ -1,23 +1,28 @@
-[gd_scene load_steps=17 format=3 uid="uid://ks8qpnr6dpme"]
+[gd_scene load_steps=18 format=3 uid="uid://ks8qpnr6dpme"]
 
+[ext_resource type="Script" uid="uid://beg0ddta7vgdh" path="res://scenes/main.gd" id="1_ft6cd"]
 [ext_resource type="Texture2D" uid="uid://gkb54bqla0pv" path="res://assets/kitchen_background_wip.png" id="1_j4qnp"]
-[ext_resource type="PackedScene" uid="uid://b3c7igl484i6p" path="res://Player.tscn" id="2_fpfj3"]
-[ext_resource type="PackedScene" uid="uid://bh0y17n8bjtak" path="res://HUD.tscn" id="3_sc1dx"]
-[ext_resource type="PackedScene" uid="uid://c04d4e28foull" path="res://Interactable.tscn" id="4_kjvhd"]
-[ext_resource type="Script" uid="uid://1vshh80mq5ic" path="res://interactable_logic/logic_oven.gd" id="5_5tuhn"]
-[ext_resource type="Script" uid="uid://ccvb6qp6g03o1" path="res://interactable_logic/logic_table.gd" id="5_fpfj3"]
-[ext_resource type="Script" uid="uid://cuham87rr6ym0" path="res://interactable_logic/logic_stand_mixer.gd" id="6_2gh4u"]
-[ext_resource type="Script" uid="uid://b8w716qxd5uxc" path="res://interactable_logic/logic_bread_proofer.gd" id="7_devvj"]
-[ext_resource type="Script" uid="uid://dos6sc2w0wmse" path="res://interactable_logic/logic_shelf.gd" id="8_3b0ty"]
-[ext_resource type="Script" uid="uid://cj58qi6mve8x8" path="res://interactable_logic/logic_sink.gd" id="9_bg4s2"]
-[ext_resource type="Script" uid="uid://br28m0epbypdy" path="res://interactable_logic/logic_cabinet.gd" id="10_hhcpw"]
-[ext_resource type="Script" uid="uid://d21akx7wvyqjo" path="res://interactable_logic/logic_fridge.gd" id="11_mxvw5"]
-[ext_resource type="Script" uid="uid://c1a1jwv1thqvm" path="res://interactable_logic/logic_basket.gd" id="12_xrxkg"]
-[ext_resource type="Script" uid="uid://b534qu7bqp03f" path="res://interactable_logic/logic_trash.gd" id="13_sqvbp"]
-[ext_resource type="PackedScene" uid="uid://bka5w0ylw0f1a" path="res://CustomerManager.tscn" id="14_hri7i"]
-[ext_resource type="PackedScene" uid="uid://df4jvkt2pnts8" path="res://CustomerSlot.tscn" id="15_w3rk5"]
+[ext_resource type="PackedScene" uid="uid://b3c7igl484i6p" path="res://scenes/Player.tscn" id="2_fpfj3"]
+[ext_resource type="PackedScene" uid="uid://bh0y17n8bjtak" path="res://scenes/HUD.tscn" id="3_sc1dx"]
+[ext_resource type="PackedScene" uid="uid://c04d4e28foull" path="res://scenes/Interactable.tscn" id="4_kjvhd"]
+[ext_resource type="Script" uid="uid://1vshh80mq5ic" path="res://scripts/interactable_logic/logic_oven.gd" id="5_5tuhn"]
+[ext_resource type="Script" uid="uid://ccvb6qp6g03o1" path="res://scripts/interactable_logic/logic_table.gd" id="5_fpfj3"]
+[ext_resource type="Script" uid="uid://cuham87rr6ym0" path="res://scripts/interactable_logic/logic_stand_mixer.gd" id="6_2gh4u"]
+[ext_resource type="Script" uid="uid://b8w716qxd5uxc" path="res://scripts/interactable_logic/logic_bread_proofer.gd" id="7_devvj"]
+[ext_resource type="Script" uid="uid://dos6sc2w0wmse" path="res://scripts/interactable_logic/logic_shelf.gd" id="8_3b0ty"]
+[ext_resource type="Script" uid="uid://cj58qi6mve8x8" path="res://scripts/interactable_logic/logic_sink.gd" id="9_bg4s2"]
+[ext_resource type="Script" uid="uid://br28m0epbypdy" path="res://scripts/interactable_logic/logic_cabinet.gd" id="10_hhcpw"]
+[ext_resource type="Script" uid="uid://d21akx7wvyqjo" path="res://scripts/interactable_logic/logic_fridge.gd" id="11_mxvw5"]
+[ext_resource type="Script" uid="uid://c1a1jwv1thqvm" path="res://scripts/interactable_logic/logic_basket.gd" id="12_xrxkg"]
+[ext_resource type="Script" uid="uid://b534qu7bqp03f" path="res://scripts/interactable_logic/logic_trash.gd" id="13_sqvbp"]
+[ext_resource type="PackedScene" uid="uid://bka5w0ylw0f1a" path="res://scenes/DayManager.tscn" id="14_hri7i"]
+[ext_resource type="PackedScene" uid="uid://df4jvkt2pnts8" path="res://scenes/CustomerSlot.tscn" id="15_w3rk5"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_ft6cd")
+
+[node name="Player" parent="." instance=ExtResource("2_fpfj3")]
+position = Vector2(1, -2)
 
 [node name="Background" type="ParallaxBackground" parent="."]
 
@@ -98,28 +103,25 @@ position = Vector2(222, 252)
 [node name="Logic" type="Node2D" parent="Interactables/Trash"]
 script = ExtResource("13_sqvbp")
 
-[node name="CustomerManager" parent="." instance=ExtResource("14_hri7i")]
+[node name="DayManager" parent="." instance=ExtResource("14_hri7i")]
 
-[node name="Slot0" parent="CustomerManager" instance=ExtResource("15_w3rk5")]
+[node name="CustomerSlot0" parent="DayManager" instance=ExtResource("15_w3rk5")]
 light_mask = 2
 visibility_layer = 2
 position = Vector2(-191, -207)
 scale = Vector2(0.4, 0.4)
 
-[node name="Slot1" parent="CustomerManager" instance=ExtResource("15_w3rk5")]
+[node name="CustomerSlot1" parent="DayManager" instance=ExtResource("15_w3rk5")]
 visibility_layer = 2
 position = Vector2(-93, -207)
 scale = Vector2(0.4, 0.4)
 
-[node name="Slot2" parent="CustomerManager" instance=ExtResource("15_w3rk5")]
+[node name="CustomerSlot2" parent="DayManager" instance=ExtResource("15_w3rk5")]
 visibility_layer = 2
 position = Vector2(7.99999, -207)
 scale = Vector2(0.4, 0.4)
 
-[node name="Slot3" parent="CustomerManager" instance=ExtResource("15_w3rk5")]
+[node name="CustomerSlot3" parent="DayManager" instance=ExtResource("15_w3rk5")]
 visibility_layer = 2
 position = Vector2(108, -207)
 scale = Vector2(0.4, 0.4)
-
-[node name="Player" parent="." instance=ExtResource("2_fpfj3")]
-position = Vector2(1, -2)

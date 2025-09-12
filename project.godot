@@ -16,11 +16,11 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]
 
-Inventory="*res://inventory.gd"
-Recipes="*res://recipes.gd"
-Icons="*res://icons.gd"
-Customers="*res://customers.gd"
-Freeze="*res://freeze.gd"
+Inventory="*res://scripts/inventory.gd"
+Recipes="*res://scripts/recipes.gd"
+Icons="*res://scripts/icons.gd"
+Customers="*res://scripts/customers.gd"
+Freeze="*res://scripts/freeze.gd"
 
 [display]
 

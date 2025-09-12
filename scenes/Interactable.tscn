@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://c04d4e28foull"]
 
-[ext_resource type="Script" uid="uid://bgbq5ixkgxabq" path="res://interactable.gd" id="1_ojdgt"]
+[ext_resource type="Script" uid="uid://bgbq5ixkgxabq" path="res://scripts/interactable.gd" id="1_ojdgt"]
 [ext_resource type="Texture2D" uid="uid://dyw8451puov5p" path="res://assets/test_interactable.png" id="2_aetc2"]
-[ext_resource type="Script" uid="uid://cy6wwse6u2l54" path="res://waiting_timer.gd" id="2_mcna6"]
+[ext_resource type="Script" uid="uid://cy6wwse6u2l54" path="res://scripts/waiting_timer.gd" id="2_mcna6"]
 [ext_resource type="Texture2D" uid="uid://cvgbefpijqg6f" path="res://assets/ui/progress_bar_base.png" id="2_q4x1i"]
 [ext_resource type="Texture2D" uid="uid://83eifyama153" path="res://assets/ui/progress_bar_progress.png" id="3_1eopo"]
-[ext_resource type="Script" uid="uid://sdlmjsglx0vf" path="res://timer_display_position.gd" id="5_pv7lh"]
+[ext_resource type="Script" uid="uid://sdlmjsglx0vf" path="res://scripts/timer_display_position.gd" id="5_pv7lh"]
 [ext_resource type="Texture2D" uid="uid://cntiqt382e2mc" path="res://assets/ui/e_to_interact.png" id="9_j1cl7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojdgt"]
