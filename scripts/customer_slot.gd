@@ -72,9 +72,17 @@ func interact():
 func set_customer(customer_name):
 	customer = Customers.get_customer(customer_name)
 	customer_sprite.texture = customer.get_sprite()
+	customer_sprite.visible = true
+
+func clear_customer():
+	customer = null
+	customer_sprite.visible = false
 
 func set_random_order():
 	order = customer.get_random_order()
+
+func set_order(new_order):
+	order = new_order
 
 func take_order():
 	if not customer:
@@ -85,12 +93,14 @@ func take_order():
 
 	time_limit = 90 * customer.get_effects()["time_multiplier"]
 	order_timer.start(time_limit)
+	order_timer.show_timer()
 	return 1
 
 func check_order():
 	if not customer:
 		return 1
 	order_timer.stop()
+	order_timer.hide_timer()
 	var inventory = Inventory.get_inventory()
 	Inventory.set_inventory(Inventory.get_empty())
 	if inventory["item"] == order:
@@ -109,6 +119,7 @@ func _on_timeout():
 	order = ""
 	score = -10
 	emit_signal("timer_ended")
+	order_timer.hide_timer()
 	order_popup.set_success(false)
 	emit_signal("update_score", score)
 

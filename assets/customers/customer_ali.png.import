@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bice433ltke8g"
-path="res://.godot/imported/TEMPCUSTOMER.png-5489f423ac3361409518dbef27abaa24.ctex"
+uid="uid://cuxrmg4uadej0"
+path="res://.godot/imported/customer_ali.png-07f5e53f481549333a071f4e5f6f1e58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/customers/TEMPCUSTOMER.png"
-dest_files=["res://.godot/imported/TEMPCUSTOMER.png-5489f423ac3361409518dbef27abaa24.ctex"]
+source_file="res://assets/customers/customer_ali.png"
+dest_files=["res://.godot/imported/customer_ali.png-07f5e53f481549333a071f4e5f6f1e58.ctex"]
 
 [params]
 

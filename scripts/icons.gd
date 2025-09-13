@@ -1,7 +1,18 @@
 extends Node
 
 var customers: Dictionary = {
-	"Ali": load("res://assets/customers/TEMPCUSTOMER.png")
+	"Ali": load("res://assets/customers/customer_ali.png"),
+	"Melan": load("res://assets/customers/customer_melan.png"),
+	"Kenz": load("res://assets/customers/customer_kenz.png"),
+	"Kraze": load("res://assets/customers/customer_kraze.png"),
+	"Mordekaiser": load("res://assets/customers/customer_mordekaiser.png"),
+	"Miku": load("res://assets/customers/customer_miku.png"),
+	"Carton": load("res://assets/customers/customer_carton.png"),
+	"Chekered": load("res://assets/customers/customer_chekered.png"),
+	"Soda": load("res://assets/customers/customer_soda.png"),
+	"Rev": load("res://assets/customers/customer_rev.png"),
+	"Chiyo": load("res://assets/customers/customer_chiyo.png"),
+	"Cake Box": load("res://assets/TEMPCUSTOMER.png"),
 }
 
 var interactables: Dictionary = {
@@ -55,5 +66,6 @@ var items: Dictionary = {
 	"Risen Dough (Cheese)": load("res://assets/ingredients/ingredient_risen_dough_cheese.png"),
 	"Risen Dough (Coconut)": load("res://assets/ingredients/ingredient_risen_dough_coconut.png"),
 	"Risen Dough (Egg)": load("res://assets/ingredients/ingredient_risen_dough_egg.png"),
-	"Risen Dough (Ube)": load("res://assets/ingredients/ingredient_risen_dough_ube.png")
+	"Risen Dough (Ube)": load("res://assets/ingredients/ingredient_risen_dough_ube.png"),
+	"Cake Box": load("res://assets/test_interactable.png")
 }

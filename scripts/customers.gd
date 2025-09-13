@@ -1,3 +1,5 @@
+# TODO: SEPARATE CUSTOMER FROM ORDER
+
 extends Node
 
 var customers: Array = []
@@ -16,7 +18,7 @@ var valid_orders = [
 	{"name": "Egg Bread", "tags": ["Bread"]},
 	{"name": "Coco Bread", "tags": ["Bread"]},
 	{"name": "Cheese Pandesal", "tags": ["Pandesal"]},
-	{"name": "Ube Pandesal", "tags": ["Pandesal"]}
+	{"name": "Ube Pandesal", "tags": ["Pandesal"]},
 ]
 
 var filters = ["_RANDOM_COOKIES_", "_RANDOM_BREAD_", "_RANDOM_NORMAL_"]
@@ -25,6 +27,7 @@ class Customer:
 	var _name: String
 	var _sprite: Texture
 	var _orders: Array
+	var _special_order: String
 	var _effects: Dictionary
 	var _filters: Array
 	var _allow_random: bool
@@ -45,8 +48,13 @@ class Customer:
 			if include_ok and exclude_ok:
 				_orders.append(order["name"])
 	
-	func set_filters():
-		for order in _orders:
+	func set_special_order(order):
+		_special_order = order
+	
+	func set_filters(valid_orders):
+		for order in valid_orders:
+			if not order["name"] in _orders:
+				continue
 			if "Cookies" in order["tags"] or "Crinkles" in order["tags"]:
 				if "_RANDOM_COOKIES_" not in _filters:
 					_filters.append("_RANDOM_COOKIES_")
@@ -78,10 +86,14 @@ class Customer:
 	
 	func get_sprite():
 		return _sprite
+	
+	func get_allow_random():
+		return _allow_random
 
 func new_customer(customer_name, properties):
 	var default_properties := {
 		"orders": [],
+		"special_order": "",
 		"include": [],
 		"exclude": [],
 		"allow_random": true,
@@ -91,14 +103,13 @@ func new_customer(customer_name, properties):
 			"recipe_screen": false
 		}
 	}
+
 	var props = default_properties.duplicate(true)
 	if properties and properties is Dictionary:
 		for key in properties.keys():
-			if key == "allow_randomm":
-				props["allow_random"] = properties[key]
-			elif key == "effects" and typeof(properties[key]) == TYPE_DICTIONARY:
-				for ekey in properties[key].keys():
-					props["effects"][ekey] = properties[key][ekey]
+			if key == "effects" and properties[key] is Dictionary:
+				for effect in properties[key].keys():
+					props["effects"][effect] = properties[key][effect]
 			else:
 				props[key] = properties[key]
 
@@ -106,23 +117,28 @@ func new_customer(customer_name, properties):
 		if customer.get_name() == customer_name:
 			return
 	var new_customer = Customer.new(customer_name)
+
 	if not props["orders"].is_empty():
 		new_customer.set_orders(props["orders"])
-	else:
+	elif not props["include"].is_empty() or not props["exclude"].is_empty():
 		new_customer.set_orders_from_tags(props["include"], props["exclude"], valid_orders)
+	else:
+		new_customer.set_orders_from_tags(["Cookies", "Crinkles", "Bread", "Pandesal"], [], valid_orders)
+	new_customer.set_filters(valid_orders)
+	new_customer.set_special_order(props["special_order"])
 	new_customer.set_effects(props["effects"])
 	new_customer.set_allow_random(props["allow_random"])
-	customers.append(new_customer)
 
+	customers.append(new_customer)
 
 func get_random_customer(filter):
 	if customers.is_empty():
 		return null
 	var filtered = []
 	for customer in customers:
-		if customer.match_filter(filter):
+		if customer.match_filter(filter) and not customer.get_allow_random():
 			filtered.append(customer)
-	return filtered[randi() % customers.size()]
+	return filtered[randi_range(0, filtered.size() - 1)]
 
 func get_customer(customer_name):
 	if customer_name in filters:

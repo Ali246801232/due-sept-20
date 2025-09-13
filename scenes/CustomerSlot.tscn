@@ -1,17 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://df4jvkt2pnts8"]
+[gd_scene load_steps=10 format=3 uid="uid://df4jvkt2pnts8"]
 
 [ext_resource type="Script" uid="uid://cp5uaiyihmun4" path="res://scripts/customer_slot.gd" id="1_7nj10"]
-[ext_resource type="Texture2D" uid="uid://bice433ltke8g" path="res://assets/customers/TEMPCUSTOMER.png" id="1_kr5dw"]
+[ext_resource type="Texture2D" uid="uid://bice433ltke8g" path="res://assets/TEMPCUSTOMER.png" id="1_kr5dw"]
 [ext_resource type="Texture2D" uid="uid://603mcn88lrkf" path="res://assets/ui/order_popup.png" id="2_ksfde"]
 [ext_resource type="Script" uid="uid://bblfcyp8dl82e" path="res://scripts/order_popup.gd" id="4_dg8v8"]
 [ext_resource type="Texture2D" uid="uid://borma3vnfhnfn" path="res://assets/items/item_banana_bread.png" id="5_dg8v8"]
 [ext_resource type="Script" uid="uid://dnld01a6874kv" path="res://scripts/order_timer.gd" id="6_8ptdx"]
 [ext_resource type="Texture2D" uid="uid://cntiqt382e2mc" path="res://assets/ui/e_to_interact.png" id="6_150no"]
+[ext_resource type="Texture2D" uid="uid://83eifyama153" path="res://assets/ui/progress_bar_progress.png" id="7_60ifu"]
+[ext_resource type="Texture2D" uid="uid://cvgbefpijqg6f" path="res://assets/ui/progress_bar_base.png" id="8_xb61n"]
 
 [node name="CustomerSlot" type="Area2D"]
 script = ExtResource("1_7nj10")
 
 [node name="CustomerSprite" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_kr5dw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -30,12 +33,22 @@ position = Vector2(0, -11.3006)
 scale = Vector2(1.40291, 1.40291)
 texture = ExtResource("5_dg8v8")
 
+[node name="SuccessTimer" type="Timer" parent="OrderPopup"]
+
 [node name="OrderTimer" type="Timer" parent="."]
 script = ExtResource("6_8ptdx")
 
 [node name="TimerDisplay" type="TextureProgressBar" parent="OrderTimer"]
-offset_right = 40.0
-offset_bottom = 40.0
+visible = false
+offset_left = -73.0
+offset_top = -110.0
+offset_right = 99.0
+offset_bottom = 62.0
+scale = Vector2(0.15, 0.15)
+value = 23.0
+fill_mode = 5
+texture_under = ExtResource("7_60ifu")
+texture_progress = ExtResource("8_xb61n")
 
 [node name="InteractPopup" type="Sprite2D" parent="."]
 visible = false
