@@ -7,6 +7,10 @@ var success_texture = load("res://assets/ui/order_success.png")
 var failure_texture = load("res://assets/ui/order_failure.png")
 
 func _ready():
+	# Game freezing signals
+	Freeze.connect("frozen", Callable(self, "freeze"))
+	Freeze.connect("unfrozen", Callable(self, "unfreeze"))
+
 	clear_order()
 	success_timer.connect("timeout", Callable(self, "clear_order"))
 
@@ -28,3 +32,9 @@ func set_success(success):
 	if not success_timer.is_stopped():
 		success_timer.stop()
 	success_timer.start(2.0)
+
+func freeze():
+	success_timer.paused = true
+
+func unfreeze():
+	success_timer.paused = false

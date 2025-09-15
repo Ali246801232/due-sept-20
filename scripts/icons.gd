@@ -11,7 +11,8 @@ var customers: Dictionary = {
 	"Chekered": load("res://assets/customers/customer_chekered.png"),
 	"Soda": load("res://assets/customers/customer_soda.png"),
 	"Rev": load("res://assets/customers/customer_rev.png"),
-	"Chiyo": load("res://assets/customers/customer_chiyo.png"),
+	"Kaori": load("res://assets/customers/customer_kaori.png"),
+	"Ash": load("res://assets/customers/customer_ash.png"),
 	"Cake Box": load("res://assets/TEMPCUSTOMER.png"),
 }
 

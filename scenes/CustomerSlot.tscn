@@ -14,7 +14,6 @@
 script = ExtResource("1_7nj10")
 
 [node name="CustomerSprite" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("1_kr5dw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

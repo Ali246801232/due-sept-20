@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1n24x2g0c84d"
-path="res://.godot/imported/customer_rev.png-aff34568a06cf225e879e9c98ecdbd29.ctex"
+uid="uid://7pf642e5mrpc"
+path="res://.godot/imported/customer_kaori.png-c932d235d473d5d3c5417793aaf29b45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/customers/customer_rev.png"
-dest_files=["res://.godot/imported/customer_rev.png-aff34568a06cf225e879e9c98ecdbd29.ctex"]
+source_file="res://assets/customers/customer_kaori.png"
+dest_files=["res://.godot/imported/customer_kaori.png-c932d235d473d5d3c5417793aaf29b45.ctex"]
 
 [params]
 

@@ -4,21 +4,21 @@ class_name CustomerSlot
 
 signal order_taken()
 signal order_complete(success)
-signal timer_ended
 signal update_score(score)
 @onready var customer_sprite = $CustomerSprite
 @onready var order_timer = $OrderTimer
 @onready var order_popup = $OrderPopup
 @onready var interact_popup = $InteractPopup
+var spawn_tween: Tween
 var distance_anchor
-var order: String = ""
+var order
 var state: int = 0
 var customer
 var time_limit
-var score
+var score: int
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	# Game freezing signals
 	Freeze.connect("frozen", Callable(self, "freeze"))
 	Freeze.connect("unfrozen", Callable(self, "unfreeze"))
 
@@ -50,6 +50,8 @@ func _on_body_exited(body: Node):
 
 # The closest interactable changed
 func _on_closest_interactable_changed(target):
+	if not customer:
+		return
 	if target == self:
 		interact_popup.visible = true
 	else:
@@ -62,6 +64,16 @@ func _on_interaction(target):
 	if target == self:
 		interact()
 
+# Timer ran out
+func _on_timeout():
+	state = 0
+	order = null
+	score = -10
+	emit_signal("order_complete", false)
+	order_timer.hide_timer()
+	order_popup.set_success(false)
+	emit_signal("update_score", score)
+
 # Called when the user interacts with this customer
 func interact():
 	if state == 0:
@@ -69,26 +81,25 @@ func interact():
 	else:
 		state = check_order()
 
-func set_customer(customer_name):
-	customer = Customers.get_customer(customer_name)
-	customer_sprite.texture = customer.get_sprite()
+# Set the slot's customer and order, and show the slot
+func set_slot(slot):
+	customer_sprite.texture = slot.customer.get_sprite()
 	customer_sprite.visible = true
+	customer = slot.get_customer()
+	order = slot.get_order()
+	order_timer.start(15)
+	order_timer.show_timer()
 
-func clear_customer():
-	customer = null
+# Clear the slot's customer and order, and hide the slot
+func clear_slot():
 	customer_sprite.visible = false
+	customer = null
+	order = null
 
-func set_random_order():
-	order = customer.get_random_order()
-
-func set_order(new_order):
-	order = new_order
-
+# Take an order upon first interaction
 func take_order():
 	if not customer:
 		return 0
-	set_random_order()
-	order_popup.set_order(order)
 	emit_signal("order_taken")
 
 	time_limit = 90 * customer.get_effects()["time_multiplier"]
@@ -96,12 +107,15 @@ func take_order():
 	order_timer.show_timer()
 	return 1
 
+# Complete an order upon second interaction for success or failure
 func check_order():
 	if not customer:
 		return 1
 	order_timer.stop()
 	order_timer.hide_timer()
 	var inventory = Inventory.get_inventory()
+	if not Inventory.has_item():
+		return
 	Inventory.set_inventory(Inventory.get_empty())
 	if inventory["item"] == order:
 		emit_signal("order_complete", true)
@@ -114,15 +128,6 @@ func check_order():
 	emit_signal("update_score", score)
 	return 0
 
-func _on_timeout():
-	state = 0
-	order = ""
-	score = -10
-	emit_signal("timer_ended")
-	order_timer.hide_timer()
-	order_popup.set_success(false)
-	emit_signal("update_score", score)
-
 # Calculate score based on time remaining
 func calculate_score(remaining_time: float, multiplier: float) -> int:
 	var elapsed_time: float = time_limit - remaining_time
@@ -131,8 +136,10 @@ func calculate_score(remaining_time: float, multiplier: float) -> int:
 	var raw_score: float = 100.0 * remaining_time / max(time_limit - 20.0, 1.0)
 	return int(clamp(raw_score, 10.0, 100.0) * multiplier)
 
+# Game froze
 func freeze():
 	order_timer.paused = true
 
+# Game unfroze
 func unfreeze():
 	order_timer.paused = false
