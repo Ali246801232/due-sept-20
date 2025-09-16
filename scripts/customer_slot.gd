@@ -94,6 +94,7 @@ func clear_slot():
 	customer_sprite.visible = false
 	customer = null
 	order = null
+	interact_popup.visible = false
 
 # Take an order upon first interaction
 func take_order():

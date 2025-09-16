@@ -3,8 +3,8 @@ extends Sprite2D
 @onready var order_sprite = $Sprite2D
 @onready var success_timer = $SuccessTimer
 
-var success_texture = load("res://assets/ui/order_success.png")
-var failure_texture = load("res://assets/ui/order_failure.png")
+var success_texture = load("res://assets/ui/order_success.webp")
+var failure_texture = load("res://assets/ui/order_failure.webp")
 
 func _ready():
 	# Game freezing signals

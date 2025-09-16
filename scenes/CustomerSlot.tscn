@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cp5uaiyihmun4" path="res://scripts/customer_slot.gd" id="1_7nj10"]
 [ext_resource type="Texture2D" uid="uid://bice433ltke8g" path="res://assets/TEMPCUSTOMER.png" id="1_kr5dw"]
-[ext_resource type="Texture2D" uid="uid://603mcn88lrkf" path="res://assets/ui/order_popup.png" id="2_ksfde"]
+[ext_resource type="Texture2D" uid="uid://da8mhxrlshvrp" path="res://assets/ui/order_popup.webp" id="3_60ifu"]
 [ext_resource type="Script" uid="uid://bblfcyp8dl82e" path="res://scripts/order_popup.gd" id="4_dg8v8"]
 [ext_resource type="Texture2D" uid="uid://borma3vnfhnfn" path="res://assets/items/item_banana_bread.png" id="5_dg8v8"]
 [ext_resource type="Script" uid="uid://dnld01a6874kv" path="res://scripts/order_timer.gd" id="6_8ptdx"]
@@ -21,15 +21,14 @@ position = Vector2(0, 11)
 polygon = PackedVector2Array(-76, 29, 75, 29, 75, 144, -75, 144)
 
 [node name="OrderPopup" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-108, -48)
-scale = Vector2(0.559586, 0.559586)
-texture = ExtResource("2_ksfde")
+position = Vector2(-119, -49)
+scale = Vector2(0.708364, 0.708364)
+texture = ExtResource("3_60ifu")
 script = ExtResource("4_dg8v8")
 
 [node name="Sprite2D" type="Sprite2D" parent="OrderPopup"]
-position = Vector2(0, -11.3006)
-scale = Vector2(1.40291, 1.40291)
+position = Vector2(-14.117, -9.53674e-07)
+scale = Vector2(0.991712, 0.991712)
 texture = ExtResource("5_dg8v8")
 
 [node name="SuccessTimer" type="Timer" parent="OrderPopup"]
