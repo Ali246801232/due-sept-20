@@ -184,6 +184,8 @@ func start_day():
 
 # Increment the day count
 func next_day():
+	if day_index >= day_customers.size():
+		return
 	day_index += 1
 	# run_dialogue()  # day end dialogue
 
