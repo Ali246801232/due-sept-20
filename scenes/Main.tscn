@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://ks8qpnr6dpme"]
+[gd_scene load_steps=19 format=3 uid="uid://ks8qpnr6dpme"]
 
-[ext_resource type="Texture2D" uid="uid://gkb54bqla0pv" path="res://assets/kitchen_background_wip.png" id="1_j4qnp"]
+[ext_resource type="Texture2D" uid="uid://crvs2j6mbyrts" path="res://assets/ui/below_customers.webp" id="1_bb450"]
 [ext_resource type="PackedScene" uid="uid://b3c7igl484i6p" path="res://scenes/Player.tscn" id="2_fpfj3"]
+[ext_resource type="Texture2D" uid="uid://conkwklfio0y5" path="res://assets/ui/above_customers.webp" id="2_nfivy"]
 [ext_resource type="PackedScene" uid="uid://bh0y17n8bjtak" path="res://scenes/HUD.tscn" id="3_sc1dx"]
 [ext_resource type="PackedScene" uid="uid://c04d4e28foull" path="res://scenes/Interactable.tscn" id="4_kjvhd"]
 [ext_resource type="Script" uid="uid://1vshh80mq5ic" path="res://scripts/interactable_logic/logic_oven.gd" id="5_5tuhn"]
@@ -20,22 +21,29 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("2_fpfj3")]
-position = Vector2(1, -2)
+[node name="Kitchen" type="Node2D" parent="."]
 
-[node name="Background" type="ParallaxBackground" parent="."]
+[node name="Parallax2D" type="Parallax2D" parent="Kitchen"]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
+[node name="BelowCustomers" type="Sprite2D" parent="Kitchen/Parallax2D"]
 position = Vector2(-7, -9)
 scale = Vector2(0.800822, 0.800822)
-texture = ExtResource("1_j4qnp")
+texture = ExtResource("1_bb450")
+
+[node name="AboveCustomers" type="Sprite2D" parent="Kitchen/Parallax2D"]
+position = Vector2(-7, -9)
+scale = Vector2(0.800822, 0.800822)
+texture = ExtResource("2_nfivy")
+
+[node name="InteractablesLayer" type="Sprite2D" parent="Kitchen/Parallax2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_fpfj3")]
+position = Vector2(2, -27)
 
 [node name="WorldBorder" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder"]
-polygon = PackedVector2Array(-275, -195, 261, -196, 261, 291, -273, 292, -275, -152, -320, -152, -319, 358, 291, 355, 294, -314, -316, -312, -320, -152, -275, -152)
+polygon = PackedVector2Array(-282, -195, 265, -195, 264, 262, -281, 263, -282, -156, -310, -156, -310, 294, 296, 294, 296, -312, -310, -312, -310, -156, -282, -156)
 
 [node name="HUD" parent="." instance=ExtResource("3_sc1dx")]
 layer = 100
@@ -43,61 +51,61 @@ layer = 100
 [node name="Interactables" type="Node" parent="."]
 
 [node name="Oven" parent="Interactables" instance=ExtResource("4_kjvhd")]
-position = Vector2(220, -55)
+position = Vector2(225, -100)
 
 [node name="Logic" type="Node2D" parent="Interactables/Oven"]
 script = ExtResource("5_5tuhn")
 
 [node name="Table" parent="Interactables" instance=ExtResource("4_kjvhd")]
-position = Vector2(-8, 102)
+position = Vector2(3, 71)
 
 [node name="Logic" type="Node2D" parent="Interactables/Table"]
 script = ExtResource("5_fpfj3")
 
 [node name="Stand Mixer" parent="Interactables" instance=ExtResource("4_kjvhd")]
-position = Vector2(223, 98)
+position = Vector2(224, 64)
 
 [node name="Logic" type="Node2D" parent="Interactables/Stand Mixer"]
 script = ExtResource("6_2gh4u")
 
 [node name="Bread Proofer" parent="Interactables" instance=ExtResource("4_kjvhd")]
-position = Vector2(223, 23)
+position = Vector2(224, -19)
 
 [node name="Logic" type="Node2D" parent="Interactables/Bread Proofer"]
 script = ExtResource("7_devvj")
 
 [node name="Shelf" parent="Interactables" instance=ExtResource("4_kjvhd")]
-position = Vector2(-235, 256)
+position = Vector2(-240, 225)
 
 [node name="Logic" type="Node2D" parent="Interactables/Shelf"]
 script = ExtResource("8_3b0ty")
 
 [node name="Sink" parent="Interactables" instance=ExtResource("4_kjvhd")]
-position = Vector2(-236, 180)
+position = Vector2(-242, 148)
 
 [node name="Logic" type="Node2D" parent="Interactables/Sink"]
 script = ExtResource("9_bg4s2")
 
 [node name="Cabinet" parent="Interactables" instance=ExtResource("4_kjvhd")]
-position = Vector2(-234, -53)
+position = Vector2(-238, -99)
 
 [node name="Logic" type="Node2D" parent="Interactables/Cabinet"]
 script = ExtResource("10_hhcpw")
 
 [node name="Fridge" parent="Interactables" instance=ExtResource("4_kjvhd")]
-position = Vector2(-233, 26)
+position = Vector2(-239, -18)
 
 [node name="Logic" type="Node2D" parent="Interactables/Fridge"]
 script = ExtResource("11_mxvw5")
 
 [node name="Basket" parent="Interactables" instance=ExtResource("4_kjvhd")]
-position = Vector2(-233, 103)
+position = Vector2(-240, 65)
 
 [node name="Logic" type="Node2D" parent="Interactables/Basket"]
 script = ExtResource("12_xrxkg")
 
 [node name="Trash" parent="Interactables" instance=ExtResource("4_kjvhd")]
-position = Vector2(222, 252)
+position = Vector2(225, 221)
 
 [node name="Logic" type="Node2D" parent="Interactables/Trash"]
 script = ExtResource("13_sqvbp")

@@ -55,7 +55,7 @@ func new_customer(customer_name, properties):
 	customer.set_effects(props["effects"])
 	customer.set_allow_random(props["allow_random"])
 
-	customers.append(new_customer)
+	customers.append(customer)
 
 func get_random_customer():
 	if customers.is_empty():
@@ -67,6 +67,8 @@ func get_random_customer():
 	return allowed[randi_range(0, allowed.size() - 1)]
 
 func get_customer(customer_name):
+	if customer_name == "_RANDOM_":
+		return get_random_customer()
 	for customer in customers:
 		if customer.get_name() == customer_name:
 			return customer

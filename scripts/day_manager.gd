@@ -7,22 +7,13 @@ var spawn_interval: float = 10.0
 
 var day_index = 0
 var customer_index = 0
-var day_customers = [
-	
-	["Ali", "_RANDOM_COOKIES_", "_RANDOM_COOKIES_", "_RANDOM_COOKIES_", "_RANDOM_COOKIES_"],
-	["_RANDOM_COOKIES_", "Melan", "_RANDOM_BREAD_", "_RANDOM_BREAD_", "_RANDOM_BREAD_"],
-	["_RANDOM_NORMAL_", "_RANDOM_NORMAL_", "_RANDOM_NORMAL_", "Kenz"],
-	["Miku", "_RANDOM_NORMAL_", "_RANDOM_NORMAL_", "Mordekaiser", "_RANDOM_NORMAL_"],
-	["_RANDOM_NORMAL_", "Kraze", "_RANDOM_NORMAL_", "_RANDOM_NORMAL_", "Carton", "_RANDOM_NORMAL_"],
-	["Cake Box"]
-]
-
+var day_customers: Array
 
 # Class to store what will go in a customer slot, really should rename this to something else to avoid confusion
 class Slot:
-	var _order: String
-	var _customer: String
-	var _dialogues: Array[String]
+	var _order
+	var _customer
+	var _dialogues
 	var random_filters = ["_RANDOM_COOKIES_", "_RANDOM_BREAD_", "_RANDOM_NORMAL_"]
 	var valid_orders = [
 		{"name": "Plain Cookies", "filters": ["_RANDOM_COOKIES_", "_RANDOM_NORMAL_"]},
@@ -39,27 +30,26 @@ class Slot:
 		{"name": "Coco Bread", "filters": ["_RANDOM_BREAD_", "_RANDOM_NORMAL_"]},
 		{"name": "Cheese Pandesal", "filters": ["_RANDOM_BREAD_", "_RANDOM_NORMAL_"]},
 		{"name": "Ube Pandesal", "filters": ["_RANDOM_BREAD_", "_RANDOM_NORMAL_"]},
-		{"name": "Milk", "tags": []},
-		{"name": "Eggs", "tags": []}
+		{"name": "Milk", "filters": []},
+		{"name": "Eggs", "filters": []},
+		{"name": "Cake Box", "filters": []}
 	]
 	
-	func _init(order, customer_name, dialogues):
+	func _init(order: String, customer_name: String):
 		set_order(order)
 		set_customer(customer_name)
-		set_dialogues(dialogues)
+		set_dialogues()
 
 	# Set the order from a name or randomly with a filter
 	func set_order(order):
-		if valid_orders.any(func(x): return x["name"] == order):
-			return order
-		assert(random_filters.any(func(x): return x["name"] == order), "Invalid order: %s" % order)
+		if valid_orders.any(func(valid_order): return valid_order["name"] == order):
+			_order = order
+			return
+		assert(order in random_filters, "Invalid order: %s" % order)
 		var filtered = []
 		for valid_order in valid_orders:
-			if order in random_filters:
-				for tag in random_filters[order]:
-					if tag in valid_order["tags"]:
-						filtered.append(valid_order.name)
-						break
+			if order in valid_order["filters"]:
+				filtered.append(valid_order["name"])
 		assert(filtered.size() > 0, "No orders matching random filter: %s" % order)
 		_order = filtered[randi_range(0, filtered.size() - 1)]
 
@@ -68,9 +58,15 @@ class Slot:
 		_customer = Customers.get_customer(customer_name)
 
 	# Set the dialogues (pre-order and post-order)
-	func set_dialogues(dialogues):
-		_dialogues = dialogues
-	
+	func set_dialogues():
+		var suffix = _customer.get_name().to_lower()
+		_dialogues = [
+			"dialogue_preorder_" + suffix,
+			"dialogue_postorder_success_" + suffix,
+			"dialogue_postorder_failure_" + suffix,
+			"dialogue_postorder_timeout_" + suffix
+		]
+
 	func get_order():
 		return _order
 
@@ -114,7 +110,50 @@ func _ready() -> void:
 	Customers.new_customer("Kaori", {})
 	Customers.new_customer("Ash", {})
 	Customers.new_customer("Cake Box", {"time_multiplier": 1000, "allow_random": false})
-	
+
+	day_customers = [
+		[
+			Slot.new("Chocolate Chip Cookies", "Ali",),
+			Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
+			Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
+			Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
+			Slot.new("_RANDOM_COOKIES_", "_RANDOM_")
+		],
+		[
+			Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
+			Slot.new("Cheese Pandesal", "Melan"),
+			Slot.new("_RANDOM_BREAD_", "_RANDOM_"),
+			Slot.new("_RANDOM_BREAD_", "_RANDOM_"),
+			Slot.new("_RANDOM_BREAD_", "_RANDOM_")
+		],
+		[
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("Cheese Cookies", "Kraze"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("_RANDOM_NORMAL_", "Kenz"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_")
+		],
+		[
+			Slot.new("_RANDOM_BREAD_", "Miku"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("_RANDOM_COOKIES_", "Mordekaiser"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_")
+		],
+		[
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("Eggs", "Chekered"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("Milk", "Carton"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_")
+		],
+		[
+			Slot.new("Cake Box", "Cake Box")
+		]
+	]
+
 	start_day()
 
 
@@ -148,24 +187,19 @@ func next_day():
 	day_index += 1
 	# run_dialogue()  # day end dialogue
 
-# TODO:
-func run_dialogue(customer_name):
+func _on_order_taken(slot_index):
+	#run_dialogue()  # pre-order dialogue
 	pass
 
-func _on_order_taken(slot_index):
-	run_dialogue(slots[slot_index].dialogue)  # pre-order dialogue
-
 func _on_order_complete(success, slot_index):
-	run_dialogue(slots[slot_index].get_name())  # post-order dialogue
+	#run_dialogue()  # post-order dialogue
 	active[slot_index] = false
-	slots[slot_index].clear_slot()
 	if customer_index > day_customers[day_index].size():
 		next_day()
 
 func _on_timer_ended(slot_index):
 	active[slot_index] = false
-	slots[slot_index].clear_slot()
-	run_dialogue(slots[slot_index].get_name())
+	#run_dialogue()  # post-order dialogue
 	if customer_index > day_customers[day_index].size():
 		next_day()
 

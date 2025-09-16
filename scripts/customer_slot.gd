@@ -73,6 +73,7 @@ func _on_timeout():
 	order_timer.hide_timer()
 	order_popup.set_success(false)
 	emit_signal("update_score", score)
+	clear_slot()
 
 # Called when the user interacts with this customer
 func interact():
@@ -83,12 +84,10 @@ func interact():
 
 # Set the slot's customer and order, and show the slot
 func set_slot(slot):
-	customer_sprite.texture = slot.customer.get_sprite()
-	customer_sprite.visible = true
-	customer = slot.get_customer()
 	order = slot.get_order()
-	order_timer.start(15)
-	order_timer.show_timer()
+	customer = slot.get_customer()
+	customer_sprite.texture = customer.get_sprite()
+	customer_sprite.visible = true
 
 # Clear the slot's customer and order, and hide the slot
 func clear_slot():
@@ -101,7 +100,7 @@ func take_order():
 	if not customer:
 		return 0
 	emit_signal("order_taken")
-
+	order_popup.set_order(order)
 	time_limit = 90 * customer.get_effects()["time_multiplier"]
 	order_timer.start(time_limit)
 	order_timer.show_timer()
@@ -109,13 +108,11 @@ func take_order():
 
 # Complete an order upon second interaction for success or failure
 func check_order():
-	if not customer:
+	if not customer or not Inventory.has_item():
 		return 1
 	order_timer.stop()
 	order_timer.hide_timer()
 	var inventory = Inventory.get_inventory()
-	if not Inventory.has_item():
-		return
 	Inventory.set_inventory(Inventory.get_empty())
 	if inventory["item"] == order:
 		emit_signal("order_complete", true)
@@ -126,6 +123,7 @@ func check_order():
 		order_popup.set_success(false)
 		score = -10
 	emit_signal("update_score", score)
+	clear_slot()
 	return 0
 
 # Calculate score based on time remaining
