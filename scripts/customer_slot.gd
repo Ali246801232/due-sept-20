@@ -5,15 +5,17 @@ class_name CustomerSlot
 signal order_taken()
 signal order_complete(success)
 signal update_score(score)
+signal pause_spawns()
+signal resume_spawns()
 @onready var customer_sprite = $CustomerSprite
 @onready var order_timer = $OrderTimer
 @onready var order_popup = $OrderPopup
 @onready var interact_popup = $InteractPopup
-var spawn_tween: Tween
 var distance_anchor
 var order
 var state: int = 0
 var customer
+var pausing
 var time_limit
 var score: int
 
@@ -40,6 +42,8 @@ func _ready():
 
 # Add a nearby interactable upon entering its area
 func _on_body_entered(body: Node):
+	if not customer:
+		return
 	if body.has_method("add_interactable"):
 		body.add_interactable(self)
 
@@ -86,14 +90,20 @@ func interact():
 func set_slot(slot):
 	order = slot.get_order()
 	customer = slot.get_customer()
+	pausing = slot.get_pausing()
 	customer_sprite.texture = customer.get_sprite()
-	customer_sprite.visible = true
+	customer_sprite.animate_spawn()
+	if pausing:
+		emit_signal("pause_spawns")
 
 # Clear the slot's customer and order, and hide the slot
 func clear_slot():
-	customer_sprite.visible = false
-	customer = null
+	if pausing:
+		emit_signal("resume_spawns")
+	customer_sprite.animate_despawn()
 	order = null
+	customer = null
+	pausing = false
 	interact_popup.visible = false
 
 # Take an order upon first interaction

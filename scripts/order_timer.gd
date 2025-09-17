@@ -3,7 +3,7 @@ extends Timer
 @onready var timer_display: TextureProgressBar = $TimerDisplay
 
 func _ready():
-	timer_display.position = get_parent().global_position + Vector2(-30.0, -45.0)  # idfk man
+	timer_display.position = get_parent().global_position + Vector2(-58.0, -47.0)  # idfk man
 
 func _process(_delta):
 	if timer_display.visible and wait_time > 0:

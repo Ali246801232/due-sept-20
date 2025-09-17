@@ -1,8 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bka5w0ylw0f1a"]
+[gd_scene load_steps=3 format=3 uid="uid://bka5w0ylw0f1a"]
 
+[ext_resource type="Script" uid="uid://c4ixmx4ntb7rm" path="res://scenes/day_trasition.gd" id="2_6dj36"]
 [ext_resource type="Script" uid="uid://cdud2g2niqjd8" path="res://scripts/day_manager.gd" id="2_rcdqu"]
 
 [node name="DayManager" type="Node"]
 script = ExtResource("2_rcdqu")
 
 [node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="DayTrasition" type="CanvasLayer" parent="."]
+script = ExtResource("2_6dj36")
+
+[node name="ColorRect" type="ColorRect" parent="DayTrasition"]
+visible = false
+z_index = 10
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)

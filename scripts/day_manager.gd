@@ -1,19 +1,23 @@
 extends Node
 
+@onready var spawn_timer: Timer = $SpawnTimer
+@onready var day_transition: CanvasLayer = $DayTrasition
+
 var slots: Array = []
 var active: Array = []
-@onready var spawn_timer: Timer = $SpawnTimer
-var spawn_interval: float = 10.0
-
 var day_index = 0
 var customer_index = 0
 var day_customers: Array
+var spawn_interval: float = 2.0
+var spawning_paused: bool = false
 
 # Class to store what will go in a customer slot, really should rename this to something else to avoid confusion
 class Slot:
 	var _order
+	var _customer_name
 	var _customer
 	var _dialogues
+	var _pausing
 	var random_filters = ["_RANDOM_COOKIES_", "_RANDOM_BREAD_", "_RANDOM_NORMAL_"]
 	var valid_orders = [
 		{"name": "Plain Cookies", "filters": ["_RANDOM_COOKIES_", "_RANDOM_NORMAL_"]},
@@ -24,10 +28,9 @@ class Slot:
 		{"name": "Mixed Nut Cookies", "filters": ["_RANDOM_COOKIES_", "_RANDOM_NORMAL_"]},
 		{"name": "Chocolate Crinkles", "filters": ["_RANDOM_COOKIES_", "_RANDOM_NORMAL_"]},
 		{"name": "Ube Crinkles", "filters": ["_RANDOM_COOKIES_", "_RANDOM_NORMAL_"]},
-		{"name": "Plain Bread", "filters": ["_RANDOM_BREAD_", "_RANDOM_NORMAL_"]},
 		{"name": "Banana Bread", "filters": ["_RANDOM_BREAD_", "_RANDOM_NORMAL_"]},
-		{"name": "Egg Bread", "filters": ["_RANDOM_BREAD_", "_RANDOM_NORMAL_"]},
 		{"name": "Coco Bread", "filters": ["_RANDOM_BREAD_", "_RANDOM_NORMAL_"]},
+		{"name": "Pandesal", "filters": ["_RANDOM_BREAD_", "_RANDOM_NORMAL_"]},
 		{"name": "Cheese Pandesal", "filters": ["_RANDOM_BREAD_", "_RANDOM_NORMAL_"]},
 		{"name": "Ube Pandesal", "filters": ["_RANDOM_BREAD_", "_RANDOM_NORMAL_"]},
 		{"name": "Milk", "filters": []},
@@ -35,10 +38,10 @@ class Slot:
 		{"name": "Cake Box", "filters": []}
 	]
 	
-	func _init(order: String, customer_name: String):
+	func _init(order: String, customer_name: String, pausing: bool = false):
 		set_order(order)
-		set_customer(customer_name)
-		set_dialogues()
+		_customer_name = customer_name
+		_pausing = pausing
 
 	# Set the order from a name or randomly with a filter
 	func set_order(order):
@@ -54,8 +57,8 @@ class Slot:
 		_order = filtered[randi_range(0, filtered.size() - 1)]
 
 	# Set the customer
-	func set_customer(customer_name):
-		_customer = Customers.get_customer(customer_name)
+	func set_customer(existing):
+		_customer = Customers.get_customer(_customer_name, existing)
 
 	# Set the dialogues (pre-order and post-order)
 	func set_dialogues():
@@ -67,6 +70,9 @@ class Slot:
 			"dialogue_postorder_timeout_" + suffix
 		]
 
+	func is_random():
+		return _customer_name in random_filters
+
 	func get_order():
 		return _order
 
@@ -75,6 +81,10 @@ class Slot:
 
 	func get_dialogues():
 		return _dialogues
+	
+	func get_pausing():
+		return _pausing
+
 
 func _ready() -> void:
 	# Game freezing signals
@@ -94,17 +104,19 @@ func _ready() -> void:
 		slot.connect("order_taken", Callable(self, "_on_order_taken").bind(index))
 		slot.connect("order_complete", Callable(self, "_on_order_complete").bind(index))
 		slot.connect("timer_ended", Callable(self, "_on_timer_ended").bind(index))
+		slot.connect("pause_spawns", Callable(self, "_on_pause_spawns"))
+		slot.connect("resume_spawns", Callable(self, "_on_resume_spawns"))
 	spawn_timer.timeout.connect(Callable(self, "spawn_customer"))
 	
 	# All customers
 	Customers.new_customer("Ali", {"effects": {"time_multiplier": 1000}, "allow_random": false})
-	Customers.new_customer("Kenz", {"effects": {"time_multiplier": 1.50}})
+	Customers.new_customer("Kenz", {"effects": {"time_multiplier": 1.50}, "allow_random": false, "manual_first": true})
 	Customers.new_customer("Miku", {"effects": {"hide_recipes": true}, "allow_random": false})
 	Customers.new_customer("Mordekaiser", {"allow_random": false})
-	Customers.new_customer("Kraze", {"effects": {"timer_multipler": 0.5}})
-	Customers.new_customer("Melan", {})
-	Customers.new_customer("Carton", {})
-	Customers.new_customer("Chekered", {})
+	Customers.new_customer("Kraze", {"effects": {"timer_multipler": 0.5}, "allow_random": false, "manual_first": true})
+	Customers.new_customer("Melan", {"allow_random": false, "manual_first": true})
+	Customers.new_customer("Carton", {"allow_random": false, "manual_first": true})
+	Customers.new_customer("Chekered", {"allow_random": false, "manual_first": true})
 	Customers.new_customer("Soda", {})
 	Customers.new_customer("Rev", {})
 	Customers.new_customer("Kaori", {})
@@ -113,18 +125,18 @@ func _ready() -> void:
 
 	day_customers = [
 		[
-			Slot.new("Chocolate Chip Cookies", "Ali",),
+			Slot.new("Chocolate Chip Cookies", "Ali", true),
 			Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
 			Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
 			Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
 			Slot.new("_RANDOM_COOKIES_", "_RANDOM_")
 		],
 		[
-			Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
-			Slot.new("Cheese Pandesal", "Melan"),
+			Slot.new("Cheese Pandesal", "Melan", true),
 			Slot.new("_RANDOM_BREAD_", "_RANDOM_"),
 			Slot.new("_RANDOM_BREAD_", "_RANDOM_"),
-			Slot.new("_RANDOM_BREAD_", "_RANDOM_")
+			Slot.new("_RANDOM_BREAD_", "_RANDOM_"),
+			Slot.new("_RANDOM_COOKIES_", "_RANDOM_")
 		],
 		[
 			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
@@ -156,11 +168,12 @@ func _ready() -> void:
 
 	start_day()
 
-
 # Spawn the next customer in a random empty slot, every once in a while
 func spawn_customer():
+	print(day_index)
+	print(customer_index)
 	# Attempt to find a valid slot index
-	if customer_index > day_customers[day_index].size():
+	if day_index > day_customers.size() - 1 or customer_index > day_customers[day_index].size() - 1 or spawning_paused:
 		return
 	var inactive_indices := []
 	for i in range(active.size()):
@@ -174,39 +187,73 @@ func spawn_customer():
 	set_slot(slot_index)
 	active[slot_index] = true
 	customer_index += 1
-	spawn_timer.wait_time = randf_range(0.5*spawn_interval, 1.5*spawn_interval)
+	spawn_timer.wait_time = randf_range(0.75*spawn_interval, 1.25*spawn_interval)
 	spawn_timer.start()
 
 # Start a day by spawning the first customer
 func start_day():
-	# run_dialogue()  # day start dialogue
+	#run_dialogue()  # day start dialogue
 	spawn_customer()
+
 
 # Increment the day count
 func next_day():
-	if day_index >= day_customers.size():
+	if day_index > day_customers.size() - 1:
+		# run_dialogue()  # ending cutscene dialogue
 		return
-	day_index += 1
 	# run_dialogue()  # day end dialogue
+	day_index += 1
+	customer_index = 0
+	spawn_timer.stop()
+	start_day()
 
 func _on_order_taken(slot_index):
 	#run_dialogue()  # pre-order dialogue
 	pass
 
 func _on_order_complete(success, slot_index):
-	#run_dialogue()  # post-order dialogue
+	if success:
+		#run_dialogue()  # post-order success dialogue
+		pass
+	else:
+		#run_dialogue()  # post-order failure dialogue
+		pass
 	active[slot_index] = false
-	if customer_index > day_customers[day_index].size():
+	if customer_index > day_customers[day_index].size()  - 1 and slots_empty():
 		next_day()
 
 func _on_timer_ended(slot_index):
 	active[slot_index] = false
-	#run_dialogue()  # post-order dialogue
-	if customer_index > day_customers[day_index].size():
+	#run_dialogue()  # post-order timeout dialogue
+	if customer_index > day_customers[day_index].size() - 1 and slots_empty():
 		next_day()
 
 func set_slot(slot_index):
-	slots[slot_index].set_slot(day_customers[day_index][customer_index])
+	var existing = []
+	for slot in slots:
+		if slot.customer:
+			existing.append(slot.customer.get_name())
+	var customer = day_customers[day_index][customer_index]
+	customer.set_customer(existing)
+	if not customer.is_random():
+		customer.set_dialogues()
+	slots[slot_index].set_slot(customer)
+
+func slots_empty():
+	for slot in active:
+		if slot:
+			return false
+	return true
+
+func _on_pause_spawns():
+	if not spawning_paused:
+		spawn_timer.stop()
+	spawning_paused = true
+
+func _on_resume_spawns():
+	if spawning_paused:
+		spawn_customer()
+	spawning_paused = false
 
 func freeze():
 	spawn_timer.paused = true

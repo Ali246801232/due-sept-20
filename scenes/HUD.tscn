@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bh0y17n8bjtak"]
+[gd_scene load_steps=9 format=3 uid="uid://bh0y17n8bjtak"]
 
 [ext_resource type="Texture2D" uid="uid://bqnapwgi8jil5" path="res://assets/ui/inventory_no_bowl.png" id="2_efote"]
 [ext_resource type="Texture2D" uid="uid://brsi2jokio8ej" path="res://assets/ui/inventory_bowl.png" id="2_vow1y"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dyw8451puov5p" path="res://assets/test_interactable.png" id="4_ne771"]
 [ext_resource type="Texture2D" uid="uid://cwxehwmnkuwbu" path="res://assets/ui/ingredient_extender.png" id="5_xxqia"]
 [ext_resource type="Script" uid="uid://cbq0mpgwpn7r8" path="res://scripts/message_box.gd" id="7_1and6"]
+[ext_resource type="PackedScene" uid="uid://b1lolhym8cg5v" path="res://scenes/DialogueBox.tscn" id="7_k4w17"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ne771"]
 animations = [{
@@ -98,3 +99,5 @@ autowrap_mode = 3
 
 [node name="Timer" type="Timer" parent="MessageBox"]
 autostart = true
+
+[node name="DialogueBox" parent="." instance=ExtResource("7_k4w17")]

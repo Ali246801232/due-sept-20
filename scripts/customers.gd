@@ -7,6 +7,7 @@ class Customer:
 	var _sprite: Texture
 	var _effects: Dictionary
 	var _allow_random: bool
+	var _manual_first: bool
 
 	func _init(customer_name: String):
 		_name = customer_name
@@ -17,6 +18,9 @@ class Customer:
 
 	func set_allow_random(allow_random):
 		_allow_random = allow_random
+	
+	func set_manual_first(manual_first):
+		_manual_first = manual_first
 	
 	func get_name():
 		return _name
@@ -29,15 +33,19 @@ class Customer:
 	
 	func get_allow_random():
 		return _allow_random
+	
+	func get_manual_first():
+		return _manual_first
 
 func new_customer(customer_name, properties):
 	var default_properties := {
-		"allow_random": true,
 		"effects": {
 			"time_multiplier": 1,
 			"score_multiplier": 1,
 			"recipe_screen": false
-		}
+		},
+		"allow_random": true,
+		"manual_first": false
 	}
 
 	var props = default_properties.duplicate(true)
@@ -54,22 +62,25 @@ func new_customer(customer_name, properties):
 	var customer = Customer.new(customer_name)
 	customer.set_effects(props["effects"])
 	customer.set_allow_random(props["allow_random"])
+	customer.set_manual_first(props["manual_first"])
 
 	customers.append(customer)
 
-func get_random_customer():
+func get_random_customer(existing):
 	if customers.is_empty():
 		return null
 	var allowed = []
 	for customer in customers:
-		if customer.get_allow_random():
+		if customer.get_allow_random() and customer.get_name() not in existing:
 			allowed.append(customer)
 	return allowed[randi_range(0, allowed.size() - 1)]
 
-func get_customer(customer_name):
+func get_customer(customer_name, existing):
 	if customer_name == "_RANDOM_":
-		return get_random_customer()
+		return get_random_customer(existing)
 	for customer in customers:
 		if customer.get_name() == customer_name:
+			if customer.get_manual_first():
+				customer.set_allow_random(true)
 			return customer
 	return null

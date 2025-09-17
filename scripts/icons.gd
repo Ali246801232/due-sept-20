@@ -40,13 +40,11 @@ var items: Dictionary = {
 	"Mixed Nut Cookies": load("res://assets/items/item_mixed_nut_cookies.png"),
 	"Chocolate Crinkles": load("res://assets/items/item_chocolate_crinkles.png"),
 	"Ube Crinkles": load("res://assets/items/item_ube_crinkles.png"),
-	"Plain Bread": load("res://assets/items/item_plain_bread.png"),
 	"Banana Bread": load("res://assets/items/item_banana_bread.png"),
 	"Coco Bread": load("res://assets/items/item_coco_bread.png"),
-	"Egg Bread": load("res://assets/items/item_egg_bread.png"),
+	"Pandesal": load("res://assets/items/item_pandesal.png"),
 	"Cheese Pandesal": load("res://assets/items/item_cheese_pandesal.png"),
 	"Ube Pandesal": load("res://assets/items/item_ube_pandesal.png"),
-	"Mush": load("res://assets/ingredients/ingredient_mush.png"),
 	"Banana": load("res://assets/ingredients/ingredient_banana.png"),
 	"Coconut": load("res://assets/ingredients/ingredient_coconut.png"),
 	"Nuts": load("res://assets/ingredients/ingredient_nuts.png"),
@@ -68,5 +66,6 @@ var items: Dictionary = {
 	"Risen Dough (Coconut)": load("res://assets/ingredients/ingredient_risen_dough_coconut.png"),
 	"Risen Dough (Egg)": load("res://assets/ingredients/ingredient_risen_dough_egg.png"),
 	"Risen Dough (Ube)": load("res://assets/ingredients/ingredient_risen_dough_ube.png"),
+	"Mush": load("res://assets/ingredients/ingredient_mush.png"),
 	"Cake Box": load("res://assets/test_interactable.png")
 }

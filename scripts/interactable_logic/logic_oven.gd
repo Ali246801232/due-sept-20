@@ -26,9 +26,8 @@ func _ready():
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Cookie Dough", cont, "Nuts", ""]}, {"item": "Mixed Nut Cookies", "bowl": ["", "", "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Cookie Dough", cont, "Cocoa", "Sugar"]}, {"item": "Chocolate Crinkles", "bowl": ["", "", "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Cookie Dough", cont, "Ube", "Sugar"]}, {"item": "Ube Crinkles", "bowl": ["", "", "", ""]})
-	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Risen Dough", cont, cont, cont]}, {"item": "Plain Bread", "bowl": ["", "", "", ""]})
+	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Risen Dough", cont, cont, cont]}, {"item": "Pandesal", "bowl": ["", "", "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Risen Dough (Banana)", cont, cont, cont]}, {"item": "Banana Bread", "bowl": ["", "", "", ""]})
-	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Risen Dough (Egg)", cont, cont, cont]}, {"item": "Egg Bread", "bowl": ["", "", "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Risen Dough (Coconut)", cont, cont, cont]}, {"item": "Coco Bread", "bowl": ["", "", "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Risen Dough (Cheese)", cont, cont, cont]}, {"item": "Cheese Pandesal", "bowl": ["", "", "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Risen Dough (Ube)", cont, cont, cont]}, {"item": "Ube Pandesal", "bowl": ["", "", "", ""]})
@@ -40,7 +39,7 @@ func get_sprite_texture():
 func get_states():
 	return states
 
-var process_time = 10.0
+var process_time = 7.0
 var storage = Inventory.get_empty()
 
 func _take_unprocessed():

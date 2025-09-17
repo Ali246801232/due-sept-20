@@ -20,7 +20,6 @@ func _ready():
 	var cont = Inventory.continue_marker
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Bread Dough", cont, cont, ""]}, {"item": "Bowl", "bowl": ["Risen Dough", cont, cont, cont]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Bread Dough", cont, cont, "Banana"]}, {"item": "Bowl", "bowl": ["Risen Dough (Banana)", cont, cont, cont]})
-	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Bread Dough", cont, cont, "Egg"]}, {"item": "Bowl", "bowl": ["Risen Dough (Egg)", cont, cont, cont]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Bread Dough", cont, cont, "Coconut"]}, {"item": "Bowl", "bowl": ["Risen Dough (Coconut)", cont, cont, cont]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Bread Dough", cont, cont, "Cheese"]}, {"item": "Bowl", "bowl": ["Risen Dough (Cheese)", cont, cont, cont]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Bread Dough", cont, cont, "Ube"]}, {"item": "Bowl", "bowl": ["Risen Dough (Ube)", cont, cont, cont]})
