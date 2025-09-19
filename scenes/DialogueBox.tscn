@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://b1lolhym8cg5v"]
-
-[node name="DialogueBox" type="AnimatedSprite2D"]
-
-[node name="Text" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0

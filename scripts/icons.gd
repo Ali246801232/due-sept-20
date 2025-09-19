@@ -64,7 +64,6 @@ var items: Dictionary = {
 	"Risen Dough (Banana)": load("res://assets/ingredients/ingredient_risen_dough_banana.png"),
 	"Risen Dough (Cheese)": load("res://assets/ingredients/ingredient_risen_dough_cheese.png"),
 	"Risen Dough (Coconut)": load("res://assets/ingredients/ingredient_risen_dough_coconut.png"),
-	"Risen Dough (Egg)": load("res://assets/ingredients/ingredient_risen_dough_egg.png"),
 	"Risen Dough (Ube)": load("res://assets/ingredients/ingredient_risen_dough_ube.png"),
 	"Mush": load("res://assets/ingredients/ingredient_mush.png"),
 	"Cake Box": load("res://assets/test_interactable.png")

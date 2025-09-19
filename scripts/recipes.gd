@@ -8,9 +8,9 @@ class Recipe:
 	var output_inventory: Dictionary
 	
 	func _init(int_name, inp_inv, outp_inv):
-		self.interactable_name = int_name
-		self.input_inventory = inp_inv
-		self.output_inventory = outp_inv
+		interactable_name = int_name
+		input_inventory = inp_inv
+		output_inventory = outp_inv
 
 	func get_output():
 		return output_inventory.duplicate(true)
@@ -52,7 +52,7 @@ class Recipe:
 
 		return count1 == count2
 
-	# Check if two bowls contain equivalent ingredients
+	# Check if two bowls contain equivalent ingredients - what the fuck, no
 	func matches(interactable, storage):
 		# Wrong interactable or item
 		if interactable != interactable_name or storage["item"] != input_inventory["item"]:

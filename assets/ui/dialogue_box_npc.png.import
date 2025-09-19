@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gkb54bqla0pv"
-path="res://.godot/imported/kitchen_background_wip.png-34f0d5c3eb93f5b683cf04ee6900d617.ctex"
+uid="uid://cwj5f6flktxkl"
+path="res://.godot/imported/dialogue_box_npc.png-3e34bf98750ee728a978bda3358e7a6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/kitchen_background_wip.png"
-dest_files=["res://.godot/imported/kitchen_background_wip.png-34f0d5c3eb93f5b683cf04ee6900d617.ctex"]
+source_file="res://assets/ui/dialogue_box_npc.png"
+dest_files=["res://.godot/imported/dialogue_box_npc.png-3e34bf98750ee728a978bda3358e7a6f.ctex"]
 
 [params]
 

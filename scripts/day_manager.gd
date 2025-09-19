@@ -170,8 +170,6 @@ func _ready() -> void:
 
 # Spawn the next customer in a random empty slot, every once in a while
 func spawn_customer():
-	print(day_index)
-	print(customer_index)
 	# Attempt to find a valid slot index
 	if day_index > day_customers.size() - 1 or customer_index > day_customers[day_index].size() - 1 or spawning_paused:
 		return

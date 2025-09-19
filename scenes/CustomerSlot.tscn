@@ -22,7 +22,7 @@ script = ExtResource("3_xb61n")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
-polygon = PackedVector2Array(-76, 29, 75, 29, 75, 75, -76, 75)
+polygon = PackedVector2Array(-75, 29, 75, 29, 75, 75, -75, 75)
 
 [node name="OrderPopup" type="Sprite2D" parent="."]
 visible = false

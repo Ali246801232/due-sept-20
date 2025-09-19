@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: float = 200.0
+@export var speed: float = 250.0
 
 signal interacted(interactable)
 signal closest_interactable_changed(interactable)

@@ -28,7 +28,7 @@ func get_sprite_texture():
 func get_states():
 	return states
 
-var process_time = 3.0
+var process_time = 2.0
 var storage = Inventory.get_empty()
 
 func _take_unprocessed():
