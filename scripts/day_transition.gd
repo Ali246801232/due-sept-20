@@ -17,11 +17,9 @@ func _ready() -> void:
 	fade_black.visible = false
 
 func fade_to_black():
-	await tween.finished
 	pass
 
 func fade_from_black():
-	await tween.finished
 	pass
 
 func show_text(text, time):

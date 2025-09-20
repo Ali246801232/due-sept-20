@@ -22,7 +22,7 @@ func _ready():
 	popup.set_slots(ingredients)
 
 func _container_input():
-	if not popup.visible:
+	if not popup.visible or Freeze.is_frozen:
 		return
 	if Input.is_action_just_pressed("container_1"):
 		_give_ingredient(1)

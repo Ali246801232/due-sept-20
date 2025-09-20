@@ -16,6 +16,7 @@ var order
 var state: int = 0
 var customer
 var pausing
+var dialogues
 var time_limit
 var score: int
 
@@ -91,6 +92,7 @@ func set_slot(slot):
 	order = slot.get_order()
 	customer = slot.get_customer()
 	pausing = slot.get_pausing()
+	dialogues = slot.get_dialogues()
 	customer_sprite.texture = customer.get_sprite()
 	customer_sprite.animate_spawn()
 	if pausing:

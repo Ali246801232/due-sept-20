@@ -64,10 +64,10 @@ class Slot:
 	func set_dialogues():
 		var suffix = _customer.get_name().to_lower()
 		_dialogues = [
-			"dialogue_preorder_" + suffix,
-			"dialogue_postorder_success_" + suffix,
-			"dialogue_postorder_failure_" + suffix,
-			"dialogue_postorder_timeout_" + suffix
+			"dialogue_take_order_" + suffix,
+			"dialogue_success_" + suffix,
+			"dialogue_failure_" + suffix,
+			"dialogue_timeout_" + suffix
 		]
 
 	func is_random():
@@ -109,7 +109,7 @@ func _ready() -> void:
 	spawn_timer.timeout.connect(Callable(self, "spawn_customer"))
 	
 	# All customers
-	Customers.new_customer("Ali", {"effects": {"time_multiplier": 1000}, "allow_random": false})
+	Customers.new_customer("Ali", {"effects": {"time_multiplier": 0.5}, "allow_random": false})
 	Customers.new_customer("Kenz", {"effects": {"time_multiplier": 1.50}, "allow_random": false, "manual_first": true})
 	Customers.new_customer("Miku", {"effects": {"hide_recipes": true}, "allow_random": false})
 	Customers.new_customer("Mordekaiser", {"allow_random": false})
@@ -190,31 +190,31 @@ func spawn_customer():
 
 # Start a day by spawning the first customer
 func start_day():
-	#run_dialogue()  # day start dialogue
+	Dialogue.run_sequence("dialogue_day%d_start" % (day_index + 1))
 	spawn_customer()
 
 
 # Increment the day count
 func next_day():
 	if day_index > day_customers.size() - 1:
-		# run_dialogue()  # ending cutscene dialogue
+		Dialogue.run_sequence("ending_cutscene")
 		return
-	# run_dialogue()  # day end dialogue
+	Dialogue.run_sequence("dialogue_day%d_end" % (day_index  + 1))
 	day_index += 1
 	customer_index = 0
 	spawn_timer.stop()
+	day_transition.transition_day(day_index)
 	start_day()
 
 func _on_order_taken(slot_index):
-	#run_dialogue()  # pre-order dialogue
-	pass
+	Dialogue.run_sequence(slots[slot_index].dialogues[0])
 
 func _on_order_complete(success, slot_index):
 	if success:
-		#run_dialogue()  # post-order success dialogue
+		Dialogue.run_sequence(slots[slot_index].customer.dialogues[1])
 		pass
 	else:
-		#run_dialogue()  # post-order failure dialogue
+		Dialogue.run_sequence(slots[slot_index].customer.dialogues[2])
 		pass
 	active[slot_index] = false
 	if customer_index > day_customers[day_index].size()  - 1 and slots_empty():
@@ -222,7 +222,7 @@ func _on_order_complete(success, slot_index):
 
 func _on_timer_ended(slot_index):
 	active[slot_index] = false
-	#run_dialogue()  # post-order timeout dialogue
+	Dialogue.run_sequence(slots[slot_index].customer.dialogues[3])
 	if customer_index > day_customers[day_index].size() - 1 and slots_empty():
 		next_day()
 

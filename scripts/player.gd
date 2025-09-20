@@ -9,12 +9,12 @@ var _closest_interactable = null
 var _move_actions := ["move_left", "move_right", "move_up", "move_down"]
 
 func _ready():
-	Freeze.connect("frozen", Callable(self, "freeze"))
-	Freeze.connect("unfrozen", Callable(self, "unfreeze"))
-
 	$Camera2D.make_current()
 
 func _physics_process(_delta: float):
+	if Freeze.is_frozen:
+		return
+	
 	var dir: Vector2 = Input.callv("get_vector", _move_actions)
 	if dir != Vector2.ZERO:
 		dir = dir.normalized()
@@ -34,6 +34,8 @@ func _physics_process(_delta: float):
 
 # Called by Interactable nodes when the player enters their area
 func add_interactable(interactable: Node):
+	if Freeze.is_frozen:
+		return
 	if interactable == null:
 		return
 	if not _nearby_interactables.has(interactable):
@@ -41,6 +43,8 @@ func add_interactable(interactable: Node):
 
 # Called by Interactable nodes when the player exits their area
 func remove_interactable(interactable: Node):
+	if Freeze.is_frozen:
+		return
 	if interactable == null:
 		return
 	if _nearby_interactables.has(interactable):

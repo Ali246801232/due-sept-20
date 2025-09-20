@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://ks8qpnr6dpme"]
+[gd_scene load_steps=19 format=3 uid="uid://ks8qpnr6dpme"]
 
 [ext_resource type="Texture2D" uid="uid://crvs2j6mbyrts" path="res://assets/ui/below_customers.webp" id="1_bb450"]
+[ext_resource type="Script" uid="uid://cbea0bk6gr7kd" path="res://scenes/main.gd" id="1_nfivy"]
 [ext_resource type="PackedScene" uid="uid://b3c7igl484i6p" path="res://scenes/Player.tscn" id="2_fpfj3"]
 [ext_resource type="Texture2D" uid="uid://conkwklfio0y5" path="res://assets/ui/above_customers.webp" id="2_nfivy"]
 [ext_resource type="PackedScene" uid="uid://bh0y17n8bjtak" path="res://scenes/HUD.tscn" id="3_sc1dx"]
@@ -19,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://df4jvkt2pnts8" path="res://scenes/CustomerSlot.tscn" id="15_w3rk5"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_nfivy")
 
 [node name="HUD" parent="." instance=ExtResource("3_sc1dx")]
 layer = 100

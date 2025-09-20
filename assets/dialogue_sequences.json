@@ -1,0 +1,20 @@
+{
+	"dialogue_take_order_ali": {
+		"start": {"type": "start", "next": "lines1"},
+		"end": {"type": "end"},
+		"lines1": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Ali", "text": "This is a normal line"},
+				{"speaker": "Anje", "text": "This is an unskippable line", "skippable": false},
+				{"speaker": "Ali", "text": "This is an autoskipped line", "autoskip": true},
+				{"speaker": "Anje", "text": "This is both unskippable and autoskip, effectively the same as just autoskipped", "unskippable": true, "autoskip": true},
+				{"speaker": "Ali", "text": "This has some [b]bold[/b] and [i]italic[/i] formatting."},
+				{"speaker": "Anje", "text": "This has a sprite override (not implemented)", "sprite_override": "Kraze"},
+				{"speaker": "Ali", "text": "This has a sound effect (not implemented)", "sound_effect": "path/to/sound_effect.mp3"},
+				{"speaker": "Anje", "text": "This is the last line"}
+			],
+			"next": "end"
+		}
+	}
+}

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cwxehwmnkuwbu" path="res://assets/ui/ingredient_extender.png" id="5_xxqia"]
 [ext_resource type="Texture2D" uid="uid://p78b0orax1nv" path="res://assets/ui/message_box.png" id="6_twldb"]
 [ext_resource type="Script" uid="uid://cbq0mpgwpn7r8" path="res://scripts/message_box.gd" id="7_1and6"]
-[ext_resource type="PackedScene" uid="uid://b1lolhym8cg5v" path="res://scenes/Dialogue.tscn" id="7_k4w17"]
+[ext_resource type="PackedScene" uid="uid://b1lolhym8cg5v" path="res://scenes/DialogueGUI.tscn" id="7_k4w17"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ne771"]
 animations = [{

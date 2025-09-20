@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1lolhym8cg5v"]
+[gd_scene load_steps=8 format=3 uid="uid://b1lolhym8cg5v"]
 
-[ext_resource type="Script" uid="uid://c671si4lo424v" path="res://scripts/dialogue_gui.gd" id="1_7f5y4"]
-[ext_resource type="Texture2D" uid="uid://cwj5f6flktxkl" path="res://assets/ui/dialogue_box_npc.png" id="1_myoxq"]
-[ext_resource type="Texture2D" uid="uid://cv3h60judobnk" path="res://assets/ui/dialogue_box_player.png" id="1_v3dxv"]
-[ext_resource type="Texture2D" uid="uid://dhbk0yh2mspgr" path="res://assets/player/player_idle.png" id="1_y6djt"]
-[ext_resource type="Texture2D" uid="uid://dxgmw62iupiw0" path="res://assets/customers/customer_kaori.png" id="2_7f5y4"]
+[ext_resource type="Script" uid="uid://c671si4lo424v" path="res://scripts/dialogue_gui.gd" id="1_qd82c"]
+[ext_resource type="Texture2D" uid="uid://dhbk0yh2mspgr" path="res://assets/player/player_idle.png" id="2_dxe4y"]
+[ext_resource type="Texture2D" uid="uid://dxgmw62iupiw0" path="res://assets/customers/customer_kaori.png" id="3_efvvn"]
+[ext_resource type="Texture2D" uid="uid://cwj5f6flktxkl" path="res://assets/ui/dialogue_box_npc.png" id="4_r48oa"]
+[ext_resource type="Texture2D" uid="uid://cv3h60judobnk" path="res://assets/ui/dialogue_box_player.png" id="5_qgkhm"]
+[ext_resource type="Texture2D" uid="uid://cq46r8rilgojg" path="res://assets/ui/dialogue_next.png" id="6_dxe4y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_myoxq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_myoxq")
+"texture": ExtResource("4_r48oa")
 }],
 "loop": true,
 "name": &"npc",
@@ -18,7 +19,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_v3dxv")
+"texture": ExtResource("5_qgkhm")
 }],
 "loop": true,
 "name": &"player",
@@ -26,19 +27,19 @@ animations = [{
 }]
 
 [node name="DialogueGUI" type="CanvasLayer"]
-script = ExtResource("1_7f5y4")
+script = ExtResource("1_qd82c")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(458.595, 581.354)
 scale = Vector2(0.823505, 0.823505)
-texture = ExtResource("1_y6djt")
+texture = ExtResource("2_dxe4y")
 
 [node name="NPCSprite" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(1485.59, 581.354)
 scale = Vector2(2.57595, 2.57595)
-texture = ExtResource("2_7f5y4")
+texture = ExtResource("3_efvvn")
 
 [node name="DialogueBox" type="AnimatedSprite2D" parent="."]
 position = Vector2(960, 540)
@@ -51,23 +52,23 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -788.5
+offset_left = -723.0
 offset_top = -364.0
-offset_right = 788.5
-offset_bottom = -81.0
+offset_right = 724.0
+offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/bold_italics_font_size = 43
-theme_override_font_sizes/italics_font_size = 3
-theme_override_font_sizes/mono_font_size = 43
-theme_override_font_sizes/normal_font_size = 43
-theme_override_font_sizes/bold_font_size = 3
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
 bbcode_enabled = true
 text = "Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue Dialogue "
 visible_characters_behavior = 3
 
-[node name="PlayerName" type="Label" parent="."]
-visible = false
+[node name="NPCName" type="Label" parent="."]
+z_index = 1
 offset_left = 303.0
 offset_top = 643.0
 offset_right = 828.0
@@ -77,8 +78,8 @@ text = "Character Name"
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="NPCName" type="Label" parent="."]
-visible = false
+[node name="PlayerName" type="Label" parent="."]
+z_index = 1
 offset_left = 1102.0
 offset_top = 643.0
 offset_right = 1627.0
@@ -101,22 +102,19 @@ grow_horizontal = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="Button2" type="Button" parent="Choices"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "AAAA"
-
-[node name="Button3" type="Button" parent="Choices"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "AAAA"
-
-[node name="Button4" type="Button" parent="Choices"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "AAAA"
-
-[node name="Button5" type="Button" parent="Choices"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "AAAA"
+[node name="NextDialogue" type="TextureButton" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -229.0
+offset_top = -130.0
+offset_right = -39.0
+offset_bottom = 60.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.298034, 0.298034)
+texture_normal = ExtResource("6_dxe4y")
+texture_pressed = ExtResource("6_dxe4y")
+texture_hover = ExtResource("6_dxe4y")
