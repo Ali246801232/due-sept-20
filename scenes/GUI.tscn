@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bh0y17n8bjtak"]
+[gd_scene load_steps=14 format=3 uid="uid://bh0y17n8bjtak"]
 
 [ext_resource type="Texture2D" uid="uid://bqnapwgi8jil5" path="res://assets/ui/inventory_no_bowl.png" id="2_efote"]
 [ext_resource type="Texture2D" uid="uid://brsi2jokio8ej" path="res://assets/ui/inventory_bowl.png" id="2_vow1y"]
@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://p78b0orax1nv" path="res://assets/ui/message_box.png" id="6_twldb"]
 [ext_resource type="Script" uid="uid://cbq0mpgwpn7r8" path="res://scripts/message_box.gd" id="7_1and6"]
 [ext_resource type="PackedScene" uid="uid://b1lolhym8cg5v" path="res://scenes/DialogueGUI.tscn" id="7_k4w17"]
+[ext_resource type="PackedScene" uid="uid://dl430vwxe444s" path="res://scenes/MainMenu.tscn" id="9_8cuoo"]
+[ext_resource type="PackedScene" uid="uid://uy3m2xfuwldj" path="res://scenes/PauseMenu.tscn" id="10_meimr"]
+[ext_resource type="PackedScene" uid="uid://87xtqqjsjavb" path="res://scenes/OptionsMenu.tscn" id="11_rve7n"]
+[ext_resource type="Texture2D" uid="uid://do4bpmm81ytqf" path="res://assets/ui/black.png" id="12_tyhcs"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ne771"]
 animations = [{
@@ -28,10 +32,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="GUI" type="CanvasLayer"]
 layer = 0
 
 [node name="InventoryGUI" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(1025, 477)
 sprite_frames = SubResource("SpriteFrames_ne771")
 animation = &"inventory_no_bowl"
@@ -83,6 +88,7 @@ scale = Vector2(0.616824, 0.616824)
 texture = ExtResource("4_ne771")
 
 [node name="MessageBox" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(960, 540)
 texture = ExtResource("6_twldb")
 script = ExtResource("7_1and6")
@@ -103,3 +109,17 @@ autowrap_mode = 3
 autostart = true
 
 [node name="DialogueGUI" parent="." instance=ExtResource("7_k4w17")]
+visible = false
+
+[node name="MainMenu" parent="." instance=ExtResource("9_8cuoo")]
+visible = false
+
+[node name="PauseMenu" parent="." instance=ExtResource("10_meimr")]
+visible = false
+
+[node name="OptionsMenu" parent="." instance=ExtResource("11_rve7n")]
+visible = false
+
+[node name="GameOver" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("12_tyhcs")

@@ -2,22 +2,22 @@
 
 [ext_resource type="Script" uid="uid://c4ixmx4ntb7rm" path="res://scripts/day_transition.gd" id="2_6dj36"]
 [ext_resource type="Script" uid="uid://cdud2g2niqjd8" path="res://scripts/day_manager.gd" id="2_rcdqu"]
-[ext_resource type="Texture2D" uid="uid://do4bpmm81ytqf" path="res://assets/ui/fade_black.png" id="3_a8dei"]
+[ext_resource type="Texture2D" uid="uid://do4bpmm81ytqf" path="res://assets/ui/black.png" id="3_a8dei"]
 
 [node name="DayManager" type="Node"]
 script = ExtResource("2_rcdqu")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 
-[node name="DayTrasition" type="CanvasLayer" parent="."]
+[node name="DayTransition" type="CanvasLayer" parent="."]
 script = ExtResource("2_6dj36")
 
-[node name="FadeBlack" type="Sprite2D" parent="DayTrasition"]
+[node name="FadeBlack" type="Sprite2D" parent="DayTransition"]
 visible = false
 position = Vector2(960, 540)
 texture = ExtResource("3_a8dei")
 
-[node name="TransitionText" type="Label" parent="DayTrasition"]
+[node name="TransitionText" type="Label" parent="DayTransition"]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5

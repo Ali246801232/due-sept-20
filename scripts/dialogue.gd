@@ -43,12 +43,12 @@ func get_sequence(sequence_name: String) -> DialogueSequence:
 	return dialogue_sequences.get(sequence_name, null)
 
 func run_sequence(sequence_name: String) -> void:
-	Freeze.is_frozen = true
 	if not dialogue_sequences.has(sequence_name):
 		push_error("Sequence '%s' not found" % sequence_name)
 		return
 	current_sequence = dialogue_sequences[sequence_name]
 	emit_signal("dialogue_started")
+	Freeze.is_frozen = true
 	_process_node()
 
 func _process_node() -> void:

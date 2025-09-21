@@ -211,10 +211,10 @@ func _on_order_taken(slot_index):
 
 func _on_order_complete(success, slot_index):
 	if success:
-		Dialogue.run_sequence(slots[slot_index].customer.dialogues[1])
+		Dialogue.run_sequence(slots[slot_index].dialogues[1])
 		pass
 	else:
-		Dialogue.run_sequence(slots[slot_index].customer.dialogues[2])
+		Dialogue.run_sequence(slots[slot_index].dialogues[2])
 		pass
 	active[slot_index] = false
 	if customer_index > day_customers[day_index].size()  - 1 and slots_empty():
@@ -222,7 +222,7 @@ func _on_order_complete(success, slot_index):
 
 func _on_timer_ended(slot_index):
 	active[slot_index] = false
-	Dialogue.run_sequence(slots[slot_index].customer.dialogues[3])
+	Dialogue.run_sequence(slots[slot_index].dialogues[3])
 	if customer_index > day_customers[day_index].size() - 1 and slots_empty():
 		next_day()
 

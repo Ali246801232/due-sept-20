@@ -1,7 +1,3 @@
-# TODO:
-# - how the fuck do i do autoskip
-# - 
-
 extends CanvasLayer
 
 @onready var dialogue_box = $DialogueBox
@@ -12,9 +8,11 @@ extends CanvasLayer
 @onready var npc_name = $NPCName
 @onready var choices = $Choices
 @onready var next_button = $NextDialogue
+@onready var audio_player = $AudioPlayer
 
 var typewriter_tween: Tween
 var dialogue_speed = 25
+var choice_buttons = []
 
 var current_node
 
@@ -30,8 +28,6 @@ func _ready() -> void:
 
 	next_button.connect("pressed", Callable(self, "skip_dialogue"))
 
-	player_name.text = "Anje"
-	player_sprite.texture = load("res://assets/player/player_idle.png")
 	player_sprite.visible = false
 	npc_sprite.visible = false
 	player_name.visible = false
@@ -49,7 +45,7 @@ func _on_node_started(node: Dictionary):
 		"conversation":
 			play_line()
 		"choice":
-			pass
+			show_choice()
 		"end":
 			var callback = node.get("callback", null)
 			if callback:
@@ -68,7 +64,6 @@ func dialogue_ended():
 	npc_name.visible = false
 	visible = false
 
-# TODO: why the fuck are the labels not visible
 func set_speaker(speaker: String):
 	var is_player = (speaker == "Anje")
 	dialogue_box.play("player" if is_player else "npc")
@@ -76,7 +71,10 @@ func set_speaker(speaker: String):
 	player_sprite.visible = is_player
 	npc_name.visible = not is_player
 	npc_sprite.visible = not is_player
-	if not is_player:
+	if is_player:
+		player_name.text = "Anje"
+		player_sprite.texture = load("res://assets/player/player_idle.png")
+	else:
 		npc_name.text = speaker
 		npc_sprite.texture = Icons.customers[speaker]
 
@@ -84,6 +82,17 @@ func play_line():
 	current_line = current_node["lines"][line_index]
 	
 	set_speaker(current_line["speaker"])
+	var sprite_override = current_line.get("sprite_override", "")
+	if sprite_override:
+		player_sprite.texture = load(sprite_override)
+		npc_sprite.texture = load(sprite_override)
+
+	audio_player.stop()
+	var audio_path = current_line.get("audio", "")
+	if audio_path:
+		audio_player.stream = load(audio_path)
+		audio_player.play()
+	
 	dialogue_text.text = current_line["text"]
 
 	dialogue_text.visible_ratio = 0.0
@@ -102,7 +111,22 @@ func play_line():
 		skip_dialogue()
 
 func show_choice():
-	pass
+	var choices_list: Dictionary = current_node["choices"]
+	for choice_text in choices_list.keys():
+		var choice_button = Button.new()
+		choice_button.text = choice_text
+		choice_button.connect("pressed", Callable(self, "_on_choice_selected").bind(choice_text))
+		choice_button.add_theme_font_size_override("font_size", 37)
+		choice_buttons.append(choice_button)
+		choices.add_child(choice_button)
+
+func _on_choice_selected(choice_text):
+	var choices_list = current_node["choices"]
+	Dialogue.choice_selected(choices_list[choice_text])
+	for choice_button in choice_buttons:
+		choice_button.queue_free()
+	choice_buttons = []
+
 
 func skip_dialogue():
 	if not visible or current_node["type"] != "conversation":
@@ -117,6 +141,7 @@ func skip_dialogue():
 
 	line_index += 1
 	if line_index >= current_node["lines"].size():
+		line_index = 0
 		Dialogue.conversation_finished()
 		return
 	emit_signal("next_line")

@@ -26,6 +26,8 @@ func show_text(text, time):
 	pass
 
 func transition_day(day):
+	Freeze.is_frozen = true
 	fade_to_black()
-	show_text(transition_text[day], 2.0)
+	show_text(day_texts[day], 2.0)
 	fade_from_black()
+	Freeze.is_frozen = false

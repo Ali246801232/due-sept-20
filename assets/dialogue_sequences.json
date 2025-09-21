@@ -9,10 +9,33 @@
 				{"speaker": "Anje", "text": "This is an unskippable line", "skippable": false},
 				{"speaker": "Ali", "text": "This is an autoskipped line", "autoskip": true},
 				{"speaker": "Anje", "text": "This is both unskippable and autoskip, effectively the same as just autoskipped", "unskippable": true, "autoskip": true},
-				{"speaker": "Ali", "text": "This has some [b]bold[/b] and [i]italic[/i] formatting."},
-				{"speaker": "Anje", "text": "This has a sprite override (not implemented)", "sprite_override": "Kraze"},
-				{"speaker": "Ali", "text": "This has a sound effect (not implemented)", "sound_effect": "path/to/sound_effect.mp3"},
-				{"speaker": "Anje", "text": "This is the last line"}
+				{"speaker": "Ali", "text": "This has [b]bold[/b] and [i]italic[/i] formatting."},
+				{"speaker": "Anje", "text": "This has audio (not implemented)", "audio": "res://assets/audio/bite_sfx.mp3"},
+				{"speaker": "Ali", "text": "This has a sprite override", "sprite_override": "res://assets/customers/customer_kraze.png"},
+				{"speaker": "Anje", "text": "Theere's about to be a choice."}
+			],
+			"next": "choice1"
+		},
+		"choice1": {
+			"type": "choice",
+			"choices": {
+				"Wowie its option number 1": "outcome1",
+				"Holy balls its option 2": "outcome2"
+			}
+		},
+		"outcome1": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Ali", "text": "You picked the first option. That's pretty fucking banger ngl icl frfr"},
+				{"speaker": "Anje", "text": "I'm Anje and I  agree. I'm old and bald also."}
+			],
+			"next": "end"
+		},
+		"outcome2": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Ali", "text": "You picked the second option. That's pretty fucking buns ngl icl frfr"},
+				{"speaker": "Anje", "text": "I'm Anje and I agree. I'm old and bald also."}
 			],
 			"next": "end"
 		}

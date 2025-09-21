@@ -118,3 +118,5 @@ scale = Vector2(0.298034, 0.298034)
 texture_normal = ExtResource("6_dxe4y")
 texture_pressed = ExtResource("6_dxe4y")
 texture_hover = ExtResource("6_dxe4y")
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]

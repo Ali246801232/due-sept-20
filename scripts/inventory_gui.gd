@@ -4,6 +4,8 @@ var inventory
 
 func _ready() -> void:
 	Inventory.connect("update_inventory", Callable(self, "redraw_inventory"))
+	Freeze.connect("frozen", Callable(self, "freeze"))
+	Freeze.connect("unfrozen", Callable(self, "unfreeze"))
 
 func redraw_inventory():
 	inventory = Inventory.get_inventory()
@@ -39,3 +41,9 @@ func redraw_inventory():
 			bowl_slot.texture = Icons.items[inventory["bowl"][i]]
 			bowl_slot.visible = true
 			if extender: extender.visible = false
+
+func freeze():
+	visible = false
+
+func unfreeze():
+	visible = true
