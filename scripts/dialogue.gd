@@ -68,6 +68,7 @@ func choice_selected(outcome: String) -> void:
 	_process_node()
 
 func game_over(message: String) -> void:
+	# call a gameover function idk
 	current_sequence.goto_next("end")
 	_process_node()
 

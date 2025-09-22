@@ -4,6 +4,7 @@ extends Timer
 var showing: bool = false
 
 func _ready():
+	Reset.connect("resetted", Callable(self, "_on_resetted"))
 	timer_display.global_position = get_parent().global_position + Vector2(8.0, -42.0)  # idfk man
 
 func _process(_delta):
@@ -21,3 +22,6 @@ func show_timer():
 
 func hide_timer():
 	timer_display.visible = false
+
+func _on_resetted(day):
+	stop()

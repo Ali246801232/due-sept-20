@@ -1,0 +1,103 @@
+[gd_scene load_steps=9 format=3 uid="uid://dokielmih436g"]
+
+[ext_resource type="Texture2D" uid="uid://brsi2jokio8ej" path="res://assets/ui/inventory_bowl.png" id="1_1and6"]
+[ext_resource type="Texture2D" uid="uid://bqnapwgi8jil5" path="res://assets/ui/inventory_no_bowl.png" id="2_w75gc"]
+[ext_resource type="Script" uid="uid://cfm5wh1j3ab8b" path="res://scripts/inventory_gui.gd" id="3_n0ylh"]
+[ext_resource type="Texture2D" uid="uid://dyw8451puov5p" path="res://assets/test_interactable.png" id="4_gbfpv"]
+[ext_resource type="Texture2D" uid="uid://cwxehwmnkuwbu" path="res://assets/ui/ingredient_extender.png" id="5_4x0me"]
+[ext_resource type="Texture2D" uid="uid://p78b0orax1nv" path="res://assets/ui/message_box.png" id="6_2afx3"]
+[ext_resource type="Script" uid="uid://cbq0mpgwpn7r8" path="res://scripts/message_box.gd" id="7_x6is5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d5xqv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1and6")
+}],
+"loop": true,
+"name": &"inventory_bowl",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_w75gc")
+}],
+"loop": true,
+"name": &"inventory_no_bowl",
+"speed": 5.0
+}]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="InventoryGUI" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(1025, 477)
+sprite_frames = SubResource("SpriteFrames_d5xqv")
+animation = &"inventory_no_bowl"
+script = ExtResource("3_n0ylh")
+
+[node name="Item" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, 422)
+scale = Vector2(0.990654, 0.990654)
+texture = ExtResource("4_gbfpv")
+
+[node name="Extender1" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, 222)
+texture = ExtResource("5_4x0me")
+
+[node name="Extender2" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, 118)
+texture = ExtResource("5_4x0me")
+
+[node name="Extender3" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, 15)
+texture = ExtResource("5_4x0me")
+
+[node name="Bowl0" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, 272)
+scale = Vector2(0.616824, 0.616824)
+texture = ExtResource("4_gbfpv")
+
+[node name="Bowl1" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, 171)
+scale = Vector2(0.616824, 0.616824)
+texture = ExtResource("4_gbfpv")
+
+[node name="Bowl2" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, 71)
+scale = Vector2(0.616824, 0.616824)
+texture = ExtResource("4_gbfpv")
+
+[node name="Bowl3" type="Sprite2D" parent="InventoryGUI"]
+visible = false
+position = Vector2(-847, -29)
+scale = Vector2(0.616824, 0.616824)
+texture = ExtResource("4_gbfpv")
+
+[node name="MessageBox" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 540)
+texture = ExtResource("6_2afx3")
+script = ExtResource("7_x6is5")
+
+[node name="Label" type="Label" parent="MessageBox"]
+offset_left = -357.0
+offset_top = 409.0
+offset_right = 357.0
+offset_bottom = 483.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Timer" type="Timer" parent="MessageBox"]
+autostart = true

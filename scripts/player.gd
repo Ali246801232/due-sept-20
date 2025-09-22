@@ -86,9 +86,9 @@ func _get_closest_interactable() -> Node:
 func _update_animation_and_facing(dir: Vector2) -> void:
 	# Flip sprite
 	if dir.x < 0:
-		$Sprite.flip_h = true
-	elif dir.x > 0:
 		$Sprite.flip_h = false
+	elif dir.x > 0:
+		$Sprite.flip_h = true
 
 	# Switch animations
 	var any_move_pressed := _move_actions.any(Input.is_action_pressed)

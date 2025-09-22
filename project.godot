@@ -22,6 +22,7 @@ Icons="*res://scripts/icons.gd"
 Customers="*res://scripts/customers.gd"
 Freeze="*res://scripts/freeze.gd"
 Dialogue="*res://scripts/dialogue.gd"
+Reset="*res://scripts/reset.gd"
 
 [display]
 

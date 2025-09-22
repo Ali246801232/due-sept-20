@@ -83,7 +83,7 @@ func _on_body_exited(body: Node):
 
 # Display the message box with a message bubble
 func _show_message(message: String, time: float):
-	var message_box = get_tree().current_scene.get_node("GUI/MessageBox")
+	var message_box = get_tree().current_scene.get_node("GUI/HUD/MessageBox")
 	message_box.show_message(message, time)
 
 # Wait for some time before allowing interaction again
@@ -134,3 +134,6 @@ func freeze():
 
 func unfreeze():
 	waiting_timer.paused = false
+
+func _on_resetted(day):
+	pass

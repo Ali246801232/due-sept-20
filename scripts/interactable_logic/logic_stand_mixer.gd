@@ -10,6 +10,8 @@ signal show_timer()
 signal hide_timer()
 
 func _ready():
+	Reset.connect("resetted", Callable(self, "_on_resetted"))
+
 	sprite_texture = Icons.interactables["Stand Mixer"]
 	states = [
 		Callable(self, "_take_unprocessed"),
@@ -58,3 +60,6 @@ func _return_processed():
 	Inventory.set_inventory(output_inventory)
 	storage = Inventory.get_empty()
 	return 0
+
+func _on_resetted(day):
+	storage = []

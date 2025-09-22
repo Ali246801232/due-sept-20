@@ -3,6 +3,7 @@ extends AnimatedSprite2D
 var inventory
 
 func _ready() -> void:
+	visible = true
 	Inventory.connect("update_inventory", Callable(self, "redraw_inventory"))
 	Freeze.connect("frozen", Callable(self, "freeze"))
 	Freeze.connect("unfrozen", Callable(self, "unfreeze"))

@@ -34,6 +34,7 @@ visible = false
 position = Vector2(458.595, 581.354)
 scale = Vector2(0.823505, 0.823505)
 texture = ExtResource("2_dxe4y")
+flip_h = true
 
 [node name="NPCSprite" type="Sprite2D" parent="."]
 visible = false

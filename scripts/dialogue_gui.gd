@@ -13,7 +13,6 @@ extends CanvasLayer
 var typewriter_tween: Tween
 var dialogue_speed = 25
 var choice_buttons = []
-
 var current_node
 
 signal next_line()
@@ -22,17 +21,42 @@ var current_line
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Reset.connect("resetted", Callable(self, "_on_resetted"))
+
 	Dialogue.connect("node_started", Callable(self, "_on_node_started"))
 	Dialogue.connect("dialogue_started", Callable(self, "_on_dialogue_started"))
 	connect("next_line", Callable(self, "play_line"))
 
 	next_button.connect("pressed", Callable(self, "skip_dialogue"))
+	audio_player.volume_db = -15.0
 
 	player_sprite.visible = false
 	npc_sprite.visible = false
 	player_name.visible = false
 	npc_name.visible = false
 	visible = false
+
+var last_chars_visible = 0
+
+func _process(delta):
+	if not current_node:
+		return
+	if not current_node["type"] == "conversation":
+		return
+	if current_line.get("audio", null):
+		return
+	if dialogue_text.visible_ratio > 0 and (current_node["lines"][line_index]["speaker"] != "Anje" or current_node["lines"][line_index]["speaker"] != "Mordekaiser"):
+		var chars_visible = int(dialogue_text.visible_ratio * dialogue_text.text.length())
+		if chars_visible > last_chars_visible:
+			if current_node["lines"][line_index]["speaker"] == "Anje":
+				audio_player.stream = load("res://assets/audio/asriel_blip.wav")
+			if current_node["lines"][line_index]["speaker"] == "Mordekaiser":
+				audio_player.stream = load("res://assets/audio/asgore_blip.wav")
+			if dialogue_text.text[chars_visible - 1] != " ":
+				audio_player.play()
+			last_chars_visible = chars_visible
+	else:
+		last_chars_visible = 0
 
 func _on_dialogue_started():
 	visible = true
@@ -86,12 +110,6 @@ func play_line():
 	if sprite_override:
 		player_sprite.texture = load(sprite_override)
 		npc_sprite.texture = load(sprite_override)
-
-	audio_player.stop()
-	var audio_path = current_line.get("audio", "")
-	if audio_path:
-		audio_player.stream = load(audio_path)
-		audio_player.play()
 	
 	dialogue_text.text = current_line["text"]
 
@@ -103,8 +121,22 @@ func play_line():
 		dialogue_text,
 		"visible_ratio",
 		1.0,
-		dialogue_text.text.length() / dialogue_speed
+		float(dialogue_text.text.length()) / dialogue_speed
 	)
+
+	if current_line["speaker"] == "Ali":
+		audio_player.volume_db = -25.0
+	else:
+		audio_player.volume_db = -15.0
+
+	audio_player.stop()
+	audio_player.stream = null
+	var audio_path = current_line.get("audio", "")
+	if audio_path:
+		audio_player.stream = load("res://assets/audio/voicelines/" + audio_path + ".wav")
+		if audio_player.stream:
+			await get_tree().create_timer(0.2).timeout
+			audio_player.play()
 
 	if current_line.get("autoskip", false):
 		await typewriter_tween.finished
@@ -145,3 +177,18 @@ func skip_dialogue():
 		Dialogue.conversation_finished()
 		return
 	emit_signal("next_line")
+
+func _on_resetted(day):
+	Dialogue.end()
+	typewriter_tween.kill()
+	audio_player.stop()
+	audio_player.volume_db = -15.0
+	player_sprite.visible = false
+	npc_sprite.visible = false
+	player_name.visible = false
+	npc_name.visible = false
+	visible = false
+	choice_buttons = []
+	line_index = 0
+	current_line = null
+	current_node = null

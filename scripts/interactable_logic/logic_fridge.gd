@@ -12,6 +12,8 @@ var popup = load("res://scenes/ContainerPopup.tscn").instantiate()
 var ingredients = ["Eggs", "Butter", "Milk", "Cheese"]
 
 func _ready():
+	Reset.connect("resetted", Callable(self, "_on_resetted"))
+
 	sprite_texture = Icons.interactables["Fridge"]
 	states = [
 		Callable(self, "_toggle_popup")
@@ -64,3 +66,6 @@ func _toggle_popup():
 	else:
 		popup.visible = true
 	return 0
+
+func _on_resetted(day):
+	popup.visible = false

@@ -13,12 +13,10 @@ script = ExtResource("2_rcdqu")
 script = ExtResource("2_6dj36")
 
 [node name="FadeBlack" type="Sprite2D" parent="DayTransition"]
-visible = false
 position = Vector2(960, 540)
 texture = ExtResource("3_a8dei")
 
 [node name="TransitionText" type="Label" parent="DayTransition"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

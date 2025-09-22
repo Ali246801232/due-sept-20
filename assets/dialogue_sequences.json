@@ -1,4 +1,175 @@
 {
+	"dialogue_intro": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Anje", "text": "honk mimimir..."},
+				{"speaker": "Anje", "text": "honk mimimimimimimimimimir..."},
+				{"speaker": "Anje", "text": "honk mimimimimimimimimimimimimimi-", "autoskip": true},
+				{"speaker": "Anje", "text": "[i]*alarms ringing*[/i]", "audio": "intro_alarm"},
+				{"speaker": "Anje", "text": "AHHHHHHHHH!"},
+				{"speaker": "Anje", "text": "I'M GONNA BE LATE TO MY JOB!!!"},
+				{"speaker": "Anje", "text": "AHHHHHH- Wait, hold on..."},
+				{"speaker": "Anje", "text": "It's my day off! Phew..."},
+				{"speaker": "Anje", "text": "Out of all 365 days today's my one holiday of the year."},
+				{"speaker": "Anje", "text": "I've been working my ass off with every odd job I could find..."},
+				{"speaker": "Anje", "text": "Back-to-back shifts as a waiter, getting my ass beat as a grade 9 fixer, and now..."},
+				{"speaker": "Anje", "text": "A cookie tester."},
+				{"speaker": "Anje", "text": "Now that I've got some time off, maybe I should hop back on League."},
+				{"speaker": "Anje", "text": "[i]*phone rings*[/i]", "audio": "intro_ringing_phone"},
+				{"speaker": "Anje", "text": "Gah. Who the hell..."},
+				{"speaker": "Anje", "text": "My bakery boss???"},
+				{"speaker": "Anje", "text": "[i]*picks up phone*[/i]", "audio": "intro_pick_up_phone"},
+				{"speaker": "Ali", "text": "Oi.", "audio": "intro_1"},
+				{"speaker": "Ali", "text": "Get your ass over here.", "audio": "intro_2"},
+				{"speaker": "Anje", "text": "Wha- ...ok???"},
+			],
+			"next": "end"
+		}
+	},
+
+	"dialogue_ending": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Anje", "text": "[i]*alarms ringing*[/i]", "audio": "intro_alarm"},
+			],
+			"next": "end"
+		}
+	},
+
+	"dialogue_day1_start": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Anje", "text": "[i]Huff... huff...[/i]"},
+				{"speaker": "Ali", "text": "You're here! Lovely.", "audio": "day1_start_1"},
+				{"speaker": "Anje", "text": "Whats the emergency?"},
+				{"speaker": "Ali", "text": "Yeah, no. Everyone else can't come in right now.", "audio": "day1_start_2"},
+				{"speaker": "Ali", "text": "On vacation, sudden heart attack, went missing, finding the one piece, yadayada- Point is.", "audio": "day1_start_3"},
+				{"speaker": "Ali", "text": "You gotta fill in for a bit.", "audio": "day1_start_4"},
+				{"speaker": "Anje", "text": "How many shifts?"},
+				{"speaker": "Ali", "text": "For like... five days...", "audio": "day1_start_5"},
+				{"speaker": "Anje", "text": "Huh... that's a lot..."},
+				{"speaker": "Ali", "text": "Nahhh, come on!", "audio": "day1_start_6"},
+				{"speaker": "Ali", "text": "You know how to bake, right? ...Right?", "audio": "day1_start_7"},
+			],
+			"next": "cookie_tutorial_choice"
+		},
+		"cookie_tutorial_choice": {
+			"type": "choice",
+			"choices": {
+				"Uhhhhhh...": "cookie_tutorial_yes",
+				"Yessir!": "cookie_tutorial_no"
+			}
+		},
+		"cookie_tutorial_yes": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Ali", "text": "(not implemented)"},
+			],
+			"next": "cookie_tutorial_no"
+		},
+		"cookie_tutorial_no": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Ali", "text": "Peak", "audio": "day1_start_8"},
+				{"speaker": "Ali", "text": "Don't worry, I'll check back on you every morning.", "audio": "day1_start_9"},
+				{"speaker": "Ali", "text": "But if you screw this up...", "audio": "day1_start_10"},
+				{"speaker": "Ali", "text": "I'm gonna cut off your fucking balls.", "audio": "day1_start_11"},
+				{"speaker": "Anje", "text": "Awe man..."},
+				{"speaker": "Ali", "text": "And your pay, I guess.", "audio": "day1_start_12"},
+				{"speaker": "Anje", "text": "OH WHAT."},
+				{"speaker": "Ali", "text": "Okay, byebye now!", "audio": "day1_start_13"},
+			],
+			"next": "end"
+		},
+	},
+	"dialogue_day2_start": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Ali", "text": "Welcome back to the job! Had enough beauty rest?", "audio": "day2_start_1"},
+				{"speaker": "Anje", "text": "I didn't get any slepp at all last night..."},
+				{"speaker": "Ali", "text": "Too bad. You've got four more days of this ahead of you.", "audio": "day2_start_2"},
+				{"speaker": "Anje", "text": "Man..."},
+			],
+			"next": "end"
+		}
+	},
+	"dialogue_day3_start": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Ali", "text": "Heyyy! How're you holding up?", "audio": "day3_start_1"},
+				{"speaker": "Anje", "text": "It's going well so far, I guess."},
+				{"speaker": "Ali", "text": "That's what I like to hear!", "audio": "day3_start_2"},
+				{"speaker": "Anje", "text": "Just 3 more days... I think I can handle it if nothing weird happens."},
+				{"speaker": "Ali", "text": "Keep it up, and I might just make you employee of the month.", "audio": "day3_start_3"},
+				{"speaker": "Anje", "text": "Really?"},
+				{"speaker": "Ali", "text": "No.", "audio": "day3_start_4"},
+			],
+			"next": "end"
+		}
+	},
+	"dialogue_day4_start": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Ali", "text": "You're so fucking old... and bald.", "audio": "day4_start_1"},
+				{"speaker": "Anje", "text": ":C"},
+			],
+			"next": "end"
+		}
+	},
+	"dialogue_day5_start": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Ali", "text": "Last day! You've made it so far.", "audio": "day5_start_1"},
+				{"speaker": "Ali", "text": "Just one more and you'll be back to being a good ol' cookie tester.", "audio": "day5_start_2"},
+				{"speaker": "Ali", "text": "...Whatever the fuck that is.", "audio": "day5_start_3"},
+				{"speaker": "Anje", "text": "Can't wait..."},
+				{"speaker": "Ali", "text": "By the way, recipe screen should be fixed now.", "audio": "day5_start_4"},
+				{"speaker": "Ali", "text": "Mk, that's all!", "audio": "day5_start_5"},
+				{"speaker": "Ali", "text": "Byebye!", "audio": "day5_start_6"},
+			],
+			"next": "end"
+		}
+	},
+	"dialogue_day6_start": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Ali", "text": "Great work on your shifts! I'll pay you double, fr.", "audio": "day6_start_1"},
+				{"speaker": "Anje", "text": "That was wayyy more than double my usual work..."},
+				{"speaker": "Ali", "text": "Well... Just one more order.", "audio": "day6_start_2"},
+				{"speaker": "Anje", "text": "Stil???"},
+				{"speaker": "Ali", "text": "It's a special order for a cake!", "audio": "day6_start_3"},
+				{"speaker": "Anje", "text": "I can't bake no more, man."},
+				{"speaker": "Ali", "text": "Don't worry, it's already done! You just gotta deliver it.", "audio": "day6_start_4"},
+				{"speaker": "Anje", "text": "Alright... Get this over with finally..."},
+			],
+			"next": "end"
+		}
+	},
+
 	"dialogue_take_order_ali": {
 		"start": {"type": "start", "next": "lines1"},
 		"end": {"type": "end"},
@@ -39,5 +210,69 @@
 			],
 			"next": "end"
 		}
-	}
+	},
+	"dialogue_take_order_kraze": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Kraze", "text": "[i]*cough*[/i] - Yoo big dawg, I need me an apple fritter, you- you feel me?", "audio": "take_order_kraze_1"},
+				{"speaker": "Anje", "text": "An apple... what now?"},
+				{"speaker": "Anje", "text": "I don't think we have those."},
+				{"speaker": "Kraze", "text": "..."},
+				{"speaker": "Kraze", "text": "Come again?", "audio": "take_order_kraze_2"},
+				{"speaker": "Anje", "text": "We don't have any fritters-", "autoskip": true},
+				{"speaker": "Kraze", "text": "WHAT THE [b]FUCK[/b]. DO YOU [i]MEAN[/i]. NO APPLE FRITTERS?!", "audio": "take_order_kraze_3"},
+				{"speaker": "Anje", "text": "Uhhhhhh-"},
+				{"speaker": "Anje", "text": "We uh- we got cheese cookies, chocolate chip cookies, cookies cookies-"},
+				{"speaker": "Kraze", "text": "[i]*sigh*[/i] - Fine. Sugar Cookies.", "audio": "take_order_kraze_4"},
+				{"speaker": "Kraze", "text": "But you only have 30 seconds.", "audio": "take_order_kraze_5"},
+			],
+			"next": "end"
+		},
+	},
+	"dialogue_success_kraze": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Kraze", "text": "What type of dogshit bakery doesn't even have apple fritters??", "audio": "success_kraze_1"},
+				{"speaker": "Anje", "text": "W-well, at least... try the cookies..."},
+				{"speaker": "Kraze", "text": "[i]*eats*[/i] - Mm... Eh... Eugh, this tastes like shit.", "audio": "success_kraze_2"},
+				{"speaker": "Anje", "text": "Awe..."},
+			],
+			"next": "end"
+		},
+	},
+	"dialogue_failure_kraze": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Kraze", "text": "Dude, what the fuck even is this? This isn't what I ordered, What the fuck?", "audio": "failure_kraze_1"},
+				{"speaker": "Anje", "text": "Well, uhhh-"},
+				{"speaker": "Kraze", "text": "Expect a package at your doorstep tonight.", "audio": "failure_kraze_2"},
+				{"speaker": "Anje", "text": "Wait, what-"},
+			],
+			"next": "end"
+		},
+	},
+	"dialogue_timeout_kraze": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Kraze", "text": "Where the [b]FUCK[/b] are my GODDAMN COOKIES?!", "audio": "timeout_kraze_1"},
+				{"speaker": "Anje", "text": "Uhhh- sir, they're almost-", "autoskip": true},
+				{"speaker": "Kraze", "text": "[i]*radio beep*[/i] Firing squad 67, drop in to my coordinates.", "audio": "timeout_kraze_2"},
+				{"speaker": "Radio", "text": "[i]*radio beep*[/i] Sending troops over", "audio": "timeout_kraze_3"},
+				{"speaker": "Anje", "text": "Wait, what..."},
+			],
+			"next": "end"
+		},
+	},
 }

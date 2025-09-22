@@ -4,6 +4,7 @@ class_name CustomerSlot
 
 signal order_taken()
 signal order_complete(success)
+signal order_timeout()
 signal update_score(score)
 signal pause_spawns()
 signal resume_spawns()
@@ -74,7 +75,7 @@ func _on_timeout():
 	state = 0
 	order = null
 	score = -10
-	emit_signal("order_complete", false)
+	emit_signal("order_timeout", false)
 	order_timer.hide_timer()
 	order_popup.set_success(false)
 	emit_signal("update_score", score)
@@ -114,7 +115,8 @@ func take_order():
 		return 0
 	emit_signal("order_taken")
 	order_popup.set_order(order)
-	time_limit = 90 * customer.get_effects()["time_multiplier"]
+	print(customer.get_effects()["time_multiplier"])
+	time_limit = 60 * customer.get_effects()["time_multiplier"]
 	order_timer.start(time_limit)
 	order_timer.show_timer()
 	return 1
