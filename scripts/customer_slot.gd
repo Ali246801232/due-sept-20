@@ -17,9 +17,11 @@ var order
 var state: int = 0
 var customer
 var pausing
+var failable
 var dialogues
 var time_limit
-var score: int
+var current_slot
+var score
 
 func _ready():
 	# Game freezing signals
@@ -75,7 +77,8 @@ func _on_timeout():
 	state = 0
 	order = null
 	score = -10
-	emit_signal("order_timeout", false)
+	if failable:
+		emit_signal("order_timeout")
 	order_timer.hide_timer()
 	order_popup.set_success(false)
 	emit_signal("update_score", score)
@@ -90,10 +93,12 @@ func interact():
 
 # Set the slot's customer and order, and show the slot
 func set_slot(slot):
-	order = slot.get_order()
-	customer = slot.get_customer()
-	pausing = slot.get_pausing()
-	dialogues = slot.get_dialogues()
+	current_slot = slot
+	order = current_slot.get_order()
+	customer = current_slot.get_customer()
+	pausing = current_slot.get_pausing()
+	failable = current_slot.get_failable()
+	dialogues = current_slot.get_dialogues()
 	customer_sprite.texture = customer.get_sprite()
 	customer_sprite.animate_spawn()
 	if pausing:
@@ -115,7 +120,6 @@ func take_order():
 		return 0
 	emit_signal("order_taken")
 	order_popup.set_order(order)
-	print(customer.get_effects()["time_multiplier"])
 	time_limit = 60 * customer.get_effects()["time_multiplier"]
 	order_timer.start(time_limit)
 	order_timer.show_timer()
@@ -134,7 +138,8 @@ func check_order():
 		order_popup.set_success(true)
 		score = calculate_score(order_timer.time_left, customer.get_effects()["score_multiplier"])
 	else:
-		emit_signal("order_complete", false)
+		if failable:
+			emit_signal("order_complete", false)
 		order_popup.set_success(false)
 		score = -10
 	emit_signal("update_score", score)

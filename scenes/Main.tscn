@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ks8qpnr6dpme"]
+[gd_scene load_steps=23 format=3 uid="uid://ks8qpnr6dpme"]
 
 [ext_resource type="Script" uid="uid://cbea0bk6gr7kd" path="res://scripts/main.gd" id="1_nfivy"]
 [ext_resource type="PackedScene" uid="uid://b3c7igl484i6p" path="res://scenes/Player.tscn" id="2_fpfj3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cl2ho6fle46vd" path="res://assets/ui/interactables_layer.png" id="5_1iba3"]
 [ext_resource type="Script" uid="uid://1vshh80mq5ic" path="res://scripts/interactable_logic/logic_oven.gd" id="5_5tuhn"]
 [ext_resource type="Script" uid="uid://ccvb6qp6g03o1" path="res://scripts/interactable_logic/logic_table.gd" id="5_fpfj3"]
+[ext_resource type="Script" uid="uid://5uw0r3b32omy" path="res://scenes/recipe_screen.gd" id="5_yxlcp"]
 [ext_resource type="Script" uid="uid://cuham87rr6ym0" path="res://scripts/interactable_logic/logic_stand_mixer.gd" id="6_2gh4u"]
 [ext_resource type="Script" uid="uid://b8w716qxd5uxc" path="res://scripts/interactable_logic/logic_bread_proofer.gd" id="7_devvj"]
 [ext_resource type="Script" uid="uid://dos6sc2w0wmse" path="res://scripts/interactable_logic/logic_shelf.gd" id="8_3b0ty"]
@@ -20,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://bka5w0ylw0f1a" path="res://scenes/DayManager.tscn" id="14_hri7i"]
 [ext_resource type="PackedScene" uid="uid://df4jvkt2pnts8" path="res://scenes/CustomerSlot.tscn" id="15_w3rk5"]
 [ext_resource type="Texture2D" uid="uid://dtorlk7jn5vbi" path="res://assets/interactables/interactable_shelf.png" id="18_1nqs0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1iba3"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_nfivy")
@@ -45,6 +48,8 @@ scale = Vector2(0.800822, 0.800822)
 texture = ExtResource("4_1nqs0")
 
 [node name="RecipeScreen" type="AnimatedSprite2D" parent="Kitchen/Parallax2D"]
+sprite_frames = SubResource("SpriteFrames_1iba3")
+script = ExtResource("5_yxlcp")
 
 [node name="InteractablesLayer" type="Sprite2D" parent="Kitchen/Parallax2D"]
 z_index = 1

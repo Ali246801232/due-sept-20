@@ -82,6 +82,7 @@ animation = &"walk"
 frame_progress = 0.772638
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 23.5)
 shape = SubResource("RectangleShape2D_e80uo")
 

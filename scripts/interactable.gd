@@ -134,4 +134,5 @@ func unfreeze():
 	waiting_timer.paused = false
 
 func _on_resetted(day):
-	pass
+	if not waiting_timer.is_stopped():
+		waiting_timer.stop()

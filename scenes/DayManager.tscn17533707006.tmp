@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bka5w0ylw0f1a"]
+
+[ext_resource type="Script" uid="uid://c4ixmx4ntb7rm" path="res://scripts/day_transition.gd" id="2_6dj36"]
+[ext_resource type="Script" uid="uid://cdud2g2niqjd8" path="res://scripts/day_manager.gd" id="2_rcdqu"]
+[ext_resource type="Texture2D" uid="uid://do4bpmm81ytqf" path="res://assets/ui/black.png" id="3_a8dei"]
+
+[node name="DayManager" type="Node"]
+script = ExtResource("2_rcdqu")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="DayTransition" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("2_6dj36")
+
+[node name="FadeBlack" type="Sprite2D" parent="DayTransition"]
+position = Vector2(960, 540)
+texture = ExtResource("3_a8dei")
+
+[node name="TransitionText" type="Label" parent="DayTransition"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -363.5
+offset_top = -100.0
+offset_right = 363.5
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 72
+text = "Day 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

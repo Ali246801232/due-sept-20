@@ -65,6 +65,7 @@ func new_customer(customer_name, properties):
 	customer.set_manual_first(props["manual_first"])
 
 	customers.append(customer)
+	Reset.connect("resetted", Callable(self, "_on_resetted").bind(customer_name))
 
 func get_random_customer(existing):
 	if customers.is_empty():
@@ -84,3 +85,22 @@ func get_customer(customer_name, existing):
 				customer.set_allow_random(true)
 			return customer
 	return null
+
+func _on_resetted(day, customer_name):
+	if day == 1:
+		pass
+	if day == 2:
+		if customer_name == "Kenz":
+			get_customer(customer_name, []).set_allow_random(false)
+	if day == 3:
+		if customer_name == "Melan":
+			get_customer(customer_name, []).set_allow_random(false)
+		if customer_name == "Kraze":
+			get_customer(customer_name, []).set_allow_random(false)
+	if day == 4:
+		pass
+	if day == 5:
+		if customer_name == "Chekered":
+			get_customer(customer_name, []).set_allow_random(false)
+		if customer_name == "Carton":
+			get_customer(customer_name, []).set_allow_random(false)

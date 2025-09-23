@@ -10,6 +10,7 @@ var _move_actions := ["move_left", "move_right", "move_up", "move_down"]
 
 func _ready():
 	$Camera2D.make_current()
+	Reset.connect("resetted", Callable(self, "_on_resetted"))
 
 func _physics_process(_delta: float):
 	if Freeze.is_frozen:
@@ -98,3 +99,7 @@ func _update_animation_and_facing(dir: Vector2) -> void:
 	else:
 		if $Sprite.animation != "idle":
 			$Sprite.play("idle")
+
+func _on_resetted(day):
+	
+	pass

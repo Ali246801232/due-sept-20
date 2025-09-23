@@ -39,6 +39,8 @@ func load_sequences(json_path: String = "res://assets/dialogue_sequences.json") 
 signal dialogue_started()
 signal dialogue_ended()
 signal node_started(node: Dictionary)
+signal show_game_over(message)
+var game_over_occuring
 
 func get_sequence(sequence_name: String) -> DialogueSequence:
 	return dialogue_sequences.get(sequence_name, null)
@@ -49,6 +51,7 @@ func run_sequence(sequence_name: String) -> bool:
 		push_error("Sequence '%s' not found" % sequence_name)
 		return false
 	current_sequence = dialogue_sequences[sequence_name]
+	current_sequence.goto_next("start")
 	emit_signal("dialogue_started")
 	Freeze.is_frozen = true
 	_process_node()
@@ -70,12 +73,17 @@ func choice_selected(outcome: String) -> void:
 	current_sequence.goto_next(outcome)
 	_process_node()
 
-func game_over(message: String, day: int) -> void:
-	Reset.reset(day)
-	current_sequence.goto_next("end")
-	_process_node()
+func game_over(message: String) -> void:
+	if current_sequence:
+		current_sequence.goto_next("start")
+		current_sequence = null
+	emit_signal("show_game_over", message)
+	game_over_occuring = true
+	Reset.reset()
 
 func end() -> void:
-	current_sequence = null
+	if current_sequence:
+		current_sequence.goto_next("start")
+		current_sequence = null
 	emit_signal("dialogue_ended")
 	Freeze.is_frozen = false

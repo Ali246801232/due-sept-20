@@ -70,6 +70,8 @@ func _on_node_started(node: Dictionary):
 			play_line()
 		"choice":
 			show_choice()
+		"game_over":
+			Dialogue.game_over(current_node["message"])
 		"end":
 			var callback = node.get("callback", null)
 			if callback:
@@ -188,7 +190,6 @@ func skip_dialogue():
 	emit_signal("next_line")
 
 func _on_resetted(day):
-	Dialogue.end()
 	typewriter_tween.kill()
 	audio_player.stop()
 	audio_player.volume_db = -15.0

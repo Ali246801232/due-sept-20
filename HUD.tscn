@@ -39,7 +39,7 @@ script = ExtResource("3_n0ylh")
 [node name="Item" type="Sprite2D" parent="InventoryGUI"]
 visible = false
 position = Vector2(-847, 422)
-scale = Vector2(0.990654, 0.990654)
+scale = Vector2(0.616822, 0.616822)
 texture = ExtResource("4_gbfpv")
 
 [node name="Extender1" type="Sprite2D" parent="InventoryGUI"]
@@ -80,6 +80,75 @@ visible = false
 position = Vector2(-847, -29)
 scale = Vector2(0.616824, 0.616824)
 texture = ExtResource("4_gbfpv")
+
+[node name="LabelBowl0" type="Label" parent="InventoryGUI"]
+visible = false
+offset_left = -952.0
+offset_top = 304.0
+offset_right = -742.0
+offset_bottom = 347.0
+scale = Vector2(1, 1.00301)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 20
+text = "ItemName"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="LabelBowl1" type="Label" parent="InventoryGUI"]
+visible = false
+offset_left = -952.0
+offset_top = 203.0
+offset_right = -742.0
+offset_bottom = 246.0
+scale = Vector2(1, 1.00301)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 20
+text = "ItemName"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="LabelBowl2" type="Label" parent="InventoryGUI"]
+visible = false
+offset_left = -952.0
+offset_top = 104.0
+offset_right = -742.0
+offset_bottom = 147.0
+scale = Vector2(1, 1.00301)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 20
+text = "ItemName"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="LabelBowl3" type="Label" parent="InventoryGUI"]
+visible = false
+offset_left = -952.0
+offset_top = 3.0
+offset_right = -742.0
+offset_bottom = 46.0
+scale = Vector2(1, 1.00301)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 20
+text = "ItemName"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="LabelItem" type="Label" parent="InventoryGUI"]
+visible = false
+offset_left = -996.0
+offset_top = 475.0
+offset_right = -698.0
+offset_bottom = 559.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 30
+text = "ItemName"
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="MessageBox" type="Sprite2D" parent="."]
 visible = false

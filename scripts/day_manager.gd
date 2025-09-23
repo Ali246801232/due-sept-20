@@ -11,6 +11,8 @@ var day_customers: Array
 var spawn_interval: float = 2.0
 var spawning_paused: bool = false
 
+signal cake_day
+
 # Class to store what will go in a customer slot, really should rename this to something else to avoid confusion
 class Slot:
 	var _order
@@ -18,6 +20,7 @@ class Slot:
 	var _customer
 	var _dialogues
 	var _pausing
+	var _failable
 	var random_filters = ["_RANDOM_COOKIES_", "_RANDOM_BREAD_", "_RANDOM_NORMAL_"]
 	var valid_orders = [
 		{"name": "Plain Cookies", "filters": ["_RANDOM_COOKIES_", "_RANDOM_NORMAL_"]},
@@ -38,10 +41,11 @@ class Slot:
 		{"name": "Cake Box", "filters": []}
 	]
 	
-	func _init(order: String, customer_name: String, pausing: bool = false):
+	func _init(order: String, customer_name: String, pausing: bool = false, failable: bool = true):
 		set_order(order)
 		_customer_name = customer_name
 		_pausing = pausing
+		_failable = failable
 
 	# Set the order from a name or randomly with a filter
 	func set_order(order):
@@ -81,15 +85,20 @@ class Slot:
 
 	func get_dialogues():
 		return _dialogues
-	
+
 	func get_pausing():
 		return _pausing
+		
+	func get_failable():
+		return _failable
 
 
 func _ready() -> void:
 	# Game freezing signals
 	Freeze.connect("frozen", Callable(self, "freeze"))
 	Freeze.connect("unfrozen", Callable(self, "unfreeze"))
+	
+	Reset.connect("resetted", Callable(self, "_on_resetted"))
 	
 	# Get and store all customer slots
 	for child in get_children():
@@ -103,7 +112,7 @@ func _ready() -> void:
 		var slot = slots[index]
 		slot.connect("order_taken", Callable(self, "_on_order_taken").bind(index))
 		slot.connect("order_complete", Callable(self, "_on_order_complete").bind(index))
-		slot.connect("timer_ended", Callable(self, "_on_order_timeout").bind(index))
+		slot.connect("order_timeout", Callable(self, "_on_order_timeout").bind(index))
 		slot.connect("pause_spawns", Callable(self, "_on_pause_spawns"))
 		slot.connect("resume_spawns", Callable(self, "_on_resume_spawns"))
 	spawn_timer.timeout.connect(Callable(self, "spawn_customer"))
@@ -113,8 +122,8 @@ func _ready() -> void:
 	Customers.new_customer("Kenz", {"effects": {"time_multiplier": 1.50}, "allow_random": false, "manual_first": true})
 	Customers.new_customer("Miku", {"effects": {"hide_recipes": true}, "allow_random": false})
 	Customers.new_customer("Mordekaiser", {"allow_random": false})
-	Customers.new_customer("Kraze", {"effects": {"time_multipler": 0.5}, "allow_random": false, "manual_first": true})
-	Customers.new_customer("Melan", {"allow_random": false, "manual_first": true})
+	Customers.new_customer("Kraze", {"effects": {"time_multiplier": 0.5}, "allow_random": false, "manual_first": true})
+	Customers.new_customer("Melan", {"time_multiplier": 1000, "allow_random": false, "manual_first": true})
 	Customers.new_customer("Carton", {"allow_random": false, "manual_first": true})
 	Customers.new_customer("Chekered", {"allow_random": false, "manual_first": true})
 	Customers.new_customer("Soda", {})
@@ -122,7 +131,7 @@ func _ready() -> void:
 	Customers.new_customer("Kaori", {})
 	Customers.new_customer("Ash", {})
 	Customers.new_customer("Cake Box", {"time_multiplier": 1000, "allow_random": false})
-
+	
 	day_customers = [
 		[Slot.new("Sugar Cookies", "Kraze")],
 		[Slot.new("Cheese Pandesal", "Melan")],
@@ -134,24 +143,24 @@ func _ready() -> void:
 
 	#day_customers = [
 		#[
-			#Slot.new("Chocolate Chip Cookies", "Ali", true),
+			#Slot.new("Chocolate Chip Cookies", "Ali", true. false),
 			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
 			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
 			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
 			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_")
 		#],
 		#[
-			#Slot.new("Cheese Pandesal", "Melan", true),
-			#Slot.new("_RANDOM_BREAD_", "_RANDOM_"),
-			#Slot.new("_RANDOM_BREAD_", "_RANDOM_"),
-			#Slot.new("_RANDOM_BREAD_", "_RANDOM_"),
+			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
+			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
+			#Slot.new("_RANDOM_COOKIES_", "Kenz"),
+			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
 			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_")
 		#],
 		#[
+			#Slot.new("Cheese Pandesal", "Melan", true, false),
 			#Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
-			#Slot.new("Cheese Cookies", "Kraze"),
 			#Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
-			#Slot.new("_RANDOM_NORMAL_", "Kenz"),
+			#Slot.new("Sugar Cookies", "Kraze"),
 			#Slot.new("_RANDOM_NORMAL_", "_RANDOM_")
 		#],
 		#[
@@ -171,7 +180,7 @@ func _ready() -> void:
 			#Slot.new("_RANDOM_NORMAL_", "_RANDOM_")
 		#],
 		#[
-			#Slot.new("Cake Box", "Cake Box")
+			#Slot.new("Cake Box", "Cake Box", true, false)
 		#]
 	#]
 
@@ -197,6 +206,7 @@ func spawn_customer():
 
 # Start a day by spawning the first customer
 func start_day():
+	Reset.current_day = day_index
 	await get_tree().create_timer(0.5).timeout
 	Dialogue.run_sequence("dialogue_day%d_start" % (day_index + 1))
 	spawn_customer()
@@ -232,7 +242,7 @@ func _on_order_complete(success, slot_index):
 	if customer_index > day_customers[day_index].size()  - 1 and slots_empty():
 		next_day()
 
-func _on_timer_ended(slot_index):
+func _on_order_timeout(slot_index):
 	var dialogue_ran
 	active[slot_index] = false
 	dialogue_ran = Dialogue.run_sequence(slots[slot_index].dialogues[3])
@@ -277,4 +287,6 @@ func unfreeze():
 func _on_resetted(day):
 	for slot in slots:
 		slot.clear_slot()
-	day_index = -1
+		slot.order_timer.stop()
+	customer_index = 0
+	spawn_timer.stop()

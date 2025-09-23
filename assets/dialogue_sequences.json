@@ -272,7 +272,8 @@
 				{"speaker": "Radio", "text": "[i]*radio beep*[/i] Sending troops over", "audio": "timeout_kraze_3"},
 				{"speaker": "Anje", "text": "Wait, what..."},
 			],
-			"next": "end"
+			"next": "game_over"
 		},
+		"game_over": {"type": "game_over", "message": "NO APPLE FRITTERS???"}
 	},
 }
