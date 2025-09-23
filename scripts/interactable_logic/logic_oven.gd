@@ -12,7 +12,6 @@ signal hide_timer()
 func _ready():
 	Reset.connect("resetted", Callable(self, "_on_resetted"))
 
-	sprite_texture = Icons.interactables["Oven"]
 	states = [
 		Callable(self, "_take_unprocessed"),
 		Callable(self, "_return_processed")
@@ -25,7 +24,7 @@ func _ready():
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Cookie Dough", cont, "Chocolate", ""]}, {"item": "Chocolate Chip Cookies", "bowl": ["", "", "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Cookie Dough", cont, "Butter", ""]}, {"item": "Butter Cookies", "bowl": ["", "", "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Cookie Dough", cont, "Cheese", ""]}, {"item": "Cheese Cookies", "bowl": ["", "", "", ""]})
-	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Cookie Dough", cont, "Nuts", ""]}, {"item": "Mixed Nut Cookies", "bowl": ["", "", "", ""]})
+	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Cookie Dough", cont, "Almonds", ""]}, {"item": "Almond Cookies", "bowl": ["", "", "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Cookie Dough", cont, "Cocoa", "Sugar"]}, {"item": "Chocolate Crinkles", "bowl": ["", "", "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Cookie Dough", cont, "Ube", "Sugar"]}, {"item": "Ube Crinkles", "bowl": ["", "", "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Risen Dough", cont, cont, cont]}, {"item": "Pandesal", "bowl": ["", "", "", ""]})
@@ -34,9 +33,6 @@ func _ready():
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Risen Dough (Cheese)", cont, cont, cont]}, {"item": "Cheese Pandesal", "bowl": ["", "", "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Risen Dough (Ube)", cont, cont, cont]}, {"item": "Ube Pandesal", "bowl": ["", "", "", ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["", "", "", ""]}, {"item": "Bowl", "bowl": ["", "", "", ""]})
-
-func get_sprite_texture():
-	return sprite_texture
 
 func get_states():
 	return states

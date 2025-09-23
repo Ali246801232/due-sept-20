@@ -5,10 +5,10 @@
 		"lines": {
 			"type": "conversation",
 			"lines": [
-				{"speaker": "Anje", "text": "honk mimimir..."},
-				{"speaker": "Anje", "text": "honk mimimimimimimimimimir..."},
-				{"speaker": "Anje", "text": "honk mimimimimimimimimimimimimimi-", "autoskip": true},
-				{"speaker": "Anje", "text": "[i]*alarms ringing*[/i]", "audio": "intro_alarm"},
+				{"speaker": "Anje", "text": "honk mimimir...", "sprite_override": "res://assets/player_sillhouette.webp"},
+				{"speaker": "Anje", "text": "honk mimimimimimimimimimir...", "sprite_override": "res://assets/player_sillhouette.webp"},
+				{"speaker": "Anje", "text": "honk mimimimimimimimimimimimimimi-", "sprite_override": "res://assets/player_sillhouette.webp", "autoskip": true},
+				{"speaker": "Anje", "text": "[i]*alarms ringing*[/i]", "audio": "intro_alarm", "sprite_override": "res://assets/player_sillhouette.webp"},
 				{"speaker": "Anje", "text": "AHHHHHHHHH!"},
 				{"speaker": "Anje", "text": "I'M GONNA BE LATE TO MY JOB!!!"},
 				{"speaker": "Anje", "text": "AHHHHHH- Wait, hold on..."},

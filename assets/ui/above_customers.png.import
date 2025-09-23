@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chu04g2sbkxiw"
-path="res://.godot/imported/item_mixed_nut_cookies.png-d323e2cc1818d7e1b270850cab6f1211.ctex"
+uid="uid://bykdp3uxa5rno"
+path="res://.godot/imported/above_customers.png-d71c44010ea0fd3e0de2bc330bfcc8de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/item_mixed_nut_cookies.png"
-dest_files=["res://.godot/imported/item_mixed_nut_cookies.png-d323e2cc1818d7e1b270850cab6f1211.ctex"]
+source_file="res://assets/ui/above_customers.png"
+dest_files=["res://.godot/imported/above_customers.png-d71c44010ea0fd3e0de2bc330bfcc8de.ctex"]
 
 [params]
 

@@ -9,12 +9,11 @@ signal show_timer()
 signal hide_timer()
 
 var popup = load("res://scenes/ContainerPopup.tscn").instantiate()
-var ingredients = ["Banana", "Ube", "Coconut", "Nuts"]
+var ingredients = ["Banana", "Ube", "Coconut", "Almonds"]
 
 func _ready():
 	Reset.connect("resetted", Callable(self, "_on_resetted"))
 
-	sprite_texture = Icons.interactables["Basket"]
 	states = [
 		Callable(self, "_toggle_popup")
 	]
@@ -37,9 +36,6 @@ func _container_input():
 
 func get_process_function():
 	return Callable(self, "_container_input")
-
-func get_sprite_texture():
-	return sprite_texture
 
 func get_states():
 	return states

@@ -1,21 +1,37 @@
 [gd_scene load_steps=13 format=3 uid="uid://b3c7igl484i6p"]
 
-[ext_resource type="Texture2D" uid="uid://dhbk0yh2mspgr" path="res://assets/player/player_idle.png" id="1_06tve"]
 [ext_resource type="Script" uid="uid://c883xiq061ocf" path="res://scripts/player.gd" id="1_kne1u"]
-[ext_resource type="Texture2D" uid="uid://bndf762e1sxo7" path="res://assets/player/player_walk_frame_2.png" id="3_6eyey"]
-[ext_resource type="Texture2D" uid="uid://t2efmlrje836" path="res://assets/player/player_walk_frame_3.png" id="4_d3wef"]
 [ext_resource type="Script" uid="uid://6t3jtnembc1l" path="res://scripts/inventory.gd" id="4_e80uo"]
-[ext_resource type="Texture2D" uid="uid://dy316oodllt5p" path="res://assets/player/player_walk_frame_4.png" id="5_o4126"]
-[ext_resource type="Texture2D" uid="uid://cu6wwx5bh58q3" path="res://assets/player/player_walk_frame_5.png" id="6_lkdrv"]
-[ext_resource type="Texture2D" uid="uid://bmusw26hyg4mq" path="res://assets/player/player_walk_frame_6.png" id="7_p7iby"]
-[ext_resource type="Texture2D" uid="uid://ct2g8x3k4bv4y" path="res://assets/player/player_walk_frame_7.png" id="8_0rnld"]
-[ext_resource type="Texture2D" uid="uid://bl327jnr4xg5g" path="res://assets/player/player_walk_frame_8.png" id="9_srp4u"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v6fml"]
+load_path = "res://.godot/imported/player_idle.png-e26fadf165b07744f21b91a4fc32f036.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3li8b"]
+load_path = "res://.godot/imported/player_walk_frame_2.png-996bf19b49d822689d95ee7a84c85ddd.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mdl7e"]
+load_path = "res://.godot/imported/player_walk_frame_3.png-7e18f3a78870536e11c753571e7b8f0f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qu4a1"]
+load_path = "res://.godot/imported/player_walk_frame_4.png-0190f4ebcad29c9269e5e95fbf52fe07.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_70d11"]
+load_path = "res://.godot/imported/player_walk_frame_5.png-026e0502a20543b7caeb585c079dacc1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cw2d6"]
+load_path = "res://.godot/imported/player_walk_frame_6.png-3ef5f3e3e1c6099deaed1bdfd91487a8.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_khinc"]
+load_path = "res://.godot/imported/player_walk_frame_7.png-b60267c1b02c4b14f803304fb7ce2a32.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bruh7"]
+load_path = "res://.godot/imported/player_walk_frame_8.png-92d6667fe290932ca50512158999c41a.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_02dvo"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_06tve")
+"texture": SubResource("CompressedTexture2D_v6fml")
 }],
 "loop": true,
 "name": &"idle",
@@ -23,28 +39,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_06tve")
+"texture": SubResource("CompressedTexture2D_v6fml")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_6eyey")
+"texture": SubResource("CompressedTexture2D_3li8b")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_d3wef")
+"texture": SubResource("CompressedTexture2D_mdl7e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_o4126")
+"texture": SubResource("CompressedTexture2D_qu4a1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_lkdrv")
+"texture": SubResource("CompressedTexture2D_70d11")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_p7iby")
+"texture": SubResource("CompressedTexture2D_cw2d6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_0rnld")
+"texture": SubResource("CompressedTexture2D_khinc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_srp4u")
+"texture": SubResource("CompressedTexture2D_bruh7")
 }],
 "loop": true,
 "name": &"walk",
@@ -52,7 +68,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e80uo"]
-size = Vector2(64, 67)
+size = Vector2(36, 49)
 
 [node name="Player" type="CharacterBody2D"]
 visibility_layer = 512
@@ -66,8 +82,7 @@ animation = &"walk"
 frame_progress = 0.772638
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, 14.5)
+position = Vector2(0, 23.5)
 shape = SubResource("RectangleShape2D_e80uo")
 
 [node name="Camera2D" type="Camera2D" parent="."]

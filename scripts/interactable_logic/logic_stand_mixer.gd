@@ -12,7 +12,6 @@ signal hide_timer()
 func _ready():
 	Reset.connect("resetted", Callable(self, "_on_resetted"))
 
-	sprite_texture = Icons.interactables["Stand Mixer"]
 	states = [
 		Callable(self, "_take_unprocessed"),
 		Callable(self, "_return_processed")
@@ -24,8 +23,6 @@ func _ready():
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Flour", "Butter", "Water", "Sugar"]}, {"item": "Bowl", "bowl": ["Bread Dough", cont, cont, ""]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["", "", "", ""]}, {"item": "Bowl", "bowl": ["", "", "", ""]})
 
-func get_sprite_texture():
-	return sprite_texture
 
 func get_states():
 	return states

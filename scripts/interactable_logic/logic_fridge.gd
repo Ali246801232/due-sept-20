@@ -14,7 +14,6 @@ var ingredients = ["Eggs", "Butter", "Milk", "Cheese"]
 func _ready():
 	Reset.connect("resetted", Callable(self, "_on_resetted"))
 
-	sprite_texture = Icons.interactables["Fridge"]
 	states = [
 		Callable(self, "_toggle_popup")
 	]
@@ -37,9 +36,6 @@ func _container_input():
 
 func get_process_function():
 	return Callable(self, "_container_input")
-
-func get_sprite_texture():
-	return sprite_texture
 
 func get_states():
 	return states

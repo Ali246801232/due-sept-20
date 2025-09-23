@@ -10,7 +10,6 @@ signal show_timer()
 signal hide_timer()
 
 func _ready():
-	sprite_texture = Icons.interactables["Bread Proofer"]
 	states = [
 		Callable(self, "_take_unprocessed"),
 		Callable(self, "_return_processed")
@@ -25,8 +24,6 @@ func _ready():
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["Bread Dough", cont, cont, "Ube"]}, {"item": "Bowl", "bowl": ["Risen Dough (Ube)", cont, cont, cont]})
 	Recipes.new_recipe(interactable, {"item": "Bowl", "bowl": ["", "", "", ""]}, {"item": "Bowl", "bowl": ["", "", "", ""]})
 
-func get_sprite_texture():
-	return sprite_texture
 
 func get_states():
 	return states

@@ -215,20 +215,29 @@ func next_day():
 	start_day()
 
 func _on_order_taken(slot_index):
-	Dialogue.run_sequence(slots[slot_index].dialogues[0])
+	var dialogue_ran
+	dialogue_ran = Dialogue.run_sequence(slots[slot_index].dialogues[0])
+	if dialogue_ran:
+		await Dialogue.dialogue_ended
 
 func _on_order_complete(success, slot_index):
+	var dialogue_ran
 	if success:
-		Dialogue.run_sequence(slots[slot_index].dialogues[1])
+		dialogue_ran = Dialogue.run_sequence(slots[slot_index].dialogues[1])
 	else:
-		Dialogue.run_sequence(slots[slot_index].dialogues[2])
+		dialogue_ran = Dialogue.run_sequence(slots[slot_index].dialogues[2])
 	active[slot_index] = false
+	if dialogue_ran:
+		await Dialogue.dialogue_ended
 	if customer_index > day_customers[day_index].size()  - 1 and slots_empty():
 		next_day()
 
 func _on_timer_ended(slot_index):
+	var dialogue_ran
 	active[slot_index] = false
-	Dialogue.run_sequence(slots[slot_index].dialogues[3])
+	dialogue_ran = Dialogue.run_sequence(slots[slot_index].dialogues[3])
+	if dialogue_ran:
+		await Dialogue.dialogue_ended
 	if customer_index > day_customers[day_index].size() - 1 and slots_empty():
 		next_day()
 

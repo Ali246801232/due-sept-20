@@ -39,8 +39,6 @@ func _ready():
 	_logic_node = get_node("Logic")
 	if _logic_node.has_method("get_states"):
 		_states = _logic_node.get_states()
-	if _logic_node.has_method("get_sprite_texture"):
-		$Sprite.texture = _logic_node.get_sprite_texture()
 	if _logic_node.has_method("get_anchors"):
 		_anchors = _logic_node.get_anchors()
 	if _logic_node.has_method("get_process_function"):

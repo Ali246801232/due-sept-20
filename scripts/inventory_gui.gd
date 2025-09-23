@@ -15,13 +15,18 @@ func redraw_inventory():
 	var item_node = $Item
 	if Inventory.has_item():
 		item_node.visible = true
-		item_node.texture = Icons.items[inventory["item"]]
+		if not Inventory.holding_bowl:
+			item_node.texture = Icons.items[inventory["item"]]
 	else:
 		item_node.visible = false
 
 	# Show or hide bowl slots
 	if Inventory.holding_bowl:
 		play("inventory_bowl")
+		if Inventory.is_bowl_empty():
+			item_node.texture = Icons.items["Empty Bowl"]
+		else:
+			item_node.texture = Icons.items["Filled Bowl"]
 	else:
 		play("inventory_no_bowl")
 

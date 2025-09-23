@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6f0esy1womn7"
-path="res://.godot/imported/item_egg_bread.png-a12795fe3af8cf5b839ba10cc7137568.ctex"
+uid="uid://g2j73w80wyla"
+path="res://.godot/imported/ingredient_yema.png-1a6a9fabb1eea04e1bf36ec1c82f657c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/item_egg_bread.png"
-dest_files=["res://.godot/imported/item_egg_bread.png-a12795fe3af8cf5b839ba10cc7137568.ctex"]
+source_file="res://assets/items/ingredient_yema.png"
+dest_files=["res://.godot/imported/ingredient_yema.png-1a6a9fabb1eea04e1bf36ec1c82f657c.ctex"]
 
 [params]
 

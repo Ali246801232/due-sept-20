@@ -7,9 +7,6 @@ signal wait(time: float, post_callback: Callable)
 signal show_timer()
 signal hide_timer()
 
-func get_sprite_texture():
-	sprite_texture = Icons.interactables["Sink"]
-	return sprite_texture
 
 func get_states():
 	return [

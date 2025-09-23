@@ -100,7 +100,7 @@ func set_speaker(speaker: String):
 		player_sprite.texture = load("res://assets/player/player_idle.png")
 	else:
 		npc_name.text = speaker
-		npc_sprite.texture = Icons.customers[speaker]
+		npc_sprite.texture = Icons.customers.get(speaker, null)
 
 func play_line():
 	current_line = current_node["lines"][line_index]
@@ -133,7 +133,16 @@ func play_line():
 	audio_player.stream = null
 	var audio_path = current_line.get("audio", "")
 	if audio_path:
-		audio_player.stream = load("res://assets/audio/voicelines/" + audio_path + ".wav")
+		var stream
+		var base_path = "res://assets/audio/voicelines/" + audio_path
+		var wav_stream = load(base_path + ".wav")
+		if wav_stream:
+			stream = wav_stream
+		else:
+			var mp3_stream = load(base_path + ".mp3")
+			if mp3_stream:
+				stream = mp3_stream
+		audio_player.stream = stream
 		if audio_player.stream:
 			await get_tree().create_timer(0.2).timeout
 			audio_player.play()
