@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dwk1ougbcytk8"
+path="res://.godot/imported/Blessing - halyosy (Piano Cover)  深根.mp3-32a9bb0ddb6d7b35f93dde4803eb723f.mp3str"
+
+[deps]
+
+source_file="res://assets/Blessing - halyosy (Piano Cover)  深根.mp3"
+dest_files=["res://.godot/imported/Blessing - halyosy (Piano Cover)  深根.mp3-32a9bb0ddb6d7b35f93dde4803eb723f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -5,10 +5,10 @@
 		"lines": {
 			"type": "conversation",
 			"lines": [
-				{"speaker": "Anje", "text": "honk mimimir...", "sprite_override": "res://assets/player_sillhouette.webp"},
-				{"speaker": "Anje", "text": "honk mimimimimimimimimimir...", "sprite_override": "res://assets/player_sillhouette.webp"},
-				{"speaker": "Anje", "text": "honk mimimimimimimimimimimimimimi-", "sprite_override": "res://assets/player_sillhouette.webp", "autoskip": true},
-				{"speaker": "Anje", "text": "[i]*alarms ringing*[/i]", "audio": "intro_alarm", "sprite_override": "res://assets/player_sillhouette.webp"},
+				{"speaker": "Anje", "text": "honk mimimir...", "sprite_override": "res://assets/dialogue_icons/dialogue_anje_silhouette.png"},
+				{"speaker": "Anje", "text": "honk mimimimimimimimimimir...", "sprite_override": "res://assets/dialogue_icons/dialogue_anje_silhouette.png"},
+				{"speaker": "Anje", "text": "honk mimimimimimimimimimimimimimi-", "sprite_override": "res://assets/dialogue_icons/dialogue_anje_silhouette.png", "autoskip": true},
+				{"speaker": "Anje", "text": "[i]*alarms ringing*[/i]", "audio": "intro_alarm", "sprite_override": "res://assets/dialogue_icons/dialogue_anje_silhouette.png"},
 				{"speaker": "Anje", "text": "AHHHHHHHHH!"},
 				{"speaker": "Anje", "text": "I'M GONNA BE LATE TO MY JOB!!!"},
 				{"speaker": "Anje", "text": "AHHHHHH- Wait, hold on..."},
@@ -211,6 +211,8 @@
 			"next": "end"
 		}
 	},
+
+
 	"dialogue_take_order_kraze": {
 		"start": {"type": "start", "next": "lines"},
 		"end": {"type": "end"},
@@ -273,6 +275,52 @@
 				{"speaker": "Anje", "text": "Wait, what..."},
 			],
 			"next": "game_over"
+		},
+		"game_over": {"type": "game_over", "message": "NO APPLE FRITTERS???"}
+	},
+
+	"dialogue_take_order_": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "", "text": "", "audio": "", "sprite_override": ""},
+			],
+			"next": "end"
+		},
+	},
+	"dialogue_success_": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "", "text": "", "audio": "", "sprite_override": ""},
+			],
+			"next": "end"
+		},
+	},
+	"dialogue_failure_": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "", "text": "", "audio": "", "sprite_override": ""},
+			],
+			"next": "end"
+		},
+	},
+	"dialogue_timeout_": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",a
+			"lines": [
+				{"speaker": "", "text": "", "audio": "", "sprite_override": ""},
+			],
+			"next": "end"
 		},
 		"game_over": {"type": "game_over", "message": "NO APPLE FRITTERS???"}
 	},

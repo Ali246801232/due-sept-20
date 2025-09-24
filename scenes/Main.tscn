@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ks8qpnr6dpme"]
+[gd_scene load_steps=32 format=3 uid="uid://ks8qpnr6dpme"]
 
 [ext_resource type="Script" uid="uid://cbea0bk6gr7kd" path="res://scripts/main.gd" id="1_nfivy"]
 [ext_resource type="PackedScene" uid="uid://b3c7igl484i6p" path="res://scenes/Player.tscn" id="2_fpfj3"]
@@ -9,20 +9,102 @@
 [ext_resource type="Texture2D" uid="uid://cl2ho6fle46vd" path="res://assets/ui/interactables_layer.png" id="5_1iba3"]
 [ext_resource type="Script" uid="uid://1vshh80mq5ic" path="res://scripts/interactable_logic/logic_oven.gd" id="5_5tuhn"]
 [ext_resource type="Script" uid="uid://ccvb6qp6g03o1" path="res://scripts/interactable_logic/logic_table.gd" id="5_fpfj3"]
+[ext_resource type="Texture2D" uid="uid://bm1i37sdf4y8v" path="res://assets/ui/page1.webp" id="5_gsxep"]
 [ext_resource type="Script" uid="uid://5uw0r3b32omy" path="res://scenes/recipe_screen.gd" id="5_yxlcp"]
 [ext_resource type="Script" uid="uid://cuham87rr6ym0" path="res://scripts/interactable_logic/logic_stand_mixer.gd" id="6_2gh4u"]
+[ext_resource type="Texture2D" uid="uid://dllluq71iogl1" path="res://assets/ui/page2.webp" id="6_v0vrg"]
 [ext_resource type="Script" uid="uid://b8w716qxd5uxc" path="res://scripts/interactable_logic/logic_bread_proofer.gd" id="7_devvj"]
+[ext_resource type="Texture2D" uid="uid://bg0h0uhghes0r" path="res://assets/ui/page3.webp" id="7_dg70y"]
 [ext_resource type="Script" uid="uid://dos6sc2w0wmse" path="res://scripts/interactable_logic/logic_shelf.gd" id="8_3b0ty"]
+[ext_resource type="Texture2D" uid="uid://8f8m73qit1n" path="res://assets/ui/page4.webp" id="8_pnhog"]
+[ext_resource type="Texture2D" uid="uid://efclb0bf1t5h" path="res://assets/ui/page5.webp" id="9_2c4at"]
 [ext_resource type="Script" uid="uid://cj58qi6mve8x8" path="res://scripts/interactable_logic/logic_sink.gd" id="9_bg4s2"]
+[ext_resource type="Texture2D" uid="uid://cjtvdfurk4sb" path="res://assets/ui/page6.webp" id="10_g6wdg"]
 [ext_resource type="Script" uid="uid://br28m0epbypdy" path="res://scripts/interactable_logic/logic_cabinet.gd" id="10_hhcpw"]
+[ext_resource type="Texture2D" uid="uid://cx03fg8se60o7" path="res://assets/ui/page4_locked.webp" id="11_hq6as"]
 [ext_resource type="Script" uid="uid://d21akx7wvyqjo" path="res://scripts/interactable_logic/logic_fridge.gd" id="11_mxvw5"]
+[ext_resource type="Texture2D" uid="uid://cfxnn2ajmg8h" path="res://assets/ui/page5_locked.webp" id="12_kxyth"]
 [ext_resource type="Script" uid="uid://c1a1jwv1thqvm" path="res://scripts/interactable_logic/logic_basket.gd" id="12_xrxkg"]
+[ext_resource type="Texture2D" uid="uid://csskgajeq4wxv" path="res://assets/ui/page6_locked.webp" id="13_cobve"]
 [ext_resource type="Script" uid="uid://b534qu7bqp03f" path="res://scripts/interactable_logic/logic_trash.gd" id="13_sqvbp"]
 [ext_resource type="PackedScene" uid="uid://bka5w0ylw0f1a" path="res://scenes/DayManager.tscn" id="14_hri7i"]
 [ext_resource type="PackedScene" uid="uid://df4jvkt2pnts8" path="res://scenes/CustomerSlot.tscn" id="15_w3rk5"]
 [ext_resource type="Texture2D" uid="uid://dtorlk7jn5vbi" path="res://assets/interactables/interactable_shelf.png" id="18_1nqs0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1iba3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_gsxep")
+}],
+"loop": true,
+"name": &"page1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_v0vrg")
+}],
+"loop": true,
+"name": &"page2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_dg70y")
+}],
+"loop": true,
+"name": &"page3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_pnhog")
+}],
+"loop": true,
+"name": &"page4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_hq6as")
+}],
+"loop": true,
+"name": &"page4_locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_2c4at")
+}],
+"loop": true,
+"name": &"page5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_kxyth")
+}],
+"loop": true,
+"name": &"page5_locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_g6wdg")
+}],
+"loop": true,
+"name": &"page6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_cobve")
+}],
+"loop": true,
+"name": &"page6_locked",
+"speed": 5.0
+}]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_nfivy")
@@ -47,9 +129,32 @@ position = Vector2(-7, -9)
 scale = Vector2(0.800822, 0.800822)
 texture = ExtResource("4_1nqs0")
 
-[node name="RecipeScreen" type="AnimatedSprite2D" parent="Kitchen/Parallax2D"]
+[node name="Control" type="Control" parent="Kitchen/Parallax2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RecipeScreen" type="AnimatedSprite2D" parent="Kitchen/Parallax2D/Control"]
+position = Vector2(0, -2)
+scale = Vector2(0.820106, 0.820106)
 sprite_frames = SubResource("SpriteFrames_1iba3")
+animation = &"page6_locked"
 script = ExtResource("5_yxlcp")
+
+[node name="NextButton" type="Button" parent="Kitchen/Parallax2D/Control"]
+layout_mode = 0
+offset_left = 266.0
+offset_top = -295.0
+offset_right = 305.0
+offset_bottom = -235.0
+
+[node name="PrevButton" type="Button" parent="Kitchen/Parallax2D/Control"]
+layout_mode = 0
+offset_left = -305.0
+offset_top = -295.0
+offset_right = -266.0
+offset_bottom = -235.0
 
 [node name="InteractablesLayer" type="Sprite2D" parent="Kitchen/Parallax2D"]
 z_index = 1
@@ -287,3 +392,5 @@ scale = Vector2(0.5, 0.5)
 visibility_layer = 2
 position = Vector2(207, -171)
 scale = Vector2(0.5, 0.5)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]

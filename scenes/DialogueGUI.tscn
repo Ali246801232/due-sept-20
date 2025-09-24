@@ -1,13 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1lolhym8cg5v"]
+[gd_scene load_steps=7 format=3 uid="uid://b1lolhym8cg5v"]
 
 [ext_resource type="Script" uid="uid://c671si4lo424v" path="res://scripts/dialogue_gui.gd" id="1_qd82c"]
-[ext_resource type="Texture2D" uid="uid://dxgmw62iupiw0" path="res://assets/customers/customer_kaori.png" id="3_efvvn"]
-[ext_resource type="Texture2D" uid="uid://cwj5f6flktxkl" path="res://assets/ui/dialogue_box_npc.png" id="4_r48oa"]
-[ext_resource type="Texture2D" uid="uid://cv3h60judobnk" path="res://assets/ui/dialogue_box_player.png" id="5_qgkhm"]
-[ext_resource type="Texture2D" uid="uid://cq46r8rilgojg" path="res://assets/ui/dialogue_next.png" id="6_dxe4y"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v6fml"]
-load_path = "res://.godot/imported/player_idle.png-e26fadf165b07744f21b91a4fc32f036.ctex"
+[ext_resource type="Texture2D" uid="uid://b4rqu1ah4wdtt" path="res://assets/dialogue_icons/dialogue_anje.png" id="2_qd82c"]
+[ext_resource type="Texture2D" uid="uid://whesy0op38em" path="res://assets/dialogue_icons/dialogue_ali.png" id="3_qd82c"]
+[ext_resource type="Texture2D" uid="uid://576lnlgennk4" path="res://assets/ui/dialogue_box_npc.png" id="4_r48oa"]
+[ext_resource type="Texture2D" uid="uid://lqurgtam6xm0" path="res://assets/ui/dialogue_box_player.png" id="5_qgkhm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_myoxq"]
 animations = [{
@@ -32,20 +29,18 @@ animations = [{
 script = ExtResource("1_qd82c")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(458.595, 581.354)
-scale = Vector2(0.823505, 0.823505)
-texture = SubResource("CompressedTexture2D_v6fml")
-flip_h = true
+position = Vector2(960, 540.5)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_qd82c")
 
 [node name="NPCSprite" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(1485.59, 581.354)
-scale = Vector2(2.57595, 2.57595)
-texture = ExtResource("3_efvvn")
+position = Vector2(960, 540)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("3_qd82c")
 
 [node name="DialogueBox" type="AnimatedSprite2D" parent="."]
 position = Vector2(960, 540)
+scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_myoxq")
 animation = &"npc"
 
@@ -55,10 +50,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -723.0
-offset_top = -364.0
-offset_right = 724.0
-offset_bottom = -80.0
+offset_left = -773.0
+offset_top = -347.0
+offset_right = 651.0
+offset_bottom = -85.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/default_color = Color(0.478431, 0.384314, 0.670588, 1)
@@ -77,10 +72,11 @@ visible_characters_behavior = 3
 
 [node name="NPCName" type="Label" parent="."]
 z_index = 1
-offset_left = 303.0
-offset_top = 643.0
-offset_right = 828.0
-offset_bottom = 698.0
+offset_left = 222.0
+offset_top = 633.0
+offset_right = 630.0
+offset_bottom = 688.0
+theme_override_colors/font_color = Color(0.47451, 0.380392, 0.670588, 1)
 theme_override_font_sizes/font_size = 40
 text = "Character Name"
 vertical_alignment = 1
@@ -88,13 +84,13 @@ autowrap_mode = 3
 
 [node name="PlayerName" type="Label" parent="."]
 z_index = 1
-offset_left = 1102.0
-offset_top = 643.0
-offset_right = 1627.0
-offset_bottom = 698.0
+offset_left = 1248.0
+offset_top = 634.0
+offset_right = 1655.0
+offset_bottom = 689.0
+theme_override_colors/font_color = Color(0.47451, 0.380392, 0.670588, 1)
 theme_override_font_sizes/font_size = 40
 text = "Character Name"
-horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -110,21 +106,10 @@ grow_horizontal = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="NextDialogue" type="TextureButton" parent="."]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -229.0
-offset_top = -130.0
-offset_right = -39.0
-offset_bottom = 60.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(0.298034, 0.298034)
-texture_normal = ExtResource("6_dxe4y")
-texture_pressed = ExtResource("6_dxe4y")
-texture_hover = ExtResource("6_dxe4y")
-
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="NextDialogue" type="Button" parent="."]
+offset_left = 1614.0
+offset_top = 912.0
+offset_right = 1715.0
+offset_bottom = 979.0

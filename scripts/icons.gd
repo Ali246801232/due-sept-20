@@ -2,6 +2,7 @@ extends Node
 
 var customers: Dictionary = {
 	"Ali": load("res://assets/customers/customer_ali.png"),
+	"Boss": load("res://assets/customers/customer_boss.png"),
 	"Melan": load("res://assets/customers/customer_melan.png"),
 	"Kenz": load("res://assets/customers/customer_kenz.png"),
 	"Kraze": load("res://assets/customers/customer_kraze.png"),
@@ -16,6 +17,22 @@ var customers: Dictionary = {
 	"Cake Box": load("res://assets/TEMPCUSTOMER.png"),
 }
 
+var dialogue_icons: Dictionary = {
+	"Ali": load("res://assets/dialogue_icons/dialogue_ali.png"),
+	"Anje": load("res://assets/dialogue_icons/dialogue_anje.png"),
+	"Boss": load("res://assets/dialogue_icons/dialogue_boss.png"),
+	"Melan": load("res://assets/dialogue_icons/dialogue_melan.png"),
+	"Kenz": load("res://assets/dialogue_icons/dialogue_kenz.png"),
+	"Kraze": load("res://assets/dialogue_icons/dialogue_kraze.png"),
+	"Mordekaiser": load("res://assets/dialogue_icons/dialogue_mordekaiser.png"),
+	"Miku": load("res://assets/dialogue_icons/dialogue_miku.png"),
+	"Carton": load("res://assets/dialogue_icons/dialogue_carton.png"),
+	"Chekered": load("res://assets/dialogue_icons/dialogue_chekered.png"),
+	"Horse": load("res://assets/dialogue_icons/dialogue_horse.png"),
+	"Cow": load("res://assets/dialogue_icons/dialogue_cow.png"),
+	
+}
+
 var interactables: Dictionary = {
 	"Basket": load("res://assets/interactables/interactable_basket.png"),
 	"Cabinet": load("res://assets/interactables/interactable_cabinet.png"),
@@ -26,7 +43,7 @@ var interactables: Dictionary = {
 	"Stand Mixer": load("res://assets/interactables/interactable_stand_mixer.png"),
 	"Shelf": load("res://assets/interactables/interactable_shelf.png"),
 	"Table": load("res://assets/interactables/interactable_table.png"),
-	"Trash": load("res://assets/interactables/interactable_trash.png")
+	"Trash": load("res://assets/interactables/interactable_trash.png"),
 }
 
 var items: Dictionary = {
@@ -67,5 +84,5 @@ var items: Dictionary = {
 	"Risen Dough (Coconut)": load("res://assets/items/ingredient_risen_dough_coconut.png"),
 	"Risen Dough (Ube)": load("res://assets/items/ingredient_risen_dough_ube.png"),
 	"Mush": load("res://assets/items/ingredient_mush.png"),
-	"Cake Box": load("res://assets/test_interactable.png")
+	"Cake Box": load("res://assets/items/item_cake_box.png"),
 }

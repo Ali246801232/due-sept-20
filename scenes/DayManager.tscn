@@ -10,7 +10,6 @@ script = ExtResource("2_rcdqu")
 [node name="SpawnTimer" type="Timer" parent="."]
 
 [node name="DayTransition" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("2_6dj36")
 
 [node name="FadeBlack" type="Sprite2D" parent="DayTransition"]

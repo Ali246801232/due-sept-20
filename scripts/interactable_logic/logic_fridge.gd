@@ -65,3 +65,7 @@ func _toggle_popup():
 
 func _on_resetted(day):
 	popup.visible = false
+
+func last_day_state():
+	ingredients = ["Cake Box", "", "", ""]
+	popup.set_slots(ingredients)

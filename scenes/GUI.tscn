@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bh0y17n8bjtak"]
+[gd_scene load_steps=9 format=3 uid="uid://bh0y17n8bjtak"]
 
 [ext_resource type="PackedScene" uid="uid://dokielmih436g" path="res://HUD.tscn" id="1_hywd1"]
 [ext_resource type="Script" uid="uid://m4iqcbnemcma" path="res://scripts/game_over.gd" id="7_cws7i"]
 [ext_resource type="PackedScene" uid="uid://b1lolhym8cg5v" path="res://scenes/DialogueGUI.tscn" id="7_k4w17"]
+[ext_resource type="Script" uid="uid://cgwq07turgx1t" path="res://scenes/credits.gd" id="8_u3xxf"]
 [ext_resource type="PackedScene" uid="uid://dl430vwxe444s" path="res://scenes/MainMenu.tscn" id="9_8cuoo"]
 [ext_resource type="PackedScene" uid="uid://uy3m2xfuwldj" path="res://scenes/PauseMenu.tscn" id="10_meimr"]
 [ext_resource type="PackedScene" uid="uid://87xtqqjsjavb" path="res://scenes/OptionsMenu.tscn" id="11_rve7n"]
@@ -26,6 +27,7 @@ visible = false
 visible = false
 
 [node name="GameOverLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="GameOver" type="Sprite2D" parent="GameOverLayer"]
 position = Vector2(960, 540)
@@ -70,3 +72,90 @@ theme_override_font_sizes/bold_font_size = 50
 bbcode_enabled = true
 text = "you fucking died dumbass"
 horizontal_alignment = 1
+
+[node name="CreditsLayer" type="CanvasLayer" parent="."]
+
+[node name="CreditsBackground" type="Sprite2D" parent="CreditsLayer"]
+position = Vector2(960, 540)
+texture = ExtResource("12_tyhcs")
+script = ExtResource("8_u3xxf")
+
+[node name="CreditsText" type="RichTextLabel" parent="CreditsLayer/CreditsBackground"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -541.0
+offset_right = -960.0
+offset_bottom = 1008.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+text = "[b]PROGRAMMER[/b]
+Ali
+
+[b]ARTIST[/b]
+Melan
+
+[b]DIALOGUE[/b]
+Ali & Melan
+
+[b]VOICES[/b]
+Bakery Boss - Ali
+MELAN - Melan
+KENZ - Kenz
+MIKU - Miku
+KRAZE - Kraze
+Carton - Carton
+Feds - Kraze
+Anje - Asriel
+Mordekaiser - Asgore
+
+[b]FEATURING:[/b]
+Ali
+Melan
+Kenz
+Kraze
+Miku
+Mordekaiser
+Carton
+Soda
+Rev
+Chekered
+Ash
+Kaori
+
+[b]MUSIC[/b]
+Blessing by Halyosy
+
+[b]SPECIAL THANKS[/b]
+Anje
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[b]HAPPY BIRTHDAY FATTIE!!!![/b]"
+horizontal_alignment = 1
+vertical_alignment = 1

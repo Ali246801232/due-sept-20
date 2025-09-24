@@ -27,6 +27,7 @@ func _ready() -> void:
 	Dialogue.connect("dialogue_started", Callable(self, "_on_dialogue_started"))
 	connect("next_line", Callable(self, "play_line"))
 
+	next_button.modulate.a = 0.0
 	next_button.connect("pressed", Callable(self, "skip_dialogue"))
 	audio_player.volume_db = -15.0
 
@@ -99,16 +100,18 @@ func set_speaker(speaker: String):
 	npc_sprite.visible = not is_player
 	if is_player:
 		player_name.text = "Anje"
-		player_sprite.texture = load("res://assets/player/player_idle.png")
+		player_sprite.texture = load("res://assets/dialogue_icons/dialogue_anje.png")
 	else:
 		npc_name.text = speaker
-		npc_sprite.texture = Icons.customers.get(speaker, null)
+		npc_sprite.texture = Icons.dialogue_icons.get(speaker, null)
+		print(speaker)
 
 func play_line():
 	current_line = current_node["lines"][line_index]
 	
 	set_speaker(current_line["speaker"])
-	var sprite_override = current_line.get("sprite_override", "")
+	
+	var sprite_override = current_line.get("sprite_override", null)
 	if sprite_override:
 		player_sprite.texture = load(sprite_override)
 		npc_sprite.texture = load(sprite_override)

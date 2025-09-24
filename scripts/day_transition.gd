@@ -11,6 +11,7 @@ var day_texts = [
 	"Day 3",
 	"Day 4",
 	"Day 5",
+	"",
 	""
 ]
 

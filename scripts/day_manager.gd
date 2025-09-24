@@ -11,7 +11,8 @@ var day_customers: Array
 var spawn_interval: float = 2.0
 var spawning_paused: bool = false
 
-signal cake_day
+signal last_day()
+signal ending_cutscene()
 
 # Class to store what will go in a customer slot, really should rename this to something else to avoid confusion
 class Slot:
@@ -133,12 +134,12 @@ func _ready() -> void:
 	Customers.new_customer("Cake Box", {"time_multiplier": 1000, "allow_random": false})
 	
 	day_customers = [
-		[Slot.new("Sugar Cookies", "Kraze")],
 		[Slot.new("Cheese Pandesal", "Melan")],
 		[Slot.new("Cheese Pandesal", "Melan")],
 		[Slot.new("Cheese Pandesal", "Melan")],
 		[Slot.new("Cheese Pandesal", "Melan")],
-		[Slot.new("Cheese Pandesal", "Melan")]
+		[Slot.new("Cheese Pandesal", "Melan")],
+		[Slot.new("Cake Box", "Cake Box", true, false)],
 	]
 
 	#day_customers = [
@@ -214,15 +215,15 @@ func start_day():
 
 # Increment the day count
 func next_day():
-	if day_index > day_customers.size() - 1:
-		Dialogue.run_sequence("ending_cutscene")
-		return
-	Dialogue.run_sequence("dialogue_day%d_end" % (day_index  + 1))
 	day_index += 1
 	customer_index = 0
 	spawn_timer.stop()
 	day_transition.transition_day(day_index)
+	Dialogue.run_sequence("dialogue_day%d_end" % (day_index))
 	start_day()
+	if day_index >= day_customers.size() - 1:
+		emit_signal("last_day")
+
 
 func _on_order_taken(slot_index):
 	var dialogue_ran
@@ -233,6 +234,9 @@ func _on_order_taken(slot_index):
 func _on_order_complete(success, slot_index):
 	var dialogue_ran
 	if success:
+		if slots[slot_index].order == "Cake Box":
+			emit_signal("ending_cutscene")
+			return
 		dialogue_ran = Dialogue.run_sequence(slots[slot_index].dialogues[1])
 	else:
 		dialogue_ran = Dialogue.run_sequence(slots[slot_index].dialogues[2])

@@ -83,6 +83,8 @@ func _on_timeout():
 	order_popup.set_success(false)
 	emit_signal("update_score", score)
 	clear_slot()
+	if not failable:
+		set_slot(current_slot)
 
 # Called when the user interacts with this customer
 func interact():
@@ -144,6 +146,8 @@ func check_order():
 		score = -10
 	emit_signal("update_score", score)
 	clear_slot()
+	if not failable and inventory["item"] != order:
+		set_slot(current_slot)
 	return 0
 
 # Calculate score based on time remaining
