@@ -52,6 +52,7 @@ func _on_last_day():
 
 func _on_ending_cutscene():
 	Dialogue.run_sequence("ending_cutscene")
+	await Dialogue.dialogue_ended
 	Freeze.is_frozen = true
 	music_player.volume_db = -15.0
 	music_player.stream = load("res://assets/audio/credits_music.wav")

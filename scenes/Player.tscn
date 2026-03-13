@@ -75,14 +75,12 @@ visibility_layer = 512
 script = ExtResource("1_kne1u")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-rotation = -0.00332392
-scale = Vector2(0.177936, 0.177936)
+scale = Vector2(0.178, 0.178)
 sprite_frames = SubResource("SpriteFrames_02dvo")
 animation = &"walk"
 frame_progress = 0.772638
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 23.5)
 shape = SubResource("RectangleShape2D_e80uo")
 

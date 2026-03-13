@@ -142,12 +142,12 @@ func check_order():
 	else:
 		if failable:
 			emit_signal("order_complete", false)
+		else:
+			set_slot(current_slot)
 		order_popup.set_success(false)
 		score = -10
 	emit_signal("update_score", score)
 	clear_slot()
-	if not failable and inventory["item"] != order:
-		set_slot(current_slot)
 	return 0
 
 # Calculate score based on time remaining

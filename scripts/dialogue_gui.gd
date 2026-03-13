@@ -11,7 +11,7 @@ extends CanvasLayer
 @onready var audio_player = $AudioPlayer
 
 var typewriter_tween: Tween
-var dialogue_speed = 25
+var dialogue_speed = 25.0
 var choice_buttons = []
 var current_node
 
@@ -39,7 +39,7 @@ func _ready() -> void:
 
 var last_chars_visible = 0
 
-func _process(delta):
+func _process(_delta):
 	if not current_node:
 		return
 	if not current_node["type"] == "conversation":

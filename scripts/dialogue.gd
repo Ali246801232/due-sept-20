@@ -47,7 +47,6 @@ func get_sequence(sequence_name: String) -> DialogueSequence:
 
 func run_sequence(sequence_name: String) -> bool:
 	if not dialogue_sequences.has(sequence_name):
-		return false
 		push_error("Sequence '%s' not found" % sequence_name)
 		return false
 	current_sequence = dialogue_sequences[sequence_name]

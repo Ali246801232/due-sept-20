@@ -30,7 +30,7 @@ var dialogue_icons: Dictionary = {
 	"Chekered": load("res://assets/dialogue_icons/dialogue_chekered.png"),
 	"Horse": load("res://assets/dialogue_icons/dialogue_horse.png"),
 	"Cow": load("res://assets/dialogue_icons/dialogue_cow.png"),
-	
+	"Everybody": load("res://assets/dialogue_icons/dialogue_everybody.png")
 }
 
 var interactables: Dictionary = {

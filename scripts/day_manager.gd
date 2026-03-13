@@ -29,7 +29,7 @@ class Slot:
 		{"name": "Chocolate Chip Cookies", "filters": ["_RANDOM_COOKIES_", "_RANDOM_NORMAL_"]},
 		{"name": "Butter Cookies", "filters": ["_RANDOM_COOKIES_", "_RANDOM_NORMAL_"]},
 		{"name": "Cheese Cookies", "filters": ["_RANDOM_COOKIES_", "_RANDOM_NORMAL_"]},
-		{"name": "Mixed Nut Cookies", "filters": ["_RANDOM_COOKIES_", "_RANDOM_NORMAL_"]},
+		{"name": "Almond Cookies", "filters": ["_RANDOM_COOKIES_", "_RANDOM_NORMAL_"]},
 		{"name": "Chocolate Crinkles", "filters": ["_RANDOM_COOKIES_", "_RANDOM_NORMAL_"]},
 		{"name": "Ube Crinkles", "filters": ["_RANDOM_COOKIES_", "_RANDOM_NORMAL_"]},
 		{"name": "Banana Bread", "filters": ["_RANDOM_BREAD_", "_RANDOM_NORMAL_"]},
@@ -119,71 +119,62 @@ func _ready() -> void:
 	spawn_timer.timeout.connect(Callable(self, "spawn_customer"))
 	
 	# All customers
-	Customers.new_customer("Ali", {"effects": {"time_multiplier": 0.5}, "allow_random": false})
-	Customers.new_customer("Kenz", {"effects": {"time_multiplier": 1.50}, "allow_random": false, "manual_first": true})
+	Customers.new_customer("Ali", {"effects": {"time_multiplier": 1000}, "allow_random": false})
+	Customers.new_customer("Kenz", {"effects": {"time_multiplier": 1.50}, "allow_random": false})
 	Customers.new_customer("Miku", {"effects": {"hide_recipes": true}, "allow_random": false})
 	Customers.new_customer("Mordekaiser", {"allow_random": false})
-	Customers.new_customer("Kraze", {"effects": {"time_multiplier": 0.5}, "allow_random": false, "manual_first": true})
-	Customers.new_customer("Melan", {"time_multiplier": 1000, "allow_random": false, "manual_first": true})
-	Customers.new_customer("Carton", {"allow_random": false, "manual_first": true})
-	Customers.new_customer("Chekered", {"allow_random": false, "manual_first": true})
+	Customers.new_customer("Kraze", {"effects": {"time_multiplier": 0.5}, "allow_random": false})
+	Customers.new_customer("Melan", {"time_multiplier": 1000, "allow_random": false})
+	Customers.new_customer("Carton", {"allow_random": false, "time_multiplier": 0.05})
+	Customers.new_customer("Chekered", {"allow_random": false, "time_multiplier": 0.05})
 	Customers.new_customer("Soda", {})
 	Customers.new_customer("Rev", {})
 	Customers.new_customer("Kaori", {})
 	Customers.new_customer("Ash", {})
 	Customers.new_customer("Cake Box", {"time_multiplier": 1000, "allow_random": false})
-	
-	day_customers = [
-		[Slot.new("Cheese Pandesal", "Melan")],
-		[Slot.new("Cheese Pandesal", "Melan")],
-		[Slot.new("Cheese Pandesal", "Melan")],
-		[Slot.new("Cheese Pandesal", "Melan")],
-		[Slot.new("Cheese Pandesal", "Melan")],
-		[Slot.new("Cake Box", "Cake Box", true, false)],
-	]
 
-	#day_customers = [
-		#[
-			#Slot.new("Chocolate Chip Cookies", "Ali", true. false),
-			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
-			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
-			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
-			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_")
-		#],
-		#[
-			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
-			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
-			#Slot.new("_RANDOM_COOKIES_", "Kenz"),
-			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
-			#Slot.new("_RANDOM_COOKIES_", "_RANDOM_")
-		#],
-		#[
-			#Slot.new("Cheese Pandesal", "Melan", true, false),
-			#Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
-			#Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
-			#Slot.new("Sugar Cookies", "Kraze"),
-			#Slot.new("_RANDOM_NORMAL_", "_RANDOM_")
-		#],
-		#[
-			#Slot.new("_RANDOM_BREAD_", "Miku"),
-			#Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
-			#Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
-			#Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
-			#Slot.new("_RANDOM_COOKIES_", "Mordekaiser"),
-			#Slot.new("_RANDOM_NORMAL_", "_RANDOM_")
-		#],
-		#[
-			#Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
-			#Slot.new("Eggs", "Chekered"),
-			#Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
-			#Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
-			#Slot.new("Milk", "Carton"),
-			#Slot.new("_RANDOM_NORMAL_", "_RANDOM_")
-		#],
-		#[
-			#Slot.new("Cake Box", "Cake Box", true, false)
-		#]
-	#]
+	day_customers = [
+		[
+			Slot.new("Chocolate Chip Cookies", "Ali", true, false),
+			Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
+			Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
+			Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
+			Slot.new("_RANDOM_COOKIES_", "_RANDOM_")
+		],
+		[
+			Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
+			Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
+			Slot.new("_RANDOM_COOKIES_", "Kenz"),
+			Slot.new("_RANDOM_COOKIES_", "_RANDOM_"),
+			Slot.new("_RANDOM_COOKIES_", "_RANDOM_")
+		],
+		[
+			Slot.new("Cheese Pandesal", "Melan", true, false),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("Sugar Cookies", "Kraze"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_")
+		],
+		[
+			Slot.new("_RANDOM_BREAD_", "Miku"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("_RANDOM_COOKIES_", "Mordekaiser"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_")
+		],
+		[
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("Eggs", "Chekered"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_"),
+			Slot.new("Milk", "Carton"),
+			Slot.new("_RANDOM_NORMAL_", "_RANDOM_")
+		],
+		[
+			Slot.new("Cake Box", "Cake Box", true, false)
+		]
+	]
 
 # Spawn the next customer in a random empty slot, every once in a while
 func spawn_customer():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://df4jvkt2pnts8"]
+[gd_scene format=3 uid="uid://df4jvkt2pnts8"]
 
 [ext_resource type="Script" uid="uid://cp5uaiyihmun4" path="res://scripts/customer_slot.gd" id="1_7nj10"]
 [ext_resource type="Texture2D" uid="uid://bice433ltke8g" path="res://assets/TEMPCUSTOMER.png" id="1_kr5dw"]
@@ -13,37 +13,36 @@
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_60ifu"]
 load_path = "res://.godot/imported/item_banana_bread.png-462ee94be092495dd61160504ff7dc43.ctex"
 
-[node name="CustomerSlot" type="Area2D"]
+[node name="CustomerSlot" type="Area2D" unique_id=1451596185]
 script = ExtResource("1_7nj10")
 
-[node name="CustomerSprite" type="Sprite2D" parent="."]
+[node name="CustomerSprite" type="Sprite2D" parent="." unique_id=1204697370]
 visible = false
 position = Vector2(0, -23)
 texture = ExtResource("1_kr5dw")
 script = ExtResource("3_xb61n")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=474893577]
 visible = false
 polygon = PackedVector2Array(-75, 29, 75, 29, 75, 75, -75, 75)
 
-[node name="OrderPopup" type="Sprite2D" parent="."]
-visible = false
+[node name="OrderPopup" type="Sprite2D" parent="." unique_id=719401089]
 position = Vector2(-119, -49)
 scale = Vector2(0.708364, 0.708364)
 texture = ExtResource("3_60ifu")
 script = ExtResource("4_dg8v8")
 
-[node name="Sprite2D" type="Sprite2D" parent="OrderPopup"]
+[node name="Sprite2D" type="Sprite2D" parent="OrderPopup" unique_id=1464868224]
 position = Vector2(-14.117, -9.53674e-07)
 scale = Vector2(0.991712, 0.991712)
 texture = SubResource("CompressedTexture2D_60ifu")
 
-[node name="SuccessTimer" type="Timer" parent="OrderPopup"]
+[node name="SuccessTimer" type="Timer" parent="OrderPopup" unique_id=371252110]
 
-[node name="OrderTimer" type="Timer" parent="."]
+[node name="OrderTimer" type="Timer" parent="." unique_id=1991055899]
 script = ExtResource("6_8ptdx")
 
-[node name="TimerDisplay" type="TextureProgressBar" parent="OrderTimer"]
+[node name="TimerDisplay" type="TextureProgressBar" parent="OrderTimer" unique_id=1261025100]
 visible = false
 offset_left = -109.0
 offset_top = -92.0
@@ -55,7 +54,7 @@ fill_mode = 5
 texture_under = ExtResource("7_60ifu")
 texture_progress = ExtResource("8_xb61n")
 
-[node name="InteractPopup" type="Sprite2D" parent="."]
+[node name="InteractPopup" type="Sprite2D" parent="." unique_id=961098428]
 visible = false
 position = Vector2(52.5, -90.5)
 scale = Vector2(0.33, 0.33)

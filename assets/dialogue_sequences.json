@@ -5,10 +5,10 @@
 		"lines": {
 			"type": "conversation",
 			"lines": [
-				{"speaker": "Anje", "text": "honk mimimir...", "sprite_override": "res://assets/dialogue_icons/dialogue_anje_silhouette.png"},
-				{"speaker": "Anje", "text": "honk mimimimimimimimimimir...", "sprite_override": "res://assets/dialogue_icons/dialogue_anje_silhouette.png"},
-				{"speaker": "Anje", "text": "honk mimimimimimimimimimimimimimi-", "sprite_override": "res://assets/dialogue_icons/dialogue_anje_silhouette.png", "autoskip": true},
-				{"speaker": "Anje", "text": "[i]*alarms ringing*[/i]", "audio": "intro_alarm", "sprite_override": "res://assets/dialogue_icons/dialogue_anje_silhouette.png"},
+				{"speaker": "Anje", "text": "honk mimimir...", "sprite_override": "Anje Silhoutte"},
+				{"speaker": "Anje", "text": "honk mimimimimimimimimimir...", "sprite_override": "Anje Silhoutte"},
+				{"speaker": "Anje", "text": "honk mimimimimimimimimimimimimimi-", "sprite_override": "Anje Silhoutte", "autoskip": true},
+				{"speaker": "Anje", "text": "[i]*alarms ringing*[/i]", "audio": "intro_alarm", "sprite_override": "Anje Silhoutte"},
 				{"speaker": "Anje", "text": "AHHHHHHHHH!"},
 				{"speaker": "Anje", "text": "I'M GONNA BE LATE TO MY JOB!!!"},
 				{"speaker": "Anje", "text": "AHHHHHH- Wait, hold on..."},
@@ -170,49 +170,6 @@
 		}
 	},
 
-	"dialogue_take_order_ali": {
-		"start": {"type": "start", "next": "lines1"},
-		"end": {"type": "end"},
-		"lines1": {
-			"type": "conversation",
-			"lines": [
-				{"speaker": "Ali", "text": "This is a normal line"},
-				{"speaker": "Anje", "text": "This is an unskippable line", "skippable": false},
-				{"speaker": "Ali", "text": "This is an autoskipped line", "autoskip": true},
-				{"speaker": "Anje", "text": "This is both unskippable and autoskip, effectively the same as just autoskipped", "unskippable": true, "autoskip": true},
-				{"speaker": "Ali", "text": "This has [b]bold[/b] and [i]italic[/i] formatting."},
-				{"speaker": "Anje", "text": "This has audio (not implemented)", "audio": "res://assets/audio/bite_sfx.mp3"},
-				{"speaker": "Ali", "text": "This has a sprite override", "sprite_override": "res://assets/customers/customer_kraze.png"},
-				{"speaker": "Anje", "text": "Theere's about to be a choice."}
-			],
-			"next": "choice1"
-		},
-		"choice1": {
-			"type": "choice",
-			"choices": {
-				"Wowie its option number 1": "outcome1",
-				"Holy balls its option 2": "outcome2"
-			}
-		},
-		"outcome1": {
-			"type": "conversation",
-			"lines": [
-				{"speaker": "Ali", "text": "You picked the first option. That's pretty fucking banger ngl icl frfr"},
-				{"speaker": "Anje", "text": "I'm Anje and I  agree. I'm old and bald also."}
-			],
-			"next": "end"
-		},
-		"outcome2": {
-			"type": "conversation",
-			"lines": [
-				{"speaker": "Ali", "text": "You picked the second option. That's pretty fucking buns ngl icl frfr"},
-				{"speaker": "Anje", "text": "I'm Anje and I agree. I'm old and bald also."}
-			],
-			"next": "end"
-		}
-	},
-
-
 	"dialogue_take_order_kraze": {
 		"start": {"type": "start", "next": "lines"},
 		"end": {"type": "end"},
@@ -279,49 +236,270 @@
 		"game_over": {"type": "game_over", "message": "NO APPLE FRITTERS???"}
 	},
 
-	"dialogue_take_order_": {
+	"dialogue_take_order_carton": {
 		"start": {"type": "start", "next": "lines"},
 		"end": {"type": "end"},
 		"lines": {
 			"type": "conversation",
 			"lines": [
-				{"speaker": "", "text": "", "audio": "", "sprite_override": ""},
+				{"speaker": "Carton", "text": "Milk", "audio": "take_order_carton_1"},
+				{"speaker": "Anje", "text": "What?"},
+				{"speaker": "Carton", "text": "I'd like a carton of milk", "audio": "take_order_carton_2"},
+				{"speaker": "Anje", "text": "A carton of milk?"},
+				{"speaker": "Carton", "text": "Yes.", "audio": "take_order_carton_3"},
+				{"speaker": "Anje", "text": "I- sure...? I can get you that."},
+				{"speaker": "Anje", "text": "[i](How much do I even charge for that...)[/i]"},
 			],
 			"next": "end"
 		},
 	},
-	"dialogue_success_": {
+	"dialogue_success_carton": {
 		"start": {"type": "start", "next": "lines"},
 		"end": {"type": "end"},
 		"lines": {
 			"type": "conversation",
 			"lines": [
-				{"speaker": "", "text": "", "audio": "", "sprite_override": ""},
+				{"speaker": "Anje", "text": "Your... milk, sir."},
+				{"speaker": "Carton", "text": "Thank you.", "audio": "sucess_carton_1"},
+				{"speaker": "Carton", "text": "[i]*drinking*[/i]", "audio": "sucess_carton_2"},
+				{"speaker": "Anje", "text": "N-no problem..."},
 			],
 			"next": "end"
 		},
 	},
-	"dialogue_failure_": {
+	"dialogue_failure_carton": {
 		"start": {"type": "start", "next": "lines"},
 		"end": {"type": "end"},
 		"lines": {
 			"type": "conversation",
 			"lines": [
-				{"speaker": "", "text": "", "audio": "", "sprite_override": ""},
+				{"speaker": "Carton", "text": "[i]*spits*[/i] UY TANGINA. THIS ISN'T MILK.", "audio": "failure_carton_1"},
+				{"speaker": "Anje", "text": "Uhhh"},
+				{"speaker": "Carton", "text": "I'M OUTTA HERE!", "audio": "failure_carton_2"},
 			],
 			"next": "end"
 		},
 	},
-	"dialogue_timeout_": {
+	"dialogue_timeout_carton": {
 		"start": {"type": "start", "next": "lines"},
 		"end": {"type": "end"},
 		"lines": {
-			"type": "conversation",a
+			"type": "conversation",
 			"lines": [
-				{"speaker": "", "text": "", "audio": "", "sprite_override": ""},
+				{"speaker": "Carton", "text": "... Do you not have milk?", "audio": "timeout_carton_1"},
+				{"speaker": "Anje", "text": "[i](Oh, I forgot about that...)[/i]"},
+				{"speaker": "Anje", "text": "Uhhh, we ran out today, sir... Sorry."},
+				{"speaker": "Carton", "text": "Ah, no worries. I can help with that.", "audio": "timeout_carton_2"},
+				{"speaker": "Anje", "text": "Help... with that...?"},
+				{"speaker": "Cow", "text": "[i]*a herd of cows stampede the *[/i]", "audio": "timeout_carton_3"},
+				{"speaker": "Anje", "text": "WAIT WHAT. HUH. AHHH!"},
+			],
+			"next": "game_over"
+		},
+		"game_over": {"type": "game_over", "message": "it's in the fridge bro"}
+	},
+
+	"dialogue_take_order_chekered": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Chekered", "text": "Can you get me a bunch of eggs.", "audio": "take_order_chekered_1"},
+				{"speaker": "Anje", "text": "... I'm sorry, what?"},
+				{"speaker": "Chekered", "text": "Eggs, like the things chickens lay.", "audio": "take_order_chekered_2"},
+				{"speaker": "Anje", "text": "No, I know what eggs are. I meant-"},
+				{"speaker": "Chekered", "text": "They look like your head.", "audio": "take_order_chekered_3"},
+				{"speaker": "Anje", "text": "Wow, shut up."},
+				{"speaker": "Chekered", "text": "I said it. Hurry up now.", "audio": "take_order_chekered_4"},
 			],
 			"next": "end"
 		},
-		"game_over": {"type": "game_over", "message": "NO APPLE FRITTERS???"}
+	},
+	"dialogue_success_chekered": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Anje", "text": "Your eggs, sir."},
+				{"speaker": "Chekered", "text": "... This is two eggs.", "audio": "sucess_chekered_1"},
+				{"speaker": "Anje", "text": "I can't just give you a pack of eggs, sir."},
+				{"speaker": "Chekered", "text": "Man, c'mon. Just one more.", "audio": "sucess_chekered_2"},
+				{"speaker": "Anje", "text": "What the hell, no."},
+				{"speaker": "Chekered", "text": "Broke ass.", "audio": "sucess_chekered_3"},
+			],
+			"next": "end"
+		},
+	},
+	"dialogue_failure_chekered": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Chekered", "text": "What the fuck.", "audio": "failure_chekered_1"},
+				{"speaker": "Anje", "text": "Uhhhhh..."},
+				{"speaker": "Chekered", "text": "How'd you mess this up, man?", "audio": "failure_chekered_2"},
+				{"speaker": "Anje", "text": "Ionno, man. I'm getting old, it's hard to remember things."},
+			],
+			"next": "end"
+		},
+	},
+	"dialogue_timeout_chekered": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Chekered", "text": "Where's my eggs?", "audio": "timeout_chekered_1"},
+				{"speaker": "Anje", "text": "Uhhh- Just a minute, sir."},
+				{"speaker": "Chekered", "text": "Man, the fridge is right there.", "audio": "timeout_chekered_2"},
+				{"speaker": "Anje", "text": "Ehhm..."},
+				{"speaker": "Chekered", "text": "Fuck this. [i]*gun reload*... *gunshots*[/i]", "audio": "timeout_chekered_3"},
+			],
+			"next": "game_over"
+		},
+		"game_over": {"type": "game_over", "message": "smh couldn't even find the eggs"}
+	},
+
+	"dialogue_take_order_melan": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Melan", "text": "Got any grapes?", "audio": "take_order_melan_1"},
+				{"speaker": "Melan", "text": "[i]*humming music, im pretty sure she has the tune wrong*[/i] - Okay, just kidding- Hi Anje! Cookie testing going well?", "audio": "take_order_melan_2"},
+				{"speaker": "Anje", "text": "Eh, it's ok."},
+				{"speaker": "Melan", "text": "Hell yeah!", "audio": "take_order_melan_3"},
+				{"speaker": "Melan", "text": "Alright, I'll have... one ube pandesal, please.", "audio": "take_order_melan_4"},
+				{"speaker": "Anje", "text": "Oh, uhh. I don't know how to do that..."},
+			],
+			"next": "pandesal_tutorial_choice"
+		},
+		"pandesal_tutorial_choice": {
+			"type": "choice",
+			"choices": {
+				"All I know is how to make cookies...": "pandesal_tutorial_yes",
+				"Just kidding!": "pandesal_tutorial_no"
+			}
+		},
+		"pandesal_tutorial_yes": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Melan", "text": "Seriously? Ok, no, I gotchu. Right, lemme just um... [i]*walks over counter*,[/i] Oh- [i]*mass_destruction.mp3*[/i]", "audio": "take_order_melan_5"},
+				{"speaker": "Melan", "text": "(tutorial not implemented)"},
+			],
+			"next": "end"
+		},
+		"pandesal_tutorial_no": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Melan", "text": "Haha, hey! Ok, you could really piss off some customers, you know.", "audio": "success_melan_1"},
+			],
+			"next": "end"
+		},
+	},
+	"dialogue_success_melan": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Melan", "text": "Alright, back to the wheel fattie!", "audio": "success_melan_2"},
+				{"speaker": "Anje", "text": "Awe man :C"},
+			],
+			"next": "end"
+		},
+	},
+
+	"dialogue_take_order_kenz": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Kenz", "text": "Yeah, I'd like a... a... [i]*yawn*[/i]", "audio": "take_order_kenz_1"},
+				{"speaker": "Anje", "text": "Ehm, could you repeat that?"},
+				{"speaker": "Kenz", "text": "A bumber bifteen, burger bing boot bettuce...", "audio": "take_order_kenz_2"},
+				{"speaker": "Anje", "text": "Eehm, sorry we don’t have any bumber bifteen, burger bing boot bettuce :C"},
+				{"speaker": "Kenz", "text": "No, no. Just take your time [i]*honk... mimimimimimimimir... honk... mimimimimimir...*[/i]", "audio": "take_order_kenz_3"},
+				{"speaker": "Anje", "text": "Awe man... I'll just make you a cookie, ok?"},
+			],
+			"next": "end"
+		},
+	},
+	"dialogue_success_kenz": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Anje", "text": "Sir, I have your order."},
+				{"speaker": "Kenz", "text": "[i]*yawn*[/i] - ...Mmm?", "audio": "sucess_kenz_1"},
+				{"speaker": "Kenz", "text": "Ohh ts tuff as hell type shit type shit.", "audio": "sucess_kenz_2"},
+			],
+			"next": "end"
+		},
+	},
+	"dialogue_failure_kenz": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Kenz", "text": "[i]*yawn*[/i] - ...Mmm, huh?", "audio": "failure_kenz_1"},
+				{"speaker": "Kenz", "text": "Hey, this isn't what I ordered!", "audio": "failure_kenz_2"},
+				{"speaker": "Kenz", "text": "Not tuff gng.", "audio": "failure_kenz_3"},
+			],
+			"next": "end"
+		},
+	},
+	"dialogue_timeout_kenz": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [
+				{"speaker": "Kenz", "text": "*honk... mimimimimimimir....*", "audio": "timeout_kenz_1"},
+				{"speaker": "Anje", "text": "Huh? Oh... I forgot about his order..."},
+				{"speaker": "Anje", "text": "Well he's asleep anyways."},
+				{"speaker": "Kenz", "text": "[i][You hear a large crowd of footsteps in the distance, speeding closer and closer][/i]", "audio": "timeout_kenz_2"},
+				{"speaker": "Anje", "text": "Huh...?"},
+				{"speaker": "Kenz", "text": "[i][A stampede of race horses swarm the bakery, trampling everything in their way][/i]", "audio": "timeout_kenz_3"},
+				{"speaker": "Anje", "text": "HUH??? AHHHHH!!!"},
+				{"speaker": "Kenz", "text": "[i][In spite of all the chaos, the customer lies dead asleep, completely undisturbed. It’s almost as if the stampede is forming around him.][/i]", "audio": "timeout_kenz_4"},
+			],
+			"next": "game_over"
+		},
+		"game_over": {"type": "game_over", "message": "Don't mess with the honse"}
+	},
+	
+	"ending_cutscene": {
+		"start": {"type": "start", "next": "lines"},
+		"end": {"type": "end"},
+		"lines": {
+			"type": "conversation",
+			"lines": [	
+					{"speaker": "Everbody", "text": "HAPPY BIRTHDAY ANJE", "audio": "ending_happy_birthday"},
+					{"speaker": "Anje", "text": "watafreak"},
+					{"speaker": "Melan", "text": "You forgot it's your birthday today?"},
+					{"speaker": "Anje", "text": "Yea..."},
+					{"speaker": "Ali", "text": "It's literally on the topper."},
+					{"speaker": "Anje", "text": "Oh what? It is"},
+					{"speaker": "Anje", "text": "Well, someone made me work full-time shifts for 5 days..."},
+					{"speaker": "Anje", "text": "I've been so worn out, I didn't even noticec."},
+					{"speaker": "Ali", "text": "Whaaaat, who would do that?"},
+					{"speaker": "Melan", "text": "We even have a special guest to sing for you!"},
+					{"speaker": "Miku", "text": "Hallo Anje! It's Miku-dayo!"},
+					{"speaker": "Anje", "text": "omg hatsune miku"},
+					{"speaker": "Miku", "text": "Blessing for your birthday"},
+					{"speaker": "Feds", "text": "THERE SHE IS. WE GOT HER BOYS. EVERYBODY HANDS UP!"},
+					{"speaker": "Miku", "text": "Oh nyo"},
+					{"speaker": "Miku", "text": "Miku miku beam!!"},
+			],
+			"next": "end"
+		},
 	},
 }
